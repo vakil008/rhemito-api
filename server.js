@@ -2,7 +2,7 @@
 //modules 
 require('dotenv').config()
 const fp = require('fastify-plugin')
-
+const RHEMITO_PORT = process.env.PORT|| 3000
 const StaticService = require('./modules/static/service')
 // const staticModule = require('./modules/static'); 
 const fastify = require('fastify')({ logger: true })
@@ -63,7 +63,7 @@ fastify.get('/', async (request, reply) => {
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen(process.env.PORT|| 3000)
+    await fastify.listen(RHEMITO_PORT,'0.0.0.0')
     fastify.log.info(`server listening on ${fastify.server.address().port}`)
   } catch (err) {
     fastify.log.error(err)
