@@ -1,0 +1,3 @@
+
+import {registration } from './schemas'
+
