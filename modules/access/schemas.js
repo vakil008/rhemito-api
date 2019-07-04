@@ -12,9 +12,11 @@ const requestProperties ={
   }
 const register = {
     // This jsonschema will be used for data validation
+   
+   
     body: {
       type: 'object',
-      required: ['fname','lname','countryiso3','mobileno','email','pass'],
+      required: ['fname','lname','mname','country','mobileno','email','pass'],
       properties: {
       fname:{
         type:'string'
@@ -23,7 +25,8 @@ const register = {
         type:'string'
       },
       mname:{
-        type:'string'
+        type:'string',
+        default: "XXX"
       },
       country: {
         type:'string'
@@ -32,10 +35,12 @@ const register = {
         type:'string'
       },
       regtype: {
-        type:'string'
+        type:'string',
+        default:"I"
       },
       businessname: {
-        type:'string'
+        type:'string',
+        default:"XXX"
       },
       email:{
         type:'string'
@@ -44,7 +49,8 @@ const register = {
         type:'string'
       },
       issubscribe:{
-        type:'boolean'
+        type:'boolean',
+        default:false
       }
     } ,
       additionalProperties: false

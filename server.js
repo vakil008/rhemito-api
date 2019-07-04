@@ -1,13 +1,14 @@
 // Require the framework and instantiate it
 //modules 
 require('dotenv').config()
+
 const fp = require('fastify-plugin')
 const RHEMITO_PORT = process.env.PORT|| 3000
 const StaticService = require('./modules/static/service')
 const AccessService = require('./modules/access/service')
 // const staticModule = require('./modules/static'); 
 const fastify = require('fastify')({ logger: true })
-
+fastify.register(require('fastify-sensible'))
 const fastifyEnv = require('fastify-env')
 //configure env files
 const env_schema =  { 

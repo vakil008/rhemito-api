@@ -6,19 +6,23 @@ class  AccessService {
     async register (fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe) { 
         let registerResult;
         const randomguid = uuid()
-
+      console.log('business name', businessname)
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),country)
-      
-            registerResult = await R.post('/RetailAccessRegister', {
+           registerResult = await R.post('/RetailAccessRegister', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
                 hash,
-                fname,mname,lname,country,mobileno,regtype,businessname,email,
+                fname,mname,lname,
+                countryiso3: country,
+                mobileno,
+                regtype,
+                businessname,
+                email,
                 pass: hasher(email.toLowerCase(),pass),
                 issubscribe
             })
-
-        return registerResult.data.RetailApiResponse
+      
+         return registerResult.data.RetailApiResponse
     
     }
 
