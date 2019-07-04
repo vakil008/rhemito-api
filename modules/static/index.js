@@ -20,7 +20,6 @@ module.exports[Symbol.for('plugin-meta')] = {
       }
   async function countriesHandlers(req,reply) {
     const countries =  await this.staticService.countries()
-    console.log('country result', countries)
     return {
         message: countries.ResponseMessage,
         count: countries.Count,

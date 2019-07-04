@@ -35,8 +35,6 @@ const env_schema =  {
  }
 fastify.register(fastifyEnv, envOptions)
 .ready(envError => {
-
-console.log('config', fastify.config)
     if(envError) console.error('envError',envError)
 })
 
@@ -46,6 +44,7 @@ console.log('config', fastify.config)
  */
 
 fastify.register(require('fastify-swagger'), {
+  exposeRoute: true,
   routePrefix: '/documentation',
   swagger: {
     info: {
@@ -73,10 +72,14 @@ fastify.register(require('fastify-swagger'), {
       }
     }
   }
+}).ready(err => {
+  if (err) throw err
+  fastify.swagger()
 })
 /**
  * decorate with serive
  */
+
 async function decorateFastifyInstance(fastify, opts, next){
   const staticService = new StaticService();
   const accessService = new AccessService()
