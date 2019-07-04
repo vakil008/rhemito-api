@@ -1,63 +1,32 @@
-import  {R , hasher} from '../../lib/api'
-import uuid from 'uuid/v4'
+const  {R , hasher}  =  require('../../lib/api')
+const uuid = require('uuid/v4')
 
 class  AccessService { 
-    constructor(props) {
-    
-    }
-    async register (apiKey,fname,lname, countryiso3,regtype,email,pass,issubscribe,businessname=null) { 
+  
+    async register (fname,mname,lname,countryiso3,mobileno,regtype,businesname,email, pass,issubscribe) { 
         let registerResult;
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,email, countryiso3)
-        try  {
+
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),countryiso3)
+      
             registerResult = await R.post('/RetailAccessRegister', {
                 randomguid,
-                apiKey,
-                fname,
-                lname,
+                apiKey: process.env.API_KEY, 
                 hash,
-                countryiso3,
-                regtype,
-                businessname,
-                email,
-                pass,
+                fname,mname,lname,countryiso3,mobileno,regtype,businesname,email,
+                pass: hasher(email.toLowerCase(),pass),
                 issubscribe
             })
-        }catch(err){
-            throw e
-        }
-        return registerResult
+
+        return registerResult.data.RetailApiResponse
+    
     }
 
-    async login (email, pass) {    
-        let loginResult
-        const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,email)
-        try { 
-
-            loginResult = R.post('/RetailAccessLogin',{
-                randomguid,
-                apiKey,
-                hash,
-                email,
-                pass
-                
-            })
-
-
-        }catch(error) { 
-            throw error
-        }
-
-        return loginResult
-      }
-    
-    async activate(accesstoken) { 
+    async activate (accesstoken) {    
         let activateResult
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,accesstoken)
-        try { 
-
+        const hash = hasher(randomguid,this.privateKey, accesstoken)
+     
             activateResult = R.post('/RetailAccessRegisterActivate',{
                 randomguid,
                 apiKey,
@@ -67,39 +36,30 @@ class  AccessService {
             })
 
 
-        }catch(error) { 
-            throw error
-        }
-
-        return activateResult
-    }
+        return activateResult.data.RetailApiResponse
+      }
     
-    async confirmPassword() { 
-
-    }
-
-    async resetPassword(email) { 
-        let resetPasswordResult
+    async login(email,pass) { 
+        let loginResult
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,email)
-        try { 
-
-         resetPasswordResult = R.post('/RetailAccessPasswordResetRequest',{
+        const hash = hasher(randomguid,this.privateKey, apiKey,accesstoken,email.toLowerCase())
+        
+        loginResult = R.post('/RetailAccessRegisterActivate',{
                 randomguid,
                 apiKey,
                 hash,
-                email
+                email,
+                pass: hash(email.toLowerCase(),pass)
                 
             })
 
 
-        }catch(error) { 
-            throw error
-        }
+ 
 
-        return resetPasswordResult
-    
+        return loginResult.data.RetailApiResponse
     }
+    
+
 
     async validatePassword(accesstoken) { 
         let validatePasswordResult
@@ -123,7 +83,7 @@ class  AccessService {
         return validatePasswordResult
     
     }
-    async confirmPassword(accesstoken,pass) { 
+    async occupations() { 
         let confirmPasswordResult
         const randomguid = uuid()
         const hash = hasher(randomguid,this.privateKey, apiKey,accesstoken)
@@ -146,7 +106,7 @@ class  AccessService {
     
     }
 
-    async signout(sessiontoken) { 
+    async postcode() { 
         let signoutResult
         const randomguid = uuid()
         const hash = hasher(randomguid,this.privateKey, apiKey,sessiontoken)
@@ -168,7 +128,28 @@ class  AccessService {
         return signoutResult
     
     }
-   
+    async ticketCategory() { 
+        let signoutResult
+        const randomguid = uuid()
+        const hash = hasher(randomguid,this.privateKey, apiKey,sessiontoken)
+        try { 
+
+         signoutResult = R.post('/RetailAccessSignOut',{
+                randomguid,
+                apiKey,
+                hash,
+                sessiontoken
+                
+            })
+
+
+        }catch(error) { 
+            throw error
+        }
+
+        return signoutResult
+    
+    }
 }
 
 module.exports = AccessService

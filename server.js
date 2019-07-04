@@ -4,6 +4,7 @@ require('dotenv').config()
 const fp = require('fastify-plugin')
 const RHEMITO_PORT = process.env.PORT|| 3000
 const StaticService = require('./modules/static/service')
+const AccessService = require('./modules/access/service')
 // const staticModule = require('./modules/static'); 
 const fastify = require('fastify')({ logger: true })
 
@@ -40,11 +41,47 @@ console.log('config', fastify.config)
 })
 
 /**
+ * 
+ * add swagger
+ */
+
+fastify.register(require('fastify-swagger'), {
+  routePrefix: '/documentation',
+  swagger: {
+    info: {
+      title: 'Test swagger',
+      description: 'testing the fastify swagger api',
+      version: '0.1.0'
+    },
+    externalDocs: {
+      url: 'https://swagger.io',
+      description: 'Find more info here'
+    },
+    host: 'https://rhemito-api.herokuapp.com',
+    schemes: ['https'],
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    tags: [
+      { name: 'access', description: 'Access related end-points' },
+      { name: 'static', description: 'Static related end-points' }
+    ],
+    securityDefinitions: {
+      apiKey: {
+        type: 'apiKey',
+        name: 'apiKey',
+        in: 'header'
+      }
+    }
+  }
+})
+/**
  * decorate with serive
  */
 async function decorateFastifyInstance(fastify, opts, next){
   const staticService = new StaticService();
-  fastify.decorate('staticService', staticService)
+  const accessService = new AccessService()
+  fastify.decorate('staticService', staticService);
+  fastify.decorate('accessService', accessService)
   next()
 }
  /**
@@ -53,6 +90,7 @@ async function decorateFastifyInstance(fastify, opts, next){
  fastify
  .register(fp(decorateFastifyInstance))
  .register(require('./modules/static'), {prefix:'/static'})
+ .register(require('./modules/access'), {prefix:'/access'})
 // Declare a route
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
