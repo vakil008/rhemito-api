@@ -24,8 +24,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         }
       }
   async function registerHandlers(req,reply) {
-    const  {fname,mname,lname,countryiso3,mobileno,regtype,businesname,email, pass,issubscribe} = req.body
-    const newUser =  await this.accessService.register(fname,mname,lname,countryiso3,mobileno,regtype,businesname,email, pass,issubscribe)
+    const  {fname,mname,lname,country,mobileno,regtype,businesname,email, pass,issubscribe} = req.body
+    const newUser =  await this.accessService.register(fname,mname,lname,country,mobileno,regtype,businesname,email, pass,issubscribe)
     console.log('new user', newUser)
     return {
         message: newUser.ResponseMessage,

@@ -3,17 +3,17 @@ const uuid = require('uuid/v4')
 
 class  AccessService { 
   
-    async register (fname,mname,lname,countryiso3,mobileno,regtype,businesname,email, pass,issubscribe) { 
+    async register (fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe) { 
         let registerResult;
         const randomguid = uuid()
 
-        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),countryiso3)
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),country)
       
             registerResult = await R.post('/RetailAccessRegister', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
                 hash,
-                fname,mname,lname,countryiso3,mobileno,regtype,businesname,email,
+                fname,mname,lname,country,mobileno,regtype,businessname,email,
                 pass: hasher(email.toLowerCase(),pass),
                 issubscribe
             })

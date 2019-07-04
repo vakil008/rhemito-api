@@ -25,7 +25,7 @@ const register = {
       mname:{
         type:'string'
       },
-      countryiso3: {
+      country: {
         type:'string'
       },
       mobileno:{
