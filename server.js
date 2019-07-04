@@ -57,8 +57,8 @@ fastify.register(require('fastify-swagger'), {
       url: 'https://swagger.io',
       description: 'Find more info here'
     },
-    host: 'https://rhemito-api.herokuapp.com',
-    schemes: ['https'],
+    host: 'localhost',
+    schemes: ['http','https'],
     consumes: ['application/json'],
     produces: ['application/json'],
     tags: [
