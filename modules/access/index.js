@@ -26,7 +26,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function registerHandlers(req,reply) {
     const  {fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe} = req.body
     const newUser =  await this.accessService.register(fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe)
-    if(newUser.ResponseCode==='0') {
+    if(newUser.ResponseCode!='10000') {
       throw reply.badRequest(newUser.ResponseMessage)
     }
     return {
@@ -38,19 +38,21 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function loginHandlers(req,reply) {
     const  {email, pass} = req.body
     const loginUser =  await this.accessService.login(email, pass)
-    console.log('login user', loginUser)
+    if(loginUser.ResponseCode!='10000') {
+      throw reply.badRequest(loginUser.ResponseMessage)
+    }
     return {
-        message: loginUser.ResponseMessage,
-        uid: loginUser.uid,
-        sessiontoken: loginUser.sessiontoken,
-        sessionexpiry: loginUser.sessionexpiry
-    }   
+      message: loginUser.ResponseMessage,
+      uid: loginUser.User.Uid,
+      sessiontoken: loginUser.User.SessionToken,
+      sessionexpiry: loginUser.User.SessionExpiry
+  }    
+   
   }
 
   async function activateHandlers(req,reply) {
     const  {accesstoken} = req.body
     const activateUser =  await this.accessService.activate(accesstoken)
-    console.log('login user', activateUser)
     return {
         message: activateUser.ResponseMessage,
     }   

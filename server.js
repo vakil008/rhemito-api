@@ -6,6 +6,8 @@ const fp = require('fastify-plugin')
 const RHEMITO_PORT = process.env.PORT|| 3000
 const StaticService = require('./modules/static/service')
 const AccessService = require('./modules/access/service')
+const TransactionService = require('./modules/transaction/service')
+
 // const staticModule = require('./modules/static'); 
 const fastify = require('fastify')({ logger: true })
 fastify.register(require('fastify-sensible'))
@@ -63,7 +65,8 @@ fastify.register(require('fastify-swagger'), {
     produces: ['application/json'],
     tags: [
       { name: 'access', description: 'Access related end-points' },
-      { name: 'static', description: 'Static related end-points' }
+      { name: 'static', description: 'Static related end-points' },
+      { name: 'transaction', description: 'Transaction related end-points' }
     ],
     securityDefinitions: {
       apiKey: {
@@ -84,8 +87,10 @@ fastify.register(require('fastify-swagger'), {
 async function decorateFastifyInstance(fastify, opts, next){
   const staticService = new StaticService();
   const accessService = new AccessService()
+  const transactionService = new TransactionService()
   fastify.decorate('staticService', staticService);
-  fastify.decorate('accessService', accessService)
+  fastify.decorate('accessService', accessService);
+  fastify.decorate('transactionService', transactionService)
   next()
 }
  /**
@@ -95,7 +100,8 @@ async function decorateFastifyInstance(fastify, opts, next){
  .register(fp(decorateFastifyInstance))
  .register(require('./modules/static'), {prefix:'/static'})
  .register(require('./modules/access'), {prefix:'/access'})
-// Declare a route
+ .register(require('./modules/transaction'), {prefix:'/transaction'})
+ // Declare a route
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
 })

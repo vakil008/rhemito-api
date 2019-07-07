@@ -18,29 +18,36 @@ class  StaticService {
     
     }
 
-    async corridors () {    
-        let loginResult
+    async providers () { 
+        let providerResult;
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,email)
-        try { 
 
-            loginResult = R.post('/RetailAccessLogin',{
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
+      
+            providerResult = await R.post('/RetailStaticDataProviders', {
                 randomguid,
-                apiKey,
+                apiKey: process.env.API_KEY, 
                 hash,
-                email,
-                pass
-                
             })
-
-
-        }catch(error) { 
-            throw error
-        }
-
-        return loginResult
-      }
+              return providerResult.data.RetailApiResponse
     
+    }
+    async corridors () { 
+        let providerResult;
+        const randomguid = uuid()
+
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
+      
+            providerResult = await R.post('/RetailStaticDataCorridors', {
+                randomguid,
+                apiKey: process.env.API_KEY, 
+                hash,
+            })
+        return providerResult.data.RetailApiResponse
+    
+    }
+
+ 
     async relationships() { 
         let activateResult
         const randomguid = uuid()

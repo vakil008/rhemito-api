@@ -6,7 +6,6 @@ class  AccessService {
     async register (fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe) { 
         let registerResult;
         const randomguid = uuid()
-      console.log('business name', businessname)
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),country)
            registerResult = await R.post('/RetailAccessRegister', {
                 randomguid,
@@ -28,39 +27,37 @@ class  AccessService {
 
     async activate (accesstoken) {    
         let activateResult
+    
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, accesstoken)
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, accesstoken)
      
-            activateResult = R.post('/RetailAccessRegisterActivate',{
+            activateResult = await  R.post('/RetailAccessRegisterActivate',{
                 randomguid,
-                apiKey,
+                apiKey:process.env.API_KEY,
                 hash,
                 accesstoken
                 
             })
-
-
-        return activateResult.data.RetailApiResponse
+            return {
+                ResponseMessage:'none'
+            }
+        // return activateResult.data.RetailApiResponse
       }
     
     async login(email,pass) { 
         let loginResult
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,accesstoken,email.toLowerCase())
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase())
         
-        loginResult = R.post('/RetailAccessRegisterActivate',{
+        loginResult = await  R.post('/RetailAccessLogin',{
                 randomguid,
-                apiKey,
+                apiKey:process.env.API_KEY,
                 hash,
                 email,
-                pass: hash(email.toLowerCase(),pass)
+                pass: hasher(email.toLowerCase(),pass)
                 
             })
-
-
- 
-
-        return loginResult.data.RetailApiResponse
+         return loginResult.data.RetailApiResponse
     }
     
 
