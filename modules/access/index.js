@@ -24,8 +24,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         }
       }
   async function registerHandlers(req,reply) {
-    const  {fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe} = req.body
-    const newUser =  await this.accessService.register(fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe)
+    const  {firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe} = req.body
+    const newUser =  await this.accessService.register(firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe)
     if(newUser.ResponseCode!='10000') {
       throw reply.badRequest(newUser.ResponseMessage)
     }
@@ -53,6 +53,9 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function activateHandlers(req,reply) {
     const  {accesstoken} = req.body
     const activateUser =  await this.accessService.activate(accesstoken)
+    if(activateUser.ResponseCode!='10000') {
+      throw reply.badRequest(activateUser.ResponseMessage)
+    }
     return {
         message: activateUser.ResponseMessage,
     }   
