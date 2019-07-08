@@ -44,6 +44,28 @@ class  TransactionService {
     
     }
 
+    async namecheck (uid,
+        sessiontoken,
+        providerid,
+        accountno) {
+            console.log('account no', accountno)
+            let nameCheckResult;
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,providerid, accountno)
+      
+            nameCheckResult = await R.post('/RetailTransactionAccountNameCheck', {
+                randomguid,
+                apiKey: process.env.API_KEY, 
+                sessiontoken,
+                hash,
+                Uid:uid,
+                Providerid:providerid,
+                BenAccountNo:accountno  })
+           
+        return nameCheckResult.data.RetailApiResponse
+    
+    }
+
    
 
 }

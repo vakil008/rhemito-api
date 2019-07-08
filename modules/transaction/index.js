@@ -1,13 +1,13 @@
 const {
     calculate: calculateSchema,
-    providers: providerSchema
+    nameCheck: nameCheckSchema
     // corridors: corridorsSchema,
     // search: searchSchema,
     // getProfile: getProfileSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) { 
       fastify.post('/calculate' , {schema: calculateSchema}, calculateHandlers )
-      // fastify.post('/checkaccount' , {schema: providerSchema}, providerHandlers )
+      fastify.post('/checkaccount' , {schema: nameCheckSchema}, namecheckHandlers )
       // fastify.post('/create' , {schema: providerSchema}, providerHandlers )
     }
   
@@ -56,11 +56,19 @@ module.exports[Symbol.for('plugin-meta')] = {
           // calculate: calculate.Countries
     }   
   }
-  async function providerHandlers(req,reply) {
-    const providers =  await this.staticService.providers()
+
+  async function namecheckHandlers(req,reply) {
+    const { uid,
+       sessiontoken,
+      providerid,
+      accountno,
+     } = req.body
+    const namecheck =  await this.transactionService.namecheck(uid,sessiontoken,
+      providerid,
+      accountno)
+    
     return {
-        message: providers.ResponseMessage,
-        count: providers.Count,
-        providers: providers.Providers
+        message: namecheck.ResponseMessage,
+       
     }   
   }

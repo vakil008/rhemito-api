@@ -7,6 +7,7 @@ const RHEMITO_PORT = process.env.PORT|| 3000
 const StaticService = require('./modules/static/service')
 const AccessService = require('./modules/access/service')
 const TransactionService = require('./modules/transaction/service')
+const AccountService = require('./modules/account/service')
 
 // const staticModule = require('./modules/static'); 
 const fastify = require('fastify')({ logger: true })
@@ -88,9 +89,11 @@ async function decorateFastifyInstance(fastify, opts, next){
   const staticService = new StaticService();
   const accessService = new AccessService()
   const transactionService = new TransactionService()
+  const accountService = new AccountService()
   fastify.decorate('staticService', staticService);
   fastify.decorate('accessService', accessService);
   fastify.decorate('transactionService', transactionService)
+  fastify.decorate('accountService', accountService)
   next()
 }
  /**
@@ -101,6 +104,7 @@ async function decorateFastifyInstance(fastify, opts, next){
  .register(require('./modules/static'), {prefix:'/static'})
  .register(require('./modules/access'), {prefix:'/access'})
  .register(require('./modules/transaction'), {prefix:'/transaction'})
+ .register(require('./modules/account'), {prefix:'/account'})
  // Declare a route
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
