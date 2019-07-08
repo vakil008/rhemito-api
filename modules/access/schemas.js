@@ -16,7 +16,7 @@ const register = {
    
     body: {
       type: 'object',
-      required: ['fname','lname','mname','country','mobileno','email','pass'],
+      required: ['firstname','lastname','middlename','country','mobileno','email','pass'],
       properties: {
       firstname:{
         type:'string'
