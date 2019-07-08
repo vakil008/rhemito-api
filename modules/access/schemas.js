@@ -18,13 +18,13 @@ const register = {
       type: 'object',
       required: ['fname','lname','mname','country','mobileno','email','pass'],
       properties: {
-      fname:{
+      firstname:{
         type:'string'
       },
-      lname:{
+      lastname:{
         type:'string'
       },
-      mname:{
+      middlename:{
         type:'string',
         default: "XXX"
       },

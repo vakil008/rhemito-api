@@ -3,7 +3,7 @@ const uuid = require('uuid/v4')
 
 class  AccessService { 
   
-    async register (fname,mname,lname,country,mobileno,regtype,businessname,email, pass,issubscribe) { 
+    async register (firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe) { 
         let registerResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),country)
@@ -11,7 +11,9 @@ class  AccessService {
                 randomguid,
                 apiKey: process.env.API_KEY, 
                 hash,
-                fname,mname,lname,
+                fname:firstname,
+                mname:middlename,
+                lname:lastname,
                 countryiso3: country,
                 mobileno,
                 regtype,

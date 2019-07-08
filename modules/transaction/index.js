@@ -66,7 +66,6 @@ module.exports[Symbol.for('plugin-meta')] = {
     const namecheck =  await this.transactionService.namecheck(uid,sessiontoken,
       providerid,
       accountno)
-    
     return {
         message: namecheck.ResponseMessage,
        

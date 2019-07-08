@@ -39,7 +39,6 @@ class  TransactionService {
 
             })
            
-            
         return calculateResult.data.RetailApiResponse
     
     }
@@ -61,7 +60,7 @@ class  TransactionService {
                 Uid:uid,
                 Providerid:providerid,
                 BenAccountNo:accountno  })
-           
+        console.log('namecheck',nameCheckResult.data.RetailApiResponse)
         return nameCheckResult.data.RetailApiResponse
     
     }
