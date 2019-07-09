@@ -39,6 +39,8 @@ const user = {
           lastname: {type:'string'},
           email: {type:'string'},
           country: {type:'string'},
+          mobileno: {type:'string'},
+          dob: {type:'string'},
         },
         additionalProperties: false
       }
