@@ -126,10 +126,103 @@ const register = {
       }
     }
   }
-  
 
+
+  const reset  = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required: ['email'],
+      properties: {
+        email: {
+          type:'string'
+        },
+       
+      } ,
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+  
+        },
+        additionalProperties: false
+      }
+    }
+  }
+  
+  const validate  = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required: ['accesstoken'],
+      properties: {
+        accesstoken: {
+          type:'string'
+        },
+       
+      } ,
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+  
+        },
+        additionalProperties: false
+      }
+    }
+  }
+  
+  const confirm  = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required: ['email', 'pass','accesstoken'],
+      properties: {
+        email: {
+          type:'string'
+        },
+        pass: {
+          type:'string'
+        },
+        accesstoken: {
+          type:'string'
+        },
+       
+      } ,
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+  
+        },
+        additionalProperties: false
+      }
+    }
+  }
+  
   module.exports =  { 
       register,
       activate,
-      login
+      login,
+      reset,
+      validate,
+      confirm
   }

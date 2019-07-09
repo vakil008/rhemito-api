@@ -35,10 +35,10 @@ class  TransactionService {
                 Direction:direction,
                 Service:service,
                 discountcode:discountcode,
-                isvalidate
+                isvalidate:true
 
             })
-           
+           console.log('calculate', calculateResult.data.RetailApiResponse)
         return calculateResult.data.RetailApiResponse
     
     }
@@ -65,7 +65,60 @@ class  TransactionService {
     
     }
 
-   
+    async submit (uid,
+        sessiontoken,
+        fromcountry,
+        fromcurrency,
+        tocountry,
+        tocurrency,
+        amount,
+        direction,
+        service,
+        discountcode,
+        validateid,
+        provider,
+        benfirstname,
+        benlastname,
+        sendamount,
+        receiveamount,
+          benmobileno,
+          benaccountno,
+          benbankname) {
+    
+            let submitResult;
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
+            fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
+            tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase(),service.toLowerCase())
+      console.log('service',service)
+            submitResult = await R.post('/RetailTransactionSubmit', {
+                randomguid,
+                apiKey: process.env.API_KEY, 
+                sessiontoken,
+                hash,
+                Uid:uid,
+                fromcountryiso3:fromcountry,
+                fromcurrencyiso3:fromcurrency,
+                tocountryiso3:tocountry,
+                tocurrencyiso3:tocurrency,
+                Amount:amount,
+                Direction:direction,
+                service:service,
+                discountcode:discountcode,
+                ValidateId:'3092303',
+                PaymentMethodCode:'TRIAL',
+                amount: direction==="S"?sendamount:receiveamount,
+                providerid:provider,
+                benfirstname,
+                benlastname,
+                benmobileno,
+                benaccountno,
+                benbankname
+            })
+        console.log('create',submitResult.data.RetailApiResponse)
+        return submitResult.data.RetailApiResponse
+    
+    }
 
 }
 

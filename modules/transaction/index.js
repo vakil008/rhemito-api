@@ -1,14 +1,14 @@
 const {
     calculate: calculateSchema,
-    nameCheck: nameCheckSchema
-    // corridors: corridorsSchema,
+    nameCheck: nameCheckSchema,
+    submit: submitSchema,
     // search: searchSchema,
     // getProfile: getProfileSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) { 
       fastify.post('/calculate' , {schema: calculateSchema}, calculateHandlers )
       fastify.post('/checkaccount' , {schema: nameCheckSchema}, namecheckHandlers )
-      // fastify.post('/create' , {schema: providerSchema}, providerHandlers )
+      fastify.post('/create' , {schema: submitSchema}, submitHandlers )
     }
   
 module.exports[Symbol.for('plugin-meta')] = {
@@ -69,5 +69,48 @@ module.exports[Symbol.for('plugin-meta')] = {
     return {
         message: namecheck.ResponseMessage,
        
+    }   
+  }
+
+
+
+  async function submitHandlers(req,reply) {
+    const { uid,
+       sessiontoken,
+      fromcountry,
+      fromcurrency,
+      tocountry,
+      tocurrency,
+      amount,
+      direction,
+      service,
+      discountcode,
+      validateid,
+    provider, benfirstname,benlastname} = req.body
+    console.log('provider',provider)
+    const create =  await this.transactionService.submit(uid,sessiontoken,
+      fromcountry,
+      fromcurrency,
+      tocountry,
+      tocurrency,
+      amount,
+      direction,
+      service,
+      discountcode,
+      validateid,
+      provider,
+      benfirstname,
+      benlastname)
+    
+    return {
+        message: create.ResponseMessage,
+        rate: create.Transactioncreate.Rate,
+        sendamount: create.Transactioncreate.SendAmount,
+        receiveamount: create.Transactioncreate.ReceiveAmount,
+        sendcountry: create.Transactioncreate.FromCountryISO3,
+        sendcurrency: create.Transactioncreate. FromCurrencyISO3,
+        receivecountry: create.Transactioncreate.ToCountryISO3,
+        receivecurrency: create.Transactioncreate.ToCurrencyISO3,
+          // calculate: calculate.Countries
     }   
   }

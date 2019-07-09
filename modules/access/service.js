@@ -32,7 +32,7 @@ class  AccessService {
         let activateResult
     
         const randomguid = uuid()
-        const hash = hasher(randomguid,process.env.PRIVATE_KEY, accesstoken)
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,accesstoken.toLowerCase())
      
             activateResult = await  R.post('/RetailAccessRegisterActivate',{
                 randomguid,
@@ -41,12 +41,59 @@ class  AccessService {
                 accesstoken
                 
             })
-            return {
-                ResponseMessage:'none'
-            }
-        // return activateResult.data.RetailApiResponse
+            
+     return activateResult.data.RetailApiResponse
       }
     
+    async reset (email) {    
+        let resetResult
+    
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY,process.env.API_KEY, email.toLowerCase())
+     
+            resetResult = await  R.post('/RetailAccessPasswordResetRequest',{
+                randomguid,
+                apiKey:process.env.API_KEY,
+                hash,
+                accesstoken
+                
+            })
+           
+         return resetResult.data.RetailApiResponse
+      }
+      async validate (accesstoken) {    
+        let validateResult
+    
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,accesstoken.toLowerCase())
+     
+            validateResult = await  R.post('/RetailAccessPasswordResetValidate',{
+                randomguid,
+                apiKey:process.env.API_KEY,
+                hash,
+                accesstoken
+                
+            })
+           
+         return validateResult.data.RetailApiResponse
+      }
+      async confirm (accesstoken,email,pass) {    
+        let confirmResult
+    
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,accesstoken.toLowerCase())
+     
+            confirmResult = await  R.post('/RetailAccessPasswordResetConfirm',{
+                randomguid,
+                apiKey:process.env.API_KEY,
+                hash,
+                accesstoken,
+                pass: hasher(email.toLowerCase(),pass)
+               })
+           
+         return confirmResult.data.RetailApiResponse
+      }
+
     async login(email,pass) { 
         let loginResult
         const randomguid = uuid()

@@ -52,7 +52,8 @@ const calculate = {
           type:'string'
         },
         isvalidate: {
-          type:'boolean'
+          type:'boolean',
+          default:true
         }
       } ,
       additionalProperties: false
@@ -131,7 +132,119 @@ const calculate = {
   }
   
 
+
+
+  const submit = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required: ['uid','sessiontoken',
+      'fromcountry',
+      'fromcurrency',
+      'tocountry',
+      'tocurrency',
+    'amount','direction','service',"provider"],
+      properties: {
+        uid: {
+          type:'string'
+        },
+        sessiontoken: {
+          type:'string'
+        },
+        fromcountry: {
+          type:'string'
+        },
+        tocountry: {
+          type:'string'
+        },
+        fromcurrency: {
+          type:'string'
+        },
+        tocurrency: {
+          type:'string'
+        },
+        amount:{
+          type:'number'
+        },
+        direction: {
+          type:'string'
+        },
+        service:{
+          type:'string'
+        },
+        discountcode: {
+          type:'string'
+        },
+        validateid: {
+          type:'string'
+        },
+        sendamount: {
+          type:'number'
+        },
+        receiveamount: {
+          type:'number'
+        },
+        provider: {
+          type:'string'
+        },
+        benfirstname: {
+          type:'string'
+        },
+        benlastname: {
+          type:'string'
+        },
+        benmobileno: {
+          type:'string'
+        },
+        benaccountno: {
+          type:'string'
+        },
+        benbankname: {
+          type:'string'
+        },
+       
+       
+
+      } ,
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          rate: { type: 'number' },
+          sendamount: { type: 'number' },
+          receiveamount: { type: 'number' },
+          sendcountry: {type:'string'},
+          receivecountry: {type:'string'},
+          sendcurrency: {type:'string'},
+          receivecurrency: {type:'string'}, 
+          discountamount: { type: 'number' },
+          docregtype: {type:'string'},
+          docid: { type: 'string' },
+          docaddress: { type: 'string' },
+          docfund: { type: 'string' },
+          dococcupation: { type: 'string' },
+          databankaccno: { type: 'string' },
+          databankbic: { type: 'string' },
+          databankrouting: { type: 'string' },
+          databankiban: { type: 'string' },
+          databendob: { type: 'string' },
+          databencity: { type: 'string' },
+          databenaddress: { type: 'string' },
+          isdiscountavailable: { type: 'boolean' },
+          isnamecheckavailable: { type: 'boolean' }
+        },
+        additionalProperties: false
+      }
+    }
+  }
   module.exports =  { 
       calculate,
-      nameCheck
+      nameCheck,
+      submit
   }
