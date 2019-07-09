@@ -20,7 +20,7 @@ class  TransactionService {
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase())
-      
+            console.log('service',service)
             calculateResult = await R.post('/RetailTransactionCalculateRate', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
@@ -38,6 +38,7 @@ class  TransactionService {
                 isvalidate:true
 
             })
+
            console.log('calculate', calculateResult.data.RetailApiResponse)
         return calculateResult.data.RetailApiResponse
     
@@ -103,7 +104,8 @@ class  TransactionService {
                 tocurrencyiso3:tocurrency,
                 Amount:amount,
                 Direction:direction,
-                service:service,
+                servicecode:service,
+                Service:service,
                 discountcode:discountcode,
                 ValidateId:'3092303',
                 PaymentMethodCode:'TRIAL',
@@ -113,7 +115,8 @@ class  TransactionService {
                 benlastname,
                 benmobileno,
                 benaccountno,
-                benbankname
+                benbankname,
+
             })
         console.log('create',submitResult.data.RetailApiResponse)
         return submitResult.data.RetailApiResponse

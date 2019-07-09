@@ -44,6 +44,10 @@ module.exports[Symbol.for('plugin-meta')] = {
       discountcode,
       isvalidate)
     
+      if(calculate.ResponseCode!='10000') {
+        throw reply.badRequest(calculate.ResponseMessage)
+      }
+       
     return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
