@@ -79,33 +79,13 @@ module.exports[Symbol.for('plugin-meta')] = {
 
 
   async function submitHandlers(req,reply) {
-    const { uid,
-       sessiontoken,
-      fromcountry,
-      fromcurrency,
-      tocountry,
-      tocurrency,
-      amount,
-      direction,
-      service,
-      discountcode,
-      validateid,
-    provider, benfirstname,benlastname} = req.body
-    console.log('provider',provider)
-    const create =  await this.transactionService.submit(uid,sessiontoken,
-      fromcountry,
-      fromcurrency,
-      tocountry,
-      tocurrency,
-      amount,
-      direction,
-      service,
-      discountcode,
-      validateid,
-      provider,
-      benfirstname,
-      benlastname)
-    
+    console.log('body',req.body)
+  
+  
+    const create =  await this.transactionService.submit(req.body)
+    if(create.ResponseCode!='10000') {
+      throw reply.badRequest(create.ResponseMessage)
+    }
     return {
         message: create.ResponseMessage,
         rate: create.Transactioncreate.Rate,

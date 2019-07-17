@@ -66,7 +66,7 @@ class  TransactionService {
     
     }
 
-    async submit (uid,
+    async submit ({uid,
         sessiontoken,
         fromcountry,
         fromcurrency,
@@ -82,16 +82,17 @@ class  TransactionService {
         benlastname,
         sendamount,
         receiveamount,
-          benmobileno,
-          benaccountno,
-          benbankname) {
+        benmobileno,
+        benaccountno,
+        benbankname,
+    benaddress,bencity}) {
     
             let submitResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase(),service.toLowerCase())
-      console.log('service',service)
+      console.log('benaddress',benaddress)
             submitResult = await R.post('/RetailTransactionSubmit', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
@@ -108,7 +109,7 @@ class  TransactionService {
                 Service:service,
                 discountcode:discountcode,
                 ValidateId:'3092303',
-                PaymentMethodCode:'TRIAL',
+                PaymentMethodCode:'BANKTRANSFER',
                 amount: direction==="S"?sendamount:receiveamount,
                 providerid:provider,
                 benfirstname,
@@ -116,6 +117,8 @@ class  TransactionService {
                 benmobileno,
                 benaccountno,
                 benbankname,
+                benaddress,
+                bencity
 
             })
         console.log('create',submitResult.data.RetailApiResponse)

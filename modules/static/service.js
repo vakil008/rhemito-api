@@ -1,6 +1,6 @@
 const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4')
-
+const to  = require('await-to-js').default
 class  StaticService { 
   
     async countries () { 
@@ -49,29 +49,31 @@ class  StaticService {
 
  
     async relationships() { 
-        let activateResult
+       
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,accesstoken)
-        try { 
-
-            activateResult = R.post('/RetailAccessRegisterActivate',{
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
+       
+          const [error,relationshipResult] =await  to(R.post('/RetailStaticDataRelationships',{
                 randomguid,
-                apiKey,
-                hash,
-                accesstoken
-                
-            })
-
-
-        }catch(error) { 
-            throw error
-        }
-
-        return activateResult
+                apiKey:process.env.API_KEY,
+                hash
+            }))
+       if(error) throw error
+        return relationshipResult.data.RetailApiResponse
     }
     
     async reasons() { 
-
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
+       
+            const [error,reasonResult] = await to(R.post('/RetailStaticDataReasons',{
+                randomguid,
+                apiKey:process.env.API_KEY,
+                hash
+                
+            }))
+      if(error) throw error
+       return reasonResult.data.RetailApiResponse
     }
 
     async providerItems() { 

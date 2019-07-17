@@ -124,8 +124,68 @@ const countries = {
       }
     }
   }
+  const relationships = {
+    // This jsonschema will be used for data validation
+    // body: {
+    //   type: 'object',
+    //   properties: requestProperties ,
+    //   additionalProperties: false
+    // },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          count: {type:'number'},
+          relationships: {type:'array',
+        items: {
+            type:'object',
+            properties : {
+      id:{ type: 'string' },
+       name:{ type: 'string' },
+         }
+        } }
+        },
+        additionalProperties: false
+      }
+    }
+  }
+  const reasons = {
+    // This jsonschema will be used for data validation
+    // body: {
+    //   type: 'object',
+    //   properties: requestProperties ,
+    //   additionalProperties: false
+    // },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          count: {type:'number'},
+          reasons: {type:'array',
+        items: {
+            type:'object',
+            properties : {
+      id:{ type: 'string' },
+       name:{ type: 'string' },
+         }
+        } }
+        },
+        additionalProperties: false
+      }
+    }
+  }
   module.exports =  { 
       countries,
       providers,
-      corridors
+      corridors,
+      relationships,
+      reasons
   }

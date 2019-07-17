@@ -203,6 +203,13 @@ const calculate = {
           type:'string'
         },
        
+        benaddress: {
+          type:'string'
+        },
+        bencity: {
+          type:'string',
+          default:""
+        },
        
 
       } ,
