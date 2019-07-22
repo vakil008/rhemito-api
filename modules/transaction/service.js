@@ -35,12 +35,13 @@ class  TransactionService {
                 Direction:direction,
                 Service:service,
                 discountcode:discountcode,
-                isvalidate:true
+                isvalidate
 
             })
 
-           console.log('calculate', calculateResult.data.RetailApiResponse)
-        return calculateResult.data.RetailApiResponse
+            console.log('calculate', calculateResult.data.RetailApiResponse)
+            console.log('calculate payment code', calculateResult.data.RetailApiResponse.TransactionCalculate.PaymentMethods)
+            return calculateResult.data.RetailApiResponse
     
     }
 

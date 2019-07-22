@@ -47,7 +47,14 @@ module.exports[Symbol.for('plugin-meta')] = {
       if(calculate.ResponseCode!='10000') {
         throw reply.badRequest(calculate.ResponseMessage)
       }
-       
+    let paymentmethods = null 
+
+    if(isvalidate) {
+       paymentmethods = calculate.TransactionCalculate.PaymentMethods.map(pm=>({
+         fee:pm.Fees,
+         code:pm.PaymentMethodCode
+       }))
+    }  
     return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
@@ -57,6 +64,10 @@ module.exports[Symbol.for('plugin-meta')] = {
         sendcurrency: calculate.TransactionCalculate. FromCurrencyISO3,
         receivecountry: calculate.TransactionCalculate.ToCountryISO3,
         receivecurrency: calculate.TransactionCalculate.ToCurrencyISO3,
+        validateid: calculate.TransactionCalculate.ValidateId,
+        paymentmethods,
+        servicecode: calculate.TransactionCalculate.ServiceCode
+
           // calculate: calculate.Countries
     }   
   }

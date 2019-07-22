@@ -52,8 +52,8 @@ const calculate = {
           type:'string'
         },
         isvalidate: {
-          type:'boolean',
-          default:true
+          type:'number',
+          default:0
         }
       } ,
       additionalProperties: false
@@ -87,7 +87,17 @@ const calculate = {
           databencity: { type: 'string' },
           databenaddress: { type: 'string' },
           isdiscountavailable: { type: 'boolean' },
-          isnamecheckavailable: { type: 'boolean' }
+          isnamecheckavailable: { type: 'boolean' },
+          validateid: {type:['string', 'null']},
+          servicecode:{type:['string', 'null']},
+          paymentmethods: {type:['array', 'null'],
+        items: {
+            type:'object',
+            properties : {
+      fee:{ type: 'number' },
+      code:{ type: 'string' },
+         }
+        } }
         },
         additionalProperties: false
       }
@@ -142,7 +152,7 @@ const calculate = {
       'fromcountry',
       'fromcurrency',
       'tocountry',
-      'tocurrency',
+      'tocurrency',"benfirstname","benlastname",
     'amount','direction','service',"provider"],
       properties: {
         uid: {
