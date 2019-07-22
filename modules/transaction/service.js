@@ -86,7 +86,8 @@ class  TransactionService {
         benaccountno,
         benbankname,
     benaddress,
-    relationshipid,bencity}) {
+    relationshipid,
+    reasonid,bencity}) {
     
             let submitResult;
         const randomguid = uuid()
@@ -120,6 +121,7 @@ class  TransactionService {
                 benbankname,
                 benaddress,
                 relationshipid,
+                reasonid,
                 bencity
 
             })

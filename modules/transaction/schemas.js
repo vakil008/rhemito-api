@@ -220,6 +220,9 @@ const calculate = {
         relationshipid: {
           type:'string'
         },
+        reasonid: {
+          type:'string'
+        },
         bencity: {
           type:'string',
           default:""
