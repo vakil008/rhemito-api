@@ -85,14 +85,14 @@ class  TransactionService {
         benmobileno,
         benaccountno,
         benbankname,
-    benaddress,bencity}) {
+    benaddress,
+    relationshipid,bencity}) {
     
             let submitResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase(),service.toLowerCase())
-      console.log('benaddress',benaddress)
             submitResult = await R.post('/RetailTransactionSubmit', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
@@ -119,6 +119,7 @@ class  TransactionService {
                 benaccountno,
                 benbankname,
                 benaddress,
+                relationshipid,
                 bencity
 
             })

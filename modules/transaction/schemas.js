@@ -213,13 +213,18 @@ const calculate = {
           type:'string'
         },
        
+       
         benaddress: {
+          type:'string'
+        },
+        relationshipid: {
           type:'string'
         },
         bencity: {
           type:'string',
           default:""
         },
+
        
 
       } ,
