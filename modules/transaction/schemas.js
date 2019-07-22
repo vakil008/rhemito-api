@@ -48,6 +48,9 @@ const calculate = {
         service:{
           type:'string'
         },
+        paymentmethod:{
+          type:'string'
+        },
         discountcode: {
           type:'string'
         },
