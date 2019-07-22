@@ -109,7 +109,7 @@ class  TransactionService {
                 Service:service,
                 ServiceCode:service,
                 discountcode:discountcode,
-                ValidateId:'3092303',
+                validateid,
                 PaymentMethodCode:paymentmethod,
                 amount: direction==="S"?sendamount:receiveamount,
                 providerid:provider,
