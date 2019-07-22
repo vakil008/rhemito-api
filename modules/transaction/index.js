@@ -101,15 +101,18 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(create.ResponseCode!='10000') {
       throw reply.badRequest(create.ResponseMessage)
     }
+    const transaction = create.Transactions[0]
     return {
         message: create.ResponseMessage,
-        rate: create.Transactioncreate.Rate,
-        sendamount: create.Transactioncreate.SendAmount,
-        receiveamount: create.Transactioncreate.ReceiveAmount,
-        fromcountry: create.Transactioncreate.FromCountryISO3,
-        fromcurrency: create.Transactioncreate. FromCurrencyISO3,
-        tocountry: create.Transactioncreate.ToCountryISO3,
-        tocurrency: create.Transactioncreate.ToCurrencyISO3,
-          // calculate: calculate.Countries
-    }   
+        rate: transaction.Rate,
+        reference: transaction.TxnRef,
+        sendamount: transaction.SendAmount,
+        receiveamount: transaction.ReceiveAmount,
+        fee: transaction.Fees,
+        total: transaction.TotalAmountToPay,
+        fromcountry: transaction.FromCountryISO3,
+        fromcurrency: transaction. FromCurrencyISO3,
+        tocountry: transaction.ToCountryISO3,
+        tocurrency: transaction.ToCurrencyISO3
+      }   
   }

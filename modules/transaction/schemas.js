@@ -248,21 +248,10 @@ const calculate = {
           tocountry: {type:'string'},
           fromcurrency: {type:'string'},
           tocurrency: {type:'string'}, 
-          discountamount: { type: 'number' },
-          docregtype: {type:'string'},
-          docid: { type: 'string' },
-          docaddress: { type: 'string' },
-          docfund: { type: 'string' },
-          dococcupation: { type: 'string' },
-          databankaccno: { type: 'string' },
-          databankbic: { type: 'string' },
-          databankrouting: { type: 'string' },
-          databankiban: { type: 'string' },
-          databendob: { type: 'string' },
-          databencity: { type: 'string' },
-          databenaddress: { type: 'string' },
-          isdiscountavailable: { type: 'boolean' },
-          isnamecheckavailable: { type: 'boolean' }
+          reference:  {type:'string'},
+          fee: {type:'number'},
+          total: {type:'number'},
+      
         },
         additionalProperties: false
       }
