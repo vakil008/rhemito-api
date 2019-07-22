@@ -48,9 +48,6 @@ const calculate = {
         service:{
           type:'string'
         },
-        paymentmethod:{
-          type:'string'
-        },
         discountcode: {
           type:'string'
         },
@@ -180,6 +177,9 @@ const calculate = {
           type:'string'
         },
         service:{
+          type:'string'
+        },
+        paymentmethod:{
           type:'string'
         },
         discountcode: {
