@@ -31,7 +31,7 @@ class  TransactionService {
                 fromcurrencyiso3:fromcurrency,
                 tocountryiso3:tocountry,
                 tocurrencyiso3:tocurrency,
-                Amount:amount,
+                Amount:sendamount,
                 Direction:direction,
                 Service:service,
                 discountcode:discountcode,
