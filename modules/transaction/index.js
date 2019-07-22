@@ -61,9 +61,9 @@ module.exports[Symbol.for('plugin-meta')] = {
         sendamount: calculate.TransactionCalculate.SendAmount,
         receiveamount: calculate.TransactionCalculate.ReceiveAmount,
         fromcountry: calculate.TransactionCalculate.FromCountryISO3,
-        sendcurrency: calculate.TransactionCalculate. FromCurrencyISO3,
+        fromcurrency: calculate.TransactionCalculate. FromCurrencyISO3,
         tocountry: calculate.TransactionCalculate.ToCountryISO3,
-        receivecurrency: calculate.TransactionCalculate.ToCurrencyISO3,
+        tocurrency: calculate.TransactionCalculate.ToCurrencyISO3,
         validateid: calculate.TransactionCalculate.ValidateId,
         paymentmethods,
         servicecode: calculate.TransactionCalculate.ServiceCode
@@ -103,9 +103,9 @@ module.exports[Symbol.for('plugin-meta')] = {
         sendamount: create.Transactioncreate.SendAmount,
         receiveamount: create.Transactioncreate.ReceiveAmount,
         fromcountry: create.Transactioncreate.FromCountryISO3,
-        sendcurrency: create.Transactioncreate. FromCurrencyISO3,
+        fromcurrency: create.Transactioncreate. FromCurrencyISO3,
         tocountry: create.Transactioncreate.ToCountryISO3,
-        receivecurrency: create.Transactioncreate.ToCurrencyISO3,
+        tocurrency: create.Transactioncreate.ToCurrencyISO3,
           // calculate: calculate.Countries
     }   
   }
