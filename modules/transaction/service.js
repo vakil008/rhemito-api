@@ -31,7 +31,7 @@ class  TransactionService {
                 fromcurrencyiso3:fromcurrency,
                 tocountryiso3:tocountry,
                 tocurrencyiso3:tocurrency,
-                Amount:sendamount,
+                Amount:amount,
                 Direction:direction,
                 Service:service,
                 discountcode:discountcode,
@@ -39,9 +39,7 @@ class  TransactionService {
 
             })
 
-            console.log('calculate', calculateResult.data.RetailApiResponse)
-            console.log('calculate payment code', calculateResult.data.RetailApiResponse.TransactionCalculate.PaymentMethods)
-            return calculateResult.data.RetailApiResponse
+           return calculateResult.data.RetailApiResponse
     
     }
 

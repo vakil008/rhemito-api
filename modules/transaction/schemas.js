@@ -19,7 +19,7 @@ const calculate = {
       'fromcurrency',
       'tocountry',
       'tocurrency',
-    ,'direction','service'],
+    'amount','direction','service'],
       properties: {
         uid: {
           type:'string'
@@ -39,10 +39,7 @@ const calculate = {
         tocurrency: {
           type:'string'
         },
-        sendamount:{
-          type:'number'
-        },
-        receiveamount:{
+        amount:{
           type:'number'
         },
         direction: {
@@ -156,7 +153,7 @@ const calculate = {
       'fromcurrency',
       'tocountry',
       'tocurrency',"benfirstname","benlastname",
-    'amount','direction','service',"provider"],
+    'sendamount','direction','service',"provider"],
       properties: {
         uid: {
           type:'string'
@@ -175,9 +172,6 @@ const calculate = {
         },
         tocurrency: {
           type:'string'
-        },
-        amount:{
-          type:'number'
         },
         direction: {
           type:'string'

@@ -81,6 +81,10 @@ module.exports[Symbol.for('plugin-meta')] = {
     const namecheck =  await this.transactionService.namecheck(uid,sessiontoken,
       providerid,
       accountno)
+
+      if(namecheck.ResponseCode!='10000') {
+        throw reply.badRequest(create.ResponseMessage)
+      }
     return {
         message: namecheck.ResponseMessage,
        
