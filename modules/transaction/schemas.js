@@ -306,7 +306,7 @@ const calculate = {
          value:{ type: 'number' },
          currency:{ type: 'string' },
          summary:{ type: 'string' },
-         status:{ type: 'boolean' },
+         status:{ type: 'string' },
              }
           }
           }

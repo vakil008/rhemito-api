@@ -145,7 +145,6 @@ class  TransactionService {
                 Uid:uid,
                 datefrom:startdate,
                 dateto:enddate})
-        console.log('transactions',transactionsResult.data.RetailApiResponse)
         return transactionsResult.data.RetailApiResponse
     
     }
