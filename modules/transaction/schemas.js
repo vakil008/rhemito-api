@@ -257,8 +257,68 @@ const calculate = {
       }
     }
   }
+  const transactions = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required: ['uid','sessiontoken',
+      "startdate","enddate"],
+      properties: {
+        uid: {
+          type:'string'
+        },
+        sessiontoken: {
+          type:'string'
+        },
+        startdate: {
+          type:'string'
+        },
+        enddate: {
+          type:'string'
+        },
+      
+        servicecode:{
+          type:'string'
+        },
+        reference: {
+          type:'string'
+        }
+        } ,
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          count: { type: 'number' },
+          transactions: {
+            type:"array",
+            items: {
+              type:'object',
+              properties : {
+         reference: { type: 'string' },
+         date:{ type: 'string' },
+         service:{ type: 'string' },
+         value:{ type: 'number' },
+         currency:{ type: 'string' },
+         summary:{ type: 'string' },
+         status:{ type: 'boolean' },
+             }
+          }
+          }
+      
+        },
+        additionalProperties: false
+      }
+    }
+  }
   module.exports =  { 
       calculate,
       nameCheck,
-      submit
+      submit,
+      transactions
   }

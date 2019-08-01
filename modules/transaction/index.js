@@ -2,13 +2,13 @@ const {
     calculate: calculateSchema,
     nameCheck: nameCheckSchema,
     submit: submitSchema,
-    // search: searchSchema,
-    // getProfile: getProfileSchema
-  } = require('./schemas')
+    transactions:transactionSchema
+     } = require('./schemas')
     module.exports= async  function(fastify,opts) { 
       fastify.post('/calculate' , {schema: calculateSchema}, calculateHandlers )
       fastify.post('/checkaccount' , {schema: nameCheckSchema}, namecheckHandlers )
       fastify.post('/create' , {schema: submitSchema}, submitHandlers )
+      fastify.post('/transactions' , {schema: transactionSchema}, transactionsHandler )
     }
   
 module.exports[Symbol.for('plugin-meta')] = {
@@ -114,5 +114,27 @@ module.exports[Symbol.for('plugin-meta')] = {
         fromcurrency: transaction. FromCurrencyISO3,
         tocountry: transaction.ToCountryISO3,
         tocurrency: transaction.ToCurrencyISO3
+      }   
+  }
+
+
+  async function transactionsHandler(req,reply) {
+   
+    const transaction =  await this.transactionService.transactions(req.body)
+    if(transaction.ResponseCode!='10000') {
+      throw reply.badRequest(transaction.ResponseMessage)
+    }
+    return {
+        message: transaction.ResponseMessage,
+        count: transaction.Count,
+        transactions:transaction.Transactions.map(t=>({
+          service:t.Service,
+          status:t.Status,
+          value:t.Value,
+          reference:t.TnxRef,
+          date:t.TnxDate,
+          currency:t.Currency,
+          summary:t.Summary
+        }))
       }   
   }

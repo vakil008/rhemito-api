@@ -129,6 +129,26 @@ class  TransactionService {
         return submitResult.data.RetailApiResponse
     
     }
+    async transactions ({uid,
+        sessiontoken,
+        startdate,
+        enddate}) {
+            let transactionsResult;
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
+      
+            transactionsResult = await R.post('/RetailAccountTransactionList', {
+                randomguid,
+                apiKey: process.env.API_KEY, 
+                sessiontoken,
+                hash,
+                Uid:uid,
+                datefrom:startdate,
+                dateto:enddate})
+        console.log('transactions',transactionsResult.data.RetailApiResponse)
+        return transactionsResult.data.RetailApiResponse
+    
+    }
 
 }
 
