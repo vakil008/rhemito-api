@@ -132,19 +132,22 @@ class  TransactionService {
     async transactions ({uid,
         sessiontoken,
         startdate,
-        enddate}) {
+        enddate , servicecode, reference}) {
             let transactionsResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
-      
+            let options = {Uid:uid,
+                sessiontoken,
+                startdate,
+                enddate}
+            if(servicecode) options['servicecode']= servicecode
+            if(reference) options['tnxref']= reference
             transactionsResult = await R.post('/RetailAccountTransactionList', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
-                sessiontoken,
                 hash,
-                Uid:uid,
-                datefrom:startdate,
-                dateto:enddate})
+                ...options
+               })
         return transactionsResult.data.RetailApiResponse
     
     }
