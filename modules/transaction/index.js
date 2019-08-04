@@ -113,7 +113,9 @@ module.exports[Symbol.for('plugin-meta')] = {
         fromcountry: transaction.FromCountryISO3,
         fromcurrency: transaction. FromCurrencyISO3,
         tocountry: transaction.ToCountryISO3,
-        tocurrency: transaction.ToCurrencyISO3
+        tocurrency: transaction.ToCurrencyISO3,
+        value: transaction.Value,
+        paymenturl: transaction.PaymentUrl
       }   
   }
 

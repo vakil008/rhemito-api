@@ -251,7 +251,9 @@ const calculate = {
           reference:  {type:'string'},
           fee: {type:'number'},
           total: {type:'number'},
-      
+          value: {type:'number'},
+          paymenturl: {type:'string'},
+          
         },
         additionalProperties: false
       }
