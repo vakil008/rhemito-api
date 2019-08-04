@@ -39,6 +39,17 @@ const user = {
           lastname: {type:'string'},
           email: {type:'string'},
           country: {type:'string'},
+          postcode:{type:'string'},
+          countrycode: {type:'string'},
+          balances: {type:'array',
+        items: {
+            type:'object',
+            properties : {
+      currencycode:{ type: 'string' },
+       amount:{ type: 'number' },
+         }
+        } },
+          gender: {type:'string'},
           mobileno: {type:'string'},
           dob: {type:'string'},
         },
@@ -91,7 +102,8 @@ const user = {
       }
     }
   }
-  const providers = {
+
+  const beneficiaries = {
     // This jsonschema will be used for data validation
     // body: {
     //   type: 'object',
@@ -106,26 +118,116 @@ const user = {
         required: [ 'message' ],
         properties: {
           message: { type: 'string' },
-          count: {type:'number'},
-          providers: {type:'array',
-        items: {
-            type:'object',
-            properties : {
-       Id: { type: 'string' },
-       Name:{ type: 'string' },
-       CountryISO3:{ type: 'string' },
-       IsCanReceiveAirtime:{ type: 'boolean' },
-       IsCanReceiveBillPay:{ type: 'boolean' },
-       IsCanReceiveMoneyBank:{ type: 'boolean' },
-       IsCanReceiveMoneyCash:{ type: 'boolean' },
-       IsCanReceiveMoneyMobile:{ type: 'boolean' },
-            }
-        } }
+          firstname: {type:'string'},
+          lastname: {type:'string'},
+          country: {type:'string'},
+          currency: {type:'string'},
+          servicecode: {type:'string'},
+          reasonid: {type:'string'},
+          reason: {type:'string'},
+          relationshipid: {type:'string'},
+          relationship: {type:'string'},
+          providerid: {type:'string'},
+          provider:{type:'string'},
+          provideritemid: {type:'string'},
+          provideritem: {type:'string'},
+          reference : {type:'string'},
+          ibank: {type:'string'},
+          swift: {type:'string'},
+          routing: {type:'string'},
+          date: {type:'string'},
+          active:{type:'boolean'}
         },
         additionalProperties: false
       }
     }
   }
-  module.exports =  { 
-      user
+  const beneficiary = {
+    // This jsonschema will be used for data validation
+    // body: {
+    //   type: 'object',
+    //   properties: requestProperties ,
+    //   additionalProperties: false
+    // },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          firstname: {type:'string'},
+          lastname: {type:'string'},
+          country: {type:'string'},
+          currency: {type:'string'},
+          servicecode: {type:'string'},
+          reasonid: {type:'string'},
+          reason: {type:'string'},
+          relationshipid: {type:'string'},
+          relationship: {type:'string'},
+          providerid: {type:'string'},
+          provider:{type:'string'},
+          provideritemid: {type:'string'},
+          provideritem: {type:'string'},
+          reference : {type:'string'},
+          ibank: {type:'string'},
+          swift: {type:'string'},
+          routing: {type:'string'},
+          date: {type:'string'},
+          active:{type:'boolean'}
+        },
+        additionalProperties: false
+      }
+    }
   }
+  const createbeneficiary = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required:[
+        'firstname','lastname','active','deleted',
+        'servicecode','country','currenct','provider',
+
+      ],
+      properties: {
+        id:{type:'string'},
+        firstname: {type:'string'},
+          lastname: {type:'string'},
+          nickname: {type:'string'},
+          active: {type:'boolean'},
+          deleted: {type:'boolean'},
+          servicecode: {type:'string'},
+          reasonid: {type:'string'},
+          relationshipid: {type:'string'},
+          provider: {type:'string'},
+          provideritem: {type:'string'},
+          reference: {type:'string'},
+          iban: {type:'string'},
+          swift: {type:'string'},
+          routing: {type:'string'},
+          providername: {type:'string'}
+      } ,
+
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          
+        },
+        additionalProperties: false
+      }
+    }
+  } 
+  module.exports =  { 
+      user,
+      createbeneficiary
+  }
+
+  

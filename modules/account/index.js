@@ -33,7 +33,14 @@ module.exports[Symbol.for('plugin-meta')] = {
         firstname: user.User.FName,
         lastname:user.User.LName,
         email:user.User.Email,
-        country:user.User.Country
+        country:user.User.Country,
+        postcode: user.User.Postcode,
+        countrycode: user.User.CountryIso3,
+        balances: user.User.Balances.map(b=>({
+          currencycode:b.CurrencyCode,
+          amount: b.Amount
+        })),
+        gender: user.User.Gender
     }   
   }
   async function providerHandlers(req,reply) {
