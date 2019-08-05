@@ -87,6 +87,9 @@ class  AccountService {
             countryiso3:country,
             service,
              }
+             if(country) userRequest['countryiso3'] = country
+             if(service) userRequest['service'] = service
+      
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid,country)
      
