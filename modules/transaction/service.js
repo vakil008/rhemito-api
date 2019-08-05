@@ -131,14 +131,15 @@ class  TransactionService {
     async transactions ({uid,
         sessiontoken,
         startdate,
-        enddate , servicecode, reference}) {
+        enddate
+         ,servicecode, reference}) {
             let transactionsResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
             let options = {Uid:uid,
                 sessiontoken,
-                startdate,
-                enddate}
+            datefrom:startdate,
+               dateto: enddate}
             if(servicecode) options['servicecode']= servicecode
             if(reference) options['tnxref']= reference
             transactionsResult = await R.post('/RetailAccountTransactionList', {
