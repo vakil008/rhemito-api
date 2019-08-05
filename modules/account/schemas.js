@@ -229,9 +229,57 @@ const user = {
       }
     }
   } 
+  const listbeneficiary = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required:[
+        'uid','sessiontoken',
+        'service','country'
+      ],
+      properties: {
+        uid: { type: 'string' },
+        sessiontoken: { type: 'string' },
+          service: {type:'string'},
+          country: {type:'string'}
+         } ,
+
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          contacts:{
+            type:'array',
+            items:{
+              type:'object',
+              properties: {
+                id:{ type: 'string' },
+                name:{ type: 'string' },
+                country:{ type: 'string' },
+                countrycode:{ type: 'string' },
+                service:{ type: 'string' },
+                servicecode:{ type: 'string' },
+                datecreated:{ type: 'string' },
+                active:{ type: 'string' }
+              }
+            }
+          }
+          
+        },
+        additionalProperties: false
+      }
+    }
+  } 
   module.exports =  { 
       user,
-      createbeneficiary
+      createbeneficiary,
+      listbeneficiary
   }
 
   

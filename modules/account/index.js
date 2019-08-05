@@ -1,13 +1,14 @@
 const {
     user: userSchema,
     createbeneficiary: createbeneficiarySchema,
-    // corridors: corridorsSchema,
+    listbeneficiary: listbeneficiarySchema
     // search: searchSchema,
     // getProfile: getProfileSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) { 
       fastify.post('/user' , {schema: userSchema}, userHandler )
       fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
+      fastify.post('/beneficiaries' , {schema: listbeneficiarySchema}, listbeneficiaryHandler )
       // fastify.post('/updateuser' , {schema: providerSchema}, providerHandlers )
       // fastify.post('/updateuserpassword' , {schema: corridorsSchema}, corridorHandlers )
       // fastify.post('/dashboard' , {schema: corridorsSchema}, corridorHandlers )
@@ -55,11 +56,23 @@ module.exports[Symbol.for('plugin-meta')] = {
       }   
     }
 
-  async function corridorHandlers(req,reply) {
-    const corridors =  await this.staticService.corridors()
+
+  async function listbeneficiaryHandler(req,reply) {
+    const user =  await this.accountService.listBeneficiary(req.body)
+    if(user.ResponseCode!='10000') {
+      throw reply.badRequest(user.ResponseMessage)
+    }
     return {
-        message: corridors.ResponseMessage,
-        count: corridors.Count,
-        corridors: corridors.Corridors
-    }   
+        message: user.ResponseMessage,
+        contacts: user.Contacts.map(c=>({
+          id:c.ContactId,
+          country:c.Country,
+          countrycode: c.CountryIso3,
+          datecreated:c.DateCreated,
+          name:c.Name,
+          service:c.Service,
+          servicecode:c.ServiceCode
+        }))
   }
+}
+

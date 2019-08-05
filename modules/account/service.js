@@ -62,7 +62,6 @@ class  AccountService {
         if(routing) userRequest['routing'] = routing
         if(provideritem) userRequest['provideritemid'] = provideritem
         const randomguid = uuid()
-        console.log('account', account)
         const hash =contact ? hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid,contact):
         hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid)
             userResult = await R.post('/RetailAccountBeneficiarySave', {
@@ -74,6 +73,32 @@ class  AccountService {
                 ...userRequest
             })
         console.log('beneficiary',userResult.data.RetailApiResponse)
+        return userResult.data.RetailApiResponse
+    
+    }
+
+    async listBeneficiary ({sessiontoken, uid, 
+        service,
+        country,
+        currency
+}) { 
+        let userResult;
+        let userRequest = {
+            countryiso3:country,
+            service,
+             }
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid,country)
+     
+            userResult = await R.post('/RetailAccountBeneficiaryList', {
+                randomguid,
+                apiKey: process.env.API_KEY, 
+                hash,
+                uid, 
+                sessiontoken,
+                ...userRequest
+            })
+        console.log('beneficiaries',userResult.data.RetailApiResponse)
         return userResult.data.RetailApiResponse
     
     }
