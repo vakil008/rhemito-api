@@ -1,12 +1,13 @@
 const {
     user: userSchema,
-    // providers: providerSchema,
+    createbeneficiary: createbeneficiarySchema,
     // corridors: corridorsSchema,
     // search: searchSchema,
     // getProfile: getProfileSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) { 
       fastify.post('/user' , {schema: userSchema}, userHandler )
+      fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
       // fastify.post('/updateuser' , {schema: providerSchema}, providerHandlers )
       // fastify.post('/updateuserpassword' , {schema: corridorsSchema}, corridorHandlers )
       // fastify.post('/dashboard' , {schema: corridorsSchema}, corridorHandlers )
@@ -43,14 +44,17 @@ module.exports[Symbol.for('plugin-meta')] = {
         gender: user.User.Gender
     }   
   }
-  async function providerHandlers(req,reply) {
-    const providers =  await this.staticService.providers()
-    return {
-        message: providers.ResponseMessage,
-        count: providers.Count,
-        providers: providers.Providers
-    }   
-  }
+
+  async function createbeneficiaryHandler(req,reply) {
+      const user =  await this.accountService.createBeneficiary(req.body)
+      if(user.ResponseCode!='10000') {
+        throw reply.badRequest(user.ResponseMessage)
+      }
+      return {
+          message: user.ResponseMessage,
+      }   
+    }
+
   async function corridorHandlers(req,reply) {
     const corridors =  await this.staticService.corridors()
     return {

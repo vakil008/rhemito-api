@@ -21,19 +21,59 @@ class  AccountService {
     
     }
 
-    async createBeneficiary ({sessiontoken, uid, }) { 
+    async createBeneficiary ({sessiontoken, uid, 
+        contact,
+        firstname,
+        lastname,
+        active,
+        deleted,
+        service,
+        country,
+        currency,
+       reason,
+       relationship,
+         provider,
+       provideritem,
+        providername,
+        account,
+        iban,
+        swift,
+        routing
+}) { 
         let userResult;
-        const randomguid = uuid()
-
-        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid)
+        let userRequest = {
+           fname: firstname,
+            lname:lastname,
+            isactive:active,
+            isdelete: deleted,
+            countryiso3:country,
+            currencyiso:currency,
+            servicecode:service,
+            providerid: provider,
+           providername,
+           accountref:account,
+        }
+        if(contact) userRequest['contactid'] = contact
+        if(relationship) userRequest['relationshipid'] = relationship
+        if(reason) userRequest['reasonid'] = reason
       
-            userResult = await R.post('/RetailAccountUserGet', {
+        if(iban) userRequest['iban'] = iban
+        if(swift) userRequest['swift'] = swift
+        if(routing) userRequest['routing'] = routing
+        if(provideritem) userRequest['provideritemid'] = provideritem
+        const randomguid = uuid()
+        console.log('account', account)
+        const hash =contact ? hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid,contact):
+        hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid)
+            userResult = await R.post('/RetailAccountBeneficiarySave', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
                 hash,
-                uid,
-                sessiontoken
+                uid, 
+                sessiontoken,
+                ...userRequest
             })
+        console.log('beneficiary',userResult.data.RetailApiResponse)
         return userResult.data.RetailApiResponse
     
     }
