@@ -234,8 +234,7 @@ const user = {
     body: {
       type: 'object',
       required:[
-        'uid','sessiontoken',
-        'service','country'
+        'uid','sessiontoken'
       ],
       properties: {
         uid: { type: 'string' },
