@@ -1,6 +1,7 @@
 const {
     countries: countriesSchema,
     providers: providerSchema,
+    subproviders:subProviderSchema,
     corridors: corridorsSchema,
     relationships: relationshipsSchema,
     reasons: reasonsSchema
@@ -8,6 +9,7 @@ const {
     module.exports= async  function(fastify,opts) { 
       fastify.post('/countries' , {schema: countriesSchema}, countriesHandlers )
       fastify.post('/providers' , {schema: providerSchema}, providerHandlers )
+      fastify.post('/subproviders' , {schema: subProviderSchema}, subProviderHandlers )
       fastify.post('/corridors' , {schema: corridorsSchema}, corridorHandlers )
       fastify.post('/relationships' , {schema: relationshipsSchema}, relationshipHandlers )
       fastify.post('/reasons' , {schema: reasonsSchema}, reasonHandlers )
@@ -37,6 +39,20 @@ module.exports[Symbol.for('plugin-meta')] = {
         message: providers.ResponseMessage,
         count: providers.Count,
         providers: providers.Providers
+    }   
+  }
+  async function subProviderHandlers(req,reply) {
+   const {provider} = req.body
+   console.log('provider', req.body)
+    const providers =  await this.staticService.subproviders(provider)
+    return {
+        message: providers.ResponseMessage,
+        count: providers.Count,
+        subproviders: providers.ProviderItems.map(p=>({
+          id:p.Id,
+          name:p.Name,
+          amount:p.Amount
+        }))
     }   
   }
   async function corridorHandlers(req,reply) {

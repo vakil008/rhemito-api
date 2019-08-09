@@ -32,6 +32,22 @@ class  StaticService {
               return providerResult.data.RetailApiResponse
     
     }
+    async subproviders (provider) { 
+        let providerResult;
+        const randomguid = uuid()
+
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, provider.toLowerCase())
+      
+            providerResult = await R.post('/RetailStaticDataProviderItems', {
+                randomguid,
+                apiKey: process.env.API_KEY, 
+                hash,
+                Providerid: provider
+            })
+            console.log('provider', providerResult.data.RetailApiResponse)
+              return providerResult.data.RetailApiResponse
+    
+    }
     async corridors () { 
         let providerResult;
         const randomguid = uuid()
