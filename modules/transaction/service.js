@@ -37,7 +37,6 @@ class  TransactionService {
                 isvalidate
 
             })
-
            return calculateResult.data.RetailApiResponse
     
     }

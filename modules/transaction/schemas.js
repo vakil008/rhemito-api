@@ -90,8 +90,8 @@ const calculate = {
           isnamecheckavailable: { type: 'boolean' },
           validateid: {type:['string', 'null']},
           servicecode:{type:['string', 'null']},
-          paymentmethods: {type:['array', 'null'],
           fees:{type:'number'},
+          paymentmethods: {type:['array', 'null'],
         items: {
             type:'object',
             properties : {
