@@ -76,6 +76,7 @@ class  TransactionService {
         discountcode,
         validateid,
         provider,
+        provideritem,
         benfirstname,
         benlastname,
         sendamount,
@@ -93,39 +94,42 @@ class  TransactionService {
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase(),service.toLowerCase())
-            submitResult = await R.post('/RetailTransactionSubmit', {
-                randomguid,
-                apiKey: process.env.API_KEY, 
-                sessiontoken,
-                hash,
-                Uid:uid,
-                fromcountryiso3:fromcountry,
-                fromcurrencyiso3:fromcurrency,
-                tocountryiso3:tocountry,
-                tocurrencyiso3:tocurrency,
-                Amount:amount,
-                Direction:direction,
-                servicecode:service,
-                Service:service,
-                ServiceCode:service,
-                discountcode:discountcode,
-                validateid,
-                PaymentMethodCode:paymentmethod,
-                amount: direction==="S"?sendamount:receiveamount,
-                providerid:provider,
-                benfirstname,
-                benlastname,
-                benmobileno,
-                benaccountno,
-                benbankname,
-                benaddress,
-                benbillref,
-                relationshipid,
-                reasonid,
-                bencity
+           let submitResultData = {
+            randomguid,
+            apiKey: process.env.API_KEY, 
+            sessiontoken,
+            hash,
+            Uid:uid,
+            fromcountryiso3:fromcountry,
+            fromcurrencyiso3:fromcurrency,
+            tocountryiso3:tocountry,
+            tocurrencyiso3:tocurrency,
+            Amount:amount,
+            Direction:direction,
+            servicecode:service,
+            Service:service,
+            ServiceCode:service,
+            discountcode:discountcode,
+            validateid,
+            PaymentMethodCode:paymentmethod,
+            amount: direction==="S"?sendamount:receiveamount,
+            providerid:provider,
+            benfirstname,
+            benlastname,
+            benmobileno,
+            benaccountno,
+            benbankname,
+            benaddress,
+            benbillref,
+            relationshipid,
+            reasonid,
+            bencity
 
-            })
-        console.log('create',submitResult.data.RetailApiResponse)
+        }
+        if(provideritem) submitResultData['provideritemid'] = provideritem
+            submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
+       
+            console.log('create',submitResult.data.RetailApiResponse)
         return submitResult.data.RetailApiResponse
     
     }
