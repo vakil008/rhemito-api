@@ -59,7 +59,7 @@ module.exports[Symbol.for('plugin-meta')] = {
        }
     }  
     let requirements = [];
-    if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId=='M' ){
+    if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId=='N' ){
       requirements.push({
         key: 'docid',
         value:calculate.TransactionCalculate.DocId
@@ -80,7 +80,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
 
 
-    if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation=='M' ){
+    if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation=='N' ){
       requirements.push({
         key: 'dococcupation',
         value:calculate.TransactionCalculate.DocOccupation
@@ -94,7 +94,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataBankBic
       })
     }
-    if(calculate.TransactionCalculate.DataBankIban && calculate.TransactionCalculate.DataBankIban=='M' ){
+    if(calculate.TransactionCalculate.DataBankIban && calculate.TransactionCalculate.DataBankIban=='N' ){
       requirements.push({
         key: 'databankiban',
         value:calculate.TransactionCalculate.DataBankIban
