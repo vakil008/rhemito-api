@@ -204,6 +204,9 @@ const calculate = {
         benlastname: {
           type:'string'
         },
+        benbillref: {
+          type:'string'
+        },
         benmobileno: {
           type:'string'
         },

@@ -84,6 +84,7 @@ class  TransactionService {
         benaccountno,
         benbankname,
     benaddress,
+    benbillref,
     relationshipid,
     reasonid,bencity}) {
     
@@ -118,6 +119,7 @@ class  TransactionService {
                 benaccountno,
                 benbankname,
                 benaddress,
+                benbillref,
                 relationshipid,
                 reasonid,
                 bencity
