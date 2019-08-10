@@ -37,6 +37,7 @@ class  TransactionService {
                 isvalidate
 
             })
+            console.log('calculate', calculateResult.data.RetailApiResponse)
            return calculateResult.data.RetailApiResponse
     
     }

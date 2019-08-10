@@ -75,17 +75,6 @@ const calculate = {
           tocurrency: {type:'string'}, 
           discountamount: { type: 'number' },
           docregtype: {type:'string'},
-          docid: { type: 'string' },
-          docaddress: { type: 'string' },
-          docfund: { type: 'string' },
-          dococcupation: { type: 'string' },
-          databankaccno: { type: 'string' },
-          databankbic: { type: 'string' },
-          databankrouting: { type: 'string' },
-          databankiban: { type: 'string' },
-          databendob: { type: 'string' },
-          databencity: { type: 'string' },
-          databenaddress: { type: 'string' },
           isdiscountavailable: { type: 'boolean' },
           isnamecheckavailable: { type: 'boolean' },
           validateid: {type:['string', 'null']},
@@ -95,10 +84,18 @@ const calculate = {
         items: {
             type:'object',
             properties : {
-      fees:{ type: 'number' },
+      fee:{ type: 'number' },
       code:{ type: 'string' },
          }
-        } }
+        } },
+        requirements: {type:"array",
+        items:{
+            type:"object",
+            properties:{
+              key: {type:"string"},
+              value: {type:'string', maxLength:1}
+            }
+        }}
         },
         additionalProperties: false
       }
@@ -259,7 +256,7 @@ const calculate = {
           fee: {type:'number'},
           total: {type:'number'},
           value: {type:'number'},
-          paymenturl: {type:'string'},
+          paymenturl: {type:'string'}
           
         },
         additionalProperties: false

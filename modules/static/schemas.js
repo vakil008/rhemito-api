@@ -90,12 +90,7 @@ const countries = {
     }
   }
   const providers = {
-    // This jsonschema will be used for data validation
-    // body: {
-    //   type: 'object',
-    //   properties: requestProperties ,
-    //   additionalProperties: false
-    // },
+   
     response: {
       // The 200 body response is described
       // by the following schema

@@ -58,6 +58,76 @@ module.exports[Symbol.for('plugin-meta')] = {
          fees = paymentmethods[0].fee
        }
     }  
+    let requirements = [];
+    if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId=='M' ){
+      requirements.push({
+        key: 'docid',
+        value:calculate.TransactionCalculate.DocId
+      })
+    }
+    if(calculate.TransactionCalculate.DocAddress && calculate.TransactionCalculate.DocAddress=='M' ){
+      requirements.push({
+        key: 'docaddress',
+        value:calculate.TransactionCalculate.DocAddress
+      })
+    }
+
+    if(calculate.TransactionCalculate.DocFund && calculate.TransactionCalculate.DocFund=='M' ){
+      requirements.push({
+        key: 'docfund',
+        value:calculate.TransactionCalculate.DocFund
+      })
+    }
+
+
+    if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation=='M' ){
+      requirements.push({
+        key: 'dococcupation',
+        value:calculate.TransactionCalculate.DocOccupation
+      })
+    }
+    
+
+    if(calculate.TransactionCalculate.DataBankBic && calculate.TransactionCalculate.DataBankBic=='M' ){
+      requirements.push({
+        key: 'databankbic',
+        value:calculate.TransactionCalculate.DataBankBic
+      })
+    }
+    if(calculate.TransactionCalculate.DataBankIban && calculate.TransactionCalculate.DataBankIban=='M' ){
+      requirements.push({
+        key: 'databankiban',
+        value:calculate.TransactionCalculate.DataBankIban
+      })
+    }
+
+    if(calculate.TransactionCalculate.DataBankRouting && calculate.TransactionCalculate.DataBankRouting=='M' ){
+      requirements.push({
+        key: 'databankrouting',
+        value:calculate.TransactionCalculate.DataBankRouting
+      })
+    }
+
+    if(calculate.TransactionCalculate.DataBenAddress && calculate.TransactionCalculate.DataBenAddress=='M' ){
+      requirements.push({
+        key: 'databenaddress',
+        value:calculate.TransactionCalculate.DataBenAddress
+      })
+    }
+
+    if(calculate.TransactionCalculate.DataBenCity && calculate.TransactionCalculate.DataBenCity=='M' ){
+      requirements.push({
+        key: 'databencity',
+        value:calculate.TransactionCalculate.DataBenCity
+      })
+    }
+
+    if(calculate.TransactionCalculate.DataBenDob && calculate.TransactionCalculate.DataBenDob=='M' ){
+      requirements.push({
+        key: 'databendob',
+        value:calculate.TransactionCalculate.DataBenDob
+      })
+    }
     return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
@@ -70,7 +140,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         validateid: calculate.TransactionCalculate.ValidateId,
         paymentmethods,
         fees,
-        servicecode: calculate.TransactionCalculate.ServiceCode
+        servicecode: calculate.TransactionCalculate.ServiceCode,
+        requirements
 
           // calculate: calculate.Countries
     }   
