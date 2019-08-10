@@ -4,7 +4,8 @@ const {
     subproviders:subProviderSchema,
     corridors: corridorsSchema,
     relationships: relationshipsSchema,
-    reasons: reasonsSchema
+    reasons: reasonsSchema,
+    doctypes:doctypesSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) { 
       fastify.post('/countries' , {schema: countriesSchema}, countriesHandlers )
@@ -13,6 +14,7 @@ const {
       fastify.post('/corridors' , {schema: corridorsSchema}, corridorHandlers )
       fastify.post('/relationships' , {schema: relationshipsSchema}, relationshipHandlers )
       fastify.post('/reasons' , {schema: reasonsSchema}, reasonHandlers )
+      fastify.post('/doctypes' , {schema: doctypesSchema}, doctypeHandlers )
     }
   
 module.exports[Symbol.for('plugin-meta')] = {
@@ -83,6 +85,27 @@ module.exports[Symbol.for('plugin-meta')] = {
         reasons: reasons.Reasons.map(re=>({
           name:re.Name,
           id:re.Id
+        }))
+    }   
+  }
+
+
+  async function doctypeHandlers(req,reply) {
+    const doctypes =  await this.staticService.doctypes()
+    return {
+        message: doctypes.ResponseMessage,
+        count: doctypes.Count,
+        documenttypes: doctypes.DocumentTypes.map(dt=>({
+          name:dt.Name,
+          id:dt.Id,
+          isapplyindividual:dt.IsApplyIndividual,
+          isapplycompany:dt.IsApplyCompany,
+          isapplyid:dt.isapplyid,
+          isapplyaddress:dt.IsApplyAddress,
+          isapplyoccupation:dt.IsApplyOccupation,
+          isapplyfund:dt.IsApplyFund,
+
+          
         }))
     }   
   }

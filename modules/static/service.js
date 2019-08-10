@@ -92,6 +92,20 @@ class  StaticService {
        return reasonResult.data.RetailApiResponse
     }
 
+    async doctypes() { 
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
+       
+            const [error,docTypesResult] = await to(R.post('/RetailStaticDataDocumentTypes',{
+                randomguid,
+                apiKey:process.env.API_KEY,
+                hash             
+            }))
+      if(error) throw error
+      console.log('doctypes', docTypesResult.data.RetailApiResponse)
+       return docTypesResult.data.RetailApiResponse
+    }
+
     async providerItems() { 
         let resetPasswordResult
         const randomguid = uuid()
@@ -147,11 +161,8 @@ class  StaticService {
                 randomguid,
                 apiKey,
                 hash,
-                accesstoken
-                
+                accesstoken     
             })
-
-
         }catch(error) { 
             throw error
         }

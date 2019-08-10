@@ -209,11 +209,48 @@ const countries = {
       }
     }
   }
+
+  const doctypes = {
+    // This jsonschema will be used for data validation
+    // body: {
+    //   type: 'object',
+    //   properties: requestProperties ,
+    //   additionalProperties: false
+    // },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          count: {type:'number'},
+          documenttypes: {type:'array',
+        items: {
+            type:'object',
+            properties : {
+       id:{ type: 'string' },
+       name:{ type: 'string' },
+       isapplyindividual:{ type: 'string' },
+       isapplycompany:{ type: 'string' },
+       isapplyid:{ type: 'string' },
+       isapplyaddress:{ type: 'string' },
+       isapplyoccupation:{ type: 'string' },
+       isapplyfund:{ type: 'string' },
+         }
+        } }
+        },
+        additionalProperties: false
+      }
+    }
+  }
   module.exports =  { 
       countries,
       providers,
       subproviders,
       corridors,
       relationships,
-      reasons
+      reasons,
+      doctypes
   }
