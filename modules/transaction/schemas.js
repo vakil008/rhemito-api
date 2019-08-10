@@ -91,10 +91,11 @@ const calculate = {
           validateid: {type:['string', 'null']},
           servicecode:{type:['string', 'null']},
           paymentmethods: {type:['array', 'null'],
+          fees:{type:'number'},
         items: {
             type:'object',
             properties : {
-      fee:{ type: 'number' },
+      fees:{ type: 'number' },
       code:{ type: 'string' },
          }
         } }
