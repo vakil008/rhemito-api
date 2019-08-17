@@ -49,15 +49,15 @@ module.exports[Symbol.for('plugin-meta')] = {
       }
     let paymentmethods = null
     let fees = 0;
-    if(isvalidate) {
-       paymentmethods = calculate.TransactionCalculate.PaymentMethods.map(pm=>({
-         fee:pm.Fees,
-         code:pm.PaymentMethodCode
-       }))
-       if(paymentmethods.length) {
-         fees = paymentmethods[0].fee
-       }
-    }  
+    // if(isvalidate) {
+    //    paymentmethods = calculate.TransactionCalculate.PaymentMethods.map(pm=>({
+    //      fee:pm.Fees,
+    //      code:pm.PaymentMethodCode
+    //    }))
+    //    if(paymentmethods.length) {
+    //      fees = paymentmethods[0].fee
+    //    }
+    // }  
     let requirements = [];
     if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId=='N' ){
       requirements.push({
@@ -139,7 +139,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         tocurrency: calculate.TransactionCalculate.ToCurrencyISO3,
         validateid: calculate.TransactionCalculate.ValidateId,
         paymentmethods,
-        fees,
+        fees: calculate.TransactionCalculate.CommissionAmount,
         servicecode: calculate.TransactionCalculate.ServiceCode,
         requirements
 
