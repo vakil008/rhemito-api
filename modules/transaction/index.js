@@ -48,7 +48,7 @@ module.exports[Symbol.for('plugin-meta')] = {
       if(calculate.ResponseCode!='10000') {
         throw reply.badRequest(calculate.ResponseMessage)
       }
-    let paymentmethods = null
+    let paymentmethods = []
     if(isvalidate) {
        paymentmethods = calculate.TransactionCalculate.PaymentMethods.map(pm=>({
          fee:pm.Fees,
