@@ -1,3 +1,4 @@
+const to  = require('await-to-js').default
 const {
     calculate: calculateSchema,
     nameCheck: nameCheckSchema,
@@ -197,21 +198,32 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function transactionsHandler(req,reply) {
    
-    const transaction =  await this.transactionService.transactions(req.body)
-    if(transaction.ResponseCode!='10000') {
-      throw reply.badRequest(transaction.ResponseMessage)
+    const [transactionError,transaction] =  await to(this.transactionService.transactions(req.body))
+    if(transactionError) {
+      throw reply.badRequest(transactionError)
     }
-    return {
-        message: transaction.ResponseMessage,
-        count: transaction.Count,
-        transactions:transaction.Transactions.map(t=>({
+    return {  
+        message: 'Success', //transaction.ResponseMessage,
+        count: transaction.length,
+        transactions:transaction.map(t=>({
           service:t.Service,
           status:t.Status,
           value:t.Value,
           reference:t.TnxRef,
           date:t.TnxDate,
           currency:t.Currency,
-          summary:t.Summary
+          summary:t.Summary,
+          fee:t.Fees,
+          firstname:t.BenFirstName,
+          lastname:t.BenLastName,
+          mobile:t.BenMobileNo,
+          paymentmethod:t.PaymentMethod,
+          provider:t.ProviderId,
+          provideritem:t.ProviderItemId,
+          rate:t.Rate,
+          reason:t.ReasonId,
+          relationship:t.RelationshipId,
+          bank:t.BenBankName
         }))
       }   
   }

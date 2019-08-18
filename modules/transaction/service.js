@@ -1,6 +1,6 @@
 const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4')
-
+const to  = require('await-to-js').default
 class  TransactionService { 
   
     async calculate (uid,
@@ -139,8 +139,8 @@ class  TransactionService {
         startdate,
         enddate
          ,servicecode, reference}) {
-            let transactionsResult;
         const randomguid = uuid()
+        let transactionListQuery = [];
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
             let options = {Uid:uid,
                 sessiontoken,
@@ -148,13 +148,37 @@ class  TransactionService {
                dateto: enddate}
             if(servicecode) options['servicecode']= servicecode
             if(reference) options['tnxref']= reference
-            transactionsResult = await R.post('/RetailAccountTransactionList', {
+            const [error,transactionsResult] = await to(R.post('/RetailAccountTransactionList', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
                 hash,
                 ...options
-               })
-        return transactionsResult.data.RetailApiResponse
+               }))
+        if(error) return error
+        if(!transactionsResult.data.RetailApiResponse.Transactions.length) {
+            return [];
+        }
+        transactionsResult.data.RetailApiResponse.Transactions.map(txn=>{
+           let tuuid = uuid();  
+            let Thash = hasher(tuuid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid, txn.TnxRef)
+            let Treq = R.post('/RetailAccountTransactionGet', {
+                randomguid:tuuid,
+                apiKey: process.env.API_KEY, 
+                hash:Thash,
+                tnxref: txn.TnxRef,
+                sessiontoken,
+                Uid:uid,
+            })
+            transactionListQuery.push(Treq)
+        })
+        const transactionGetResult =  await Promise.all(transactionListQuery);
+
+        const transactionGetResultArray =  transactionGetResult.filter(t=>t.data.RetailApiResponse.ResponseCode === '10000').map(txnGet=>{
+
+            return txnGet.data.RetailApiResponse.Transactions[0]
+        })
+        return transactionGetResultArray
+        // return transactionsResult.data.RetailApiResponse
     
     }
 

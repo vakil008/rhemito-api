@@ -313,6 +313,17 @@ const calculate = {
          currency:{ type: 'string' },
          summary:{ type: 'string' },
          status:{ type: 'string' },
+         fee:{ type: 'string' },
+         firstname:{ type: 'string' },
+         lastname:{ type: 'string' },
+         mobile:{ type: 'string' },
+         paymentmethod:{ type: 'string' },
+         provider:{ type: 'string' },
+         provideritem:{ type: 'string' },
+         rate:{ type: 'string' },
+         reason:{ type: 'string' },
+         relationship:{ type: 'string' },
+         bank:{ type: 'string' },
              }
           }
           }
