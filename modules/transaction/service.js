@@ -59,7 +59,6 @@ class  TransactionService {
                 Uid:uid,
                 Providerid:providerid,
                 BenAccountNo:accountno  })
-        console.log('namecheck',nameCheckResult.data.RetailApiResponse)
         return nameCheckResult.data.RetailApiResponse
     
     }
@@ -130,7 +129,6 @@ class  TransactionService {
         if(provideritem) submitResultData['provideritemid'] = provideritem
             submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
        
-            console.log('create',submitResult.data.RetailApiResponse)
         return submitResult.data.RetailApiResponse
     
     }
