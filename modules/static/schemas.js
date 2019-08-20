@@ -68,7 +68,7 @@ const countries = {
       CorridorCode:{ type: 'string' },
        FromCountryISO3:{ type: 'string' },
        FromCountryName:{ type: 'string' },
-       fromCurrencyISO3:{ type: 'string' },
+       FromCurrencyISO3:{ type: 'string' },
        ToCountryISO3 :{ type: 'string' },
        TOCountryName :{ type: 'string' },
        ToCurrencyISO3 :{ type: 'string' }, 

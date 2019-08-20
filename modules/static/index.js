@@ -45,8 +45,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   }
   async function subProviderHandlers(req,reply) {
    const {provider} = req.body
-   console.log('provider', req.body)
-    const providers =  await this.staticService.subproviders(provider)
+   const providers =  await this.staticService.subproviders(provider)
     return {
         message: providers.ResponseMessage,
         count: providers.Count,
