@@ -167,8 +167,6 @@ module.exports[Symbol.for('plugin-meta')] = {
 
 
   async function submitHandlers(req,reply) {
-    console.log('body',req.body)
-  
   
     const create =  await this.transactionService.submit(req.body)
     if(create.ResponseCode!='10000') {

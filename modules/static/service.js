@@ -44,7 +44,6 @@ class  StaticService {
                 hash,
                 Providerid: provider
             })
-            console.log('provider', providerResult.data.RetailApiResponse)
               return providerResult.data.RetailApiResponse
     
     }
@@ -102,7 +101,6 @@ class  StaticService {
                 hash             
             }))
       if(error) throw error
-      console.log('doctypes', docTypesResult.data.RetailApiResponse)
        return docTypesResult.data.RetailApiResponse
     }
 

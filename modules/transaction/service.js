@@ -37,7 +37,6 @@ class  TransactionService {
                 isvalidate
 
             })
-            console.log('calculate', calculateResult.data.RetailApiResponse)
            return calculateResult.data.RetailApiResponse
     
     }
@@ -46,7 +45,6 @@ class  TransactionService {
         sessiontoken,
         providerid,
         accountno) {
-            console.log('account no', accountno)
             let nameCheckResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,providerid, accountno)

@@ -1,6 +1,6 @@
 const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4')
-
+const to = require('await-to-js').default;
 class  AccountService { 
   
     async useraccount (sessiontoken,uid) { 
@@ -72,7 +72,6 @@ class  AccountService {
                 sessiontoken,
                 ...userRequest
             })
-        console.log('beneficiary',userResult.data.RetailApiResponse)
         return userResult.data.RetailApiResponse
     
     }
@@ -80,9 +79,9 @@ class  AccountService {
     async listBeneficiary ({sessiontoken, uid, 
         service,
         country,
-        currency
-}) { 
-        let userResult;
+}) {
+    let recipientListQuery = [];
+   
         let userRequest = {
             countryiso3:country,
             service,
@@ -93,18 +92,42 @@ class  AccountService {
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid,country)
      
-            userResult = await R.post('/RetailAccountBeneficiaryList', {
+        const [error,userResult] = await to(R.post('/RetailAccountBeneficiaryList', {
                 randomguid,
                 apiKey: process.env.API_KEY, 
                 hash,
                 uid, 
                 sessiontoken,
                 ...userRequest
-            })
-        console.log('beneficiaries',userResult.data.RetailApiResponse)
-        return userResult.data.RetailApiResponse
-    
+            }));
+           
+     //    return userResult.data.RetailApiResponse
+      
+    if(error) return error
+    if(!userResult.data.RetailApiResponse.Contacts.length) {
+        return [];
     }
-}
+    userResult.data.RetailApiResponse.Contacts.map(cnt=>{
+       let cuuid = uuid();  
+        let Chash = hasher(cuuid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid, cnt.ContactId)
+        let Creq = R.post('/RetailAccountBeneficiaryGet', {
+            randomguid:cuuid,
+            apiKey: process.env.API_KEY, 
+            hash:Chash,
+            contactid: cnt.ContactId,
+            sessiontoken,
+            Uid:uid,
+        })
+        recipientListQuery.push(Creq)
+    })
+    const recipientGetResult =  await Promise.all(recipientListQuery);
+    const recipientGetResultArray =  recipientGetResult.filter(c=>c.data.RetailApiResponse.ResponseCode === '10000').map(cntGet=>{
 
+        return cntGet.data.RetailApiResponse.Contacts[0]
+    })
+   
+    return recipientGetResultArray
+
+}
+}
 module.exports = AccountService

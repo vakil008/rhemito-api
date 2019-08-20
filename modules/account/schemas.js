@@ -265,7 +265,18 @@ const user = {
                 service:{ type: 'string' },
                 servicecode:{ type: 'string' },
                 datecreated:{ type: 'string' },
-                active:{ type: 'string' }
+                active:{ type: 'string' },
+                reference:{ type: 'string' },
+                currency:{ type: 'string' },
+                firstname:{ type: 'string' },
+                lastname:{ type: 'string' },
+                iban:{ type: 'string' },
+                routing:{ type: 'string' },
+                provider:{ type: 'string' },
+                swift:{ type: 'string' },
+                relationship:{ type: 'string' },
+                reason:{ type: 'string' }
+          
               }
             }
           }

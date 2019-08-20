@@ -1,3 +1,4 @@
+const to  = require('await-to-js').default
 const {
     user: userSchema,
     createbeneficiary: createbeneficiarySchema,
@@ -58,21 +59,34 @@ module.exports[Symbol.for('plugin-meta')] = {
 
 
   async function listbeneficiaryHandler(req,reply) {
-    const user =  await this.accountService.listBeneficiary(req.body)
-    if(user.ResponseCode!='10000') {
-      throw reply.badRequest(user.ResponseMessage)
+    const [error,user] = await to(this.accountService.listBeneficiary(req.body))
+  
+    if(error) {
+      throw reply.badRequest(error)
     }
     return {
-        message: user.ResponseMessage,
-        contacts: user.Contacts.map(c=>({
+      message: 'Success', 
+      count: user.length,
+      contacts: user.map(c=>({
           id:c.ContactId,
           country:c.Country,
           countrycode: c.CountryIso3,
           datecreated:c.DateCreated,
           name:c.Name,
           service:c.Service,
-          servicecode:c.ServiceCode
+          servicecode:c.ServiceCode,
+          reference:c.AccountRef,
+          currency:c.CurrencyIso,
+          firstname:c.FName,
+          lastname:c.LName,
+          iban:c.Iban,
+          routing:c.Routing,
+          provider:c.ProviderId,
+          swift:c.Swift,
+          relationship:c.RelationshipId,
+          reason:c.ReasonId,
+          active:c.IsActive
+
         }))
   }
 }
-
