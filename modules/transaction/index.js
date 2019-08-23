@@ -56,22 +56,23 @@ module.exports[Symbol.for('plugin-meta')] = {
        }))
 
     }  
-    let requirements = [];
+    let datarequirements = [];
+    let docrequirements = [];
     if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId=='M' ){
-      requirements.push({
+      docrequirements.push({
         key: 'docid',
         value:calculate.TransactionCalculate.DocId
       })
     }
     if(calculate.TransactionCalculate.DocAddress && calculate.TransactionCalculate.DocAddress=='M' ){
-      requirements.push({
+      docrequirements.push({
         key: 'docaddress',
         value:calculate.TransactionCalculate.DocAddress
       })
     }
 
     if(calculate.TransactionCalculate.DocFund && calculate.TransactionCalculate.DocFund=='M' ){
-      requirements.push({
+      docrequirements.push({
         key: 'docfund',
         value:calculate.TransactionCalculate.DocFund
       })
@@ -79,7 +80,7 @@ module.exports[Symbol.for('plugin-meta')] = {
 
 
     if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation=='M' ){
-      requirements.push({
+      docrequirements.push({
         key: 'dococcupation',
         value:calculate.TransactionCalculate.DocOccupation
       })
@@ -87,41 +88,41 @@ module.exports[Symbol.for('plugin-meta')] = {
     
 
     if(calculate.TransactionCalculate.DataBankBic && calculate.TransactionCalculate.DataBankBic=='M' ){
-      requirements.push({
+      datarequirements.push({
         key: 'databankbic',
         value:calculate.TransactionCalculate.DataBankBic
       })
     }
     if(calculate.TransactionCalculate.DataBankIban && calculate.TransactionCalculate.DataBankIban=='M' ){
-      requirements.push({
+      datarequirements.push({
         key: 'databankiban',
         value:calculate.TransactionCalculate.DataBankIban
       })
     }
 
     if(calculate.TransactionCalculate.DataBankRouting && calculate.TransactionCalculate.DataBankRouting=='M' ){
-      requirements.push({
+      datarequirements.push({
         key: 'databankrouting',
         value:calculate.TransactionCalculate.DataBankRouting
       })
     }
 
     if(calculate.TransactionCalculate.DataBenAddress && calculate.TransactionCalculate.DataBenAddress=='M' ){
-      requirements.push({
+      datarequirements.push({
         key: 'databenaddress',
         value:calculate.TransactionCalculate.DataBenAddress
       })
     }
 
     if(calculate.TransactionCalculate.DataBenCity && calculate.TransactionCalculate.DataBenCity=='M' ){
-      requirements.push({
+      datarequirements.push({
         key: 'databencity',
         value:calculate.TransactionCalculate.DataBenCity
       })
     }
 
     if(calculate.TransactionCalculate.DataBenDob && calculate.TransactionCalculate.DataBenDob=='M' ){
-      requirements.push({
+      datarequirements.push({
         key: 'databendob',
         value:calculate.TransactionCalculate.DataBenDob
       })
@@ -139,9 +140,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         paymentmethods,
         fees: calculate.TransactionCalculate.CommissionAmount,
         servicecode: calculate.TransactionCalculate.ServiceCode,
-        requirements
-
-          // calculate: calculate.Countries
+        docrequirements,
+        datarequirements
     }   
   }
 

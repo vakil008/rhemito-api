@@ -88,7 +88,15 @@ const calculate = {
       code:{ type: 'string' },
          }
         } },
-        requirements: {type:"array",
+        datarequirements: {type:"array",
+        items:{
+            type:"object",
+            properties:{
+              key: {type:"string"},
+              value: {type:'string', maxLength:1}
+            }
+        }},
+        docrequirements: {type:"array",
         items:{
             type:"object",
             properties:{
