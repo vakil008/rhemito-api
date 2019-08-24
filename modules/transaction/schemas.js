@@ -317,6 +317,7 @@ const calculate = {
          reference: { type: 'string' },
          date:{ type: 'string' },
          service:{ type: 'string' },
+         servicecode:{ type: 'string' },
          value:{ type: 'number' },
          currency:{ type: 'string' },
          summary:{ type: 'string' },
@@ -332,6 +333,23 @@ const calculate = {
          reason:{ type: 'string' },
          relationship:{ type: 'string' },
          bank:{ type: 'string' },
+         tocurrency :{ type: 'string' },
+         fromcurrency:{ type: 'string' },
+         fromcountry:{ type: 'string' },
+         tocountry:{ type: 'string' },
+         documents:{
+          type:"array",
+          items: {
+            type:"object",
+            doctitle:{ type: 'string' },
+            doctype:{ type: 'string' },
+            docformat:{ type: 'string' },
+            dateuploaded:{ type: 'string' },
+            active:{ type: 'boolean' }
+          }
+         }
+         
+         
              }
           }
           }

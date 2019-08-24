@@ -198,10 +198,11 @@ module.exports[Symbol.for('plugin-meta')] = {
       throw reply.badRequest(transactionError)
     }
     return {  
-        message: 'Success', //transaction.ResponseMessage,
+        message: 'Success',
         count: transaction.length,
         transactions:transaction.map(t=>({
           service:t.Service,
+          servicecode:t.ServiceCode,
           status:t.Status,
           value:t.Value,
           reference:t.TnxRef,
@@ -218,7 +219,23 @@ module.exports[Symbol.for('plugin-meta')] = {
           rate:t.Rate,
           reason:t.ReasonId,
           relationship:t.RelationshipId,
-          bank:t.BenBankName
+          bank:t.BenBankName,
+          tocurrency : t.ToCurrencyISO3,
+          fromcurrency:t.FromCurrencyISO3,
+          fromcountry: t.FromCountryISO3,
+          tocountry:t.ToCountryISO3
+          // documents:{
+          //  type:"array",
+          //  items: {
+          //    doctitle:{ type: 'string' },
+          //    doctype:{ type: 'string' },
+          //    docformat:{ type: 'string' },
+          //    dateuploaded:{ type: 'string' },
+          //    active:{ type: 'boolean' },
+             
+ 
+          //  }
+          // }
         }))
       }   
   }
