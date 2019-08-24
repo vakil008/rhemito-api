@@ -54,7 +54,7 @@ class  AccessService {
                 randomguid,
                 apiKey:process.env.API_KEY,
                 hash,
-                accesstoken
+                email
                 
             })
            
