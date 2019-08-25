@@ -223,7 +223,11 @@ module.exports[Symbol.for('plugin-meta')] = {
           tocurrency : t.ToCurrencyISO3,
           fromcurrency:t.FromCurrencyISO3,
           fromcountry: t.FromCountryISO3,
-          tocountry:t.ToCountryISO3
+          tocountry:t.ToCountryISO3,
+          benbillref: t.BenBillRef,
+          beniban: t.BenIban,
+          bencity:t.BenCity,
+          dob:t.BenDob,
           // documents:{
           //  type:"array",
           //  items: {

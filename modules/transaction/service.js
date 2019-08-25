@@ -170,8 +170,7 @@ class  TransactionService {
         const transactionGetResult =  await Promise.all(transactionListQuery);
 
         const transactionGetResultArray =  transactionGetResult.filter(t=>t.data.RetailApiResponse.ResponseCode === '10000').map(txnGet=>{
-
-            return txnGet.data.RetailApiResponse.Transactions[0]
+                        return txnGet.data.RetailApiResponse.Transactions[0]
         })
         return transactionGetResultArray
         // return transactionsResult.data.RetailApiResponse

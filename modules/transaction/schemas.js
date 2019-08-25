@@ -337,6 +337,10 @@ const calculate = {
          fromcurrency:{ type: 'string' },
          fromcountry:{ type: 'string' },
          tocountry:{ type: 'string' },
+         benbillref:{ type: 'string' },
+         beniban: { type: 'string' },
+         bencity:{ type: 'string' },
+         dob:{ type: 'string' },
          documents:{
           type:"array",
           items: {
