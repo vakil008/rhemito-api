@@ -4,14 +4,12 @@ const {
     createbeneficiary: createbeneficiarySchema,
     listbeneficiary: listbeneficiarySchema,
     document: documentSchema
-    // search: searchSchema,
-    // getProfile: getProfileSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) { 
-      fastify.post('/user' , {schema: userSchema}, userHandler )
+      fastify.post('/user', {schema: userSchema}, userHandler )
       fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
       fastify.post('/beneficiaries' , {schema: listbeneficiarySchema}, listbeneficiaryHandler )
-      fastify.post('/document', {schema:documentSchema,documentHandler})
+      fastify.post('/document', {schema:documentSchema},documentHandler)
       // fastify.post('/updateuser' , {schema: providerSchema}, providerHandlers )
       // fastify.post('/updateuserpassword' , {schema: corridorsSchema}, corridorHandlers )
       // fastify.post('/dashboard' , {schema: corridorsSchema}, corridorHandlers )
