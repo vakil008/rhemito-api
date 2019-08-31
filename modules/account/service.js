@@ -138,7 +138,7 @@ async addDocument ({sessiontoken, uid,
     let documentResult;
     let documentRequest = {
         title,
-        format:'PNG',
+        format:'jpg',
         typeid,
         docbase64string:docstring
     }
