@@ -95,9 +95,9 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function documentHandler(req,reply) {
     const [error,document] = await to(this.accountService.addDocument(req.body))
   
-    if(error) {
-      throw reply.badRequest(error)
-    }
+    // if(error) {
+    //   throw reply.badRequest(error)
+    // }
    
     if(document.ResponseCode!='10000') {
       throw reply.badRequest(document.ResponseMessage)
