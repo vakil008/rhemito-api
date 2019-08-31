@@ -67,7 +67,7 @@ fastify.register(require('fastify-swagger'), {
     tags: [
       { name: 'access', description: 'Access related end-points' },
       { name: 'static', description: 'Static related end-points' },
-      { name: 'transaction', description: 'Transaction related end-points' }
+      { name: 'transaction', description: 'Transaction related end-points' },
       { name: 'account', description: 'Account related end-points' }
     ],
     securityDefinitions: {
