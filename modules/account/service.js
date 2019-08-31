@@ -129,5 +129,31 @@ class  AccountService {
     return recipientGetResultArray
 
 }
+
+async addDocument ({sessiontoken, uid, 
+    title,
+    typeid,
+    docstring
+}) { 
+    let documentResult;
+    let documentRequest = {
+        title,
+        format:'PNG',
+        typeid,
+        docbase64string:docstring
+    }
+    const randomguid = uuid();
+    const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken,uid)   
+    documentResult = await R.post('/RetailAccountDocumentAdd', {
+            randomguid,
+            apiKey: process.env.API_KEY, 
+            hash,
+            uid, 
+            sessiontoken,
+            ...documentRequest
+        })
+    return documentResult.data.RetailApiResponse
+
+}
 }
 module.exports = AccountService

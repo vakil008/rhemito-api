@@ -2,7 +2,8 @@ const to  = require('await-to-js').default
 const {
     user: userSchema,
     createbeneficiary: createbeneficiarySchema,
-    listbeneficiary: listbeneficiarySchema
+    listbeneficiary: listbeneficiarySchema,
+    document: documentSchema
     // search: searchSchema,
     // getProfile: getProfileSchema
   } = require('./schemas')
@@ -10,6 +11,7 @@ const {
       fastify.post('/user' , {schema: userSchema}, userHandler )
       fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
       fastify.post('/beneficiaries' , {schema: listbeneficiarySchema}, listbeneficiaryHandler )
+      fastify.post('/document', {schema:documentSchema,documentHandler})
       // fastify.post('/updateuser' , {schema: providerSchema}, providerHandlers )
       // fastify.post('/updateuserpassword' , {schema: corridorsSchema}, corridorHandlers )
       // fastify.post('/dashboard' , {schema: corridorsSchema}, corridorHandlers )
@@ -90,3 +92,20 @@ module.exports[Symbol.for('plugin-meta')] = {
         }))
   }
 }
+
+
+  async function documentHandler(req,reply) {
+    const [error,document] = await to(this.accountService.addDocument(req.body))
+  
+    if(error) {
+      throw reply.badRequest(error)
+    }
+   
+    if(document.ResponseCode!='10000') {
+      throw reply.badRequest(document.ResponseMessage)
+    }
+    return {
+        message: document.ResponseMessage,
+        docid :document.docid
+    }   
+  }

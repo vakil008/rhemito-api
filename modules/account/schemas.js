@@ -286,10 +286,43 @@ const user = {
       }
     }
   } 
+
+  const document = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required:[
+        'uid','sessiontoken','title','typeid','docstring'
+      ],
+      properties: {
+        uid: { type: 'string' },
+        sessiontoken: { type: 'string' },
+        title:{type:'string'},
+         typeid: {type:'string'},
+          docstring: {type:'string'},
+      } ,
+
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          docid:{type:'string'}
+        },
+        additionalProperties: false
+      }
+    }
+  } 
   module.exports =  { 
       user,
       createbeneficiary,
-      listbeneficiary
+      listbeneficiary,
+      document
   }
 
   
