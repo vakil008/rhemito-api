@@ -212,6 +212,9 @@ const calculate = {
         benlastname: {
           type:'string'
         },
+        bendob:{
+            type:'string'
+        },
         benbillref: {
           type:'string'
         },
@@ -224,9 +227,28 @@ const calculate = {
         benbankname: {
           type:'string'
         },
-       
-       
+        benbic:{
+          type:'string'
+        },
+        beniban: {
+          type:'string'
+        },
         benaddress: {
+          type:'string'
+        },
+          benidtype: {
+          type:'string'
+        },
+          benidnumber: {
+          type:'string'
+        },
+          benidcountry: {
+          type:'string'
+        },
+          benidissueddate: {
+          type:'string'
+        },
+          benidexpirydate: {
           type:'string'
         },
         relationshipid: {

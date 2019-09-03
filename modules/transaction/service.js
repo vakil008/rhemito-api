@@ -82,6 +82,15 @@ class  TransactionService {
         benmobileno,
         benaccountno,
         benbankname,
+        benbic,
+        beniban,
+        bendob,
+        benrouting,
+        benidtype,
+        benidcountry,
+        benidnumber,
+        benidissuedate,
+        benidexpirydate
     benaddress,
     benbillref,
     relationshipid,
@@ -121,7 +130,16 @@ class  TransactionService {
             benbillref,
             relationshipid,
             reasonid,
-            bencity
+            bencity,
+            benbic,
+            beniban,
+            bendob,
+            benrouting,
+            benidtype,
+            benidcountry,
+            benidnumber,
+            benidissuedate,
+            benidexpirydate
 
         }
         if(provideritem) submitResultData['provideritemid'] = provideritem
