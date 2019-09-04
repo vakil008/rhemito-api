@@ -37,6 +37,7 @@ class  TransactionService {
                 isvalidate
 
             })
+            console.log('calculate', calculateResult.data.RetailApiResponse)
            return calculateResult.data.RetailApiResponse
     
     }
@@ -94,7 +95,8 @@ class  TransactionService {
         benaddress,
         benbillref,
         relationshipid,
-        reasonid,bencity}) {
+        reasonid,
+        bencity}) {
     
             let submitResult;
         const randomguid = uuid()
