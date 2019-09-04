@@ -147,10 +147,13 @@ class  TransactionService {
         
         if(provideritem) submitResultData['provideritemid'] = provideritem
   
-         const finalData= Object.keys(submitResultData).filter((key)=>{
-             return submitResultData[key] !== false 
-        })
-        console.log('final data',finalData);    
+        for(var key in myObj){
+            if(submitResultData.hasOwnProperty(key) && submitResultData[key] == false){
+             delete submitResultData[key];
+            }
+          }
+       
+        console.log('final data',submitResultData);    
             submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
        
         return submitResult.data.RetailApiResponse
