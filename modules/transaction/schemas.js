@@ -261,8 +261,7 @@ const calculate = {
           type:'string'
         },
         bencity: {
-          type:'string',
-          default:""
+          type:'string'
         },
 
        
