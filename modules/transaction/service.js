@@ -37,7 +37,6 @@ class  TransactionService {
                 isvalidate
 
             })
-            console.log('calculate', calculateResult.data.RetailApiResponse)
            return calculateResult.data.RetailApiResponse
     
     }
@@ -132,7 +131,7 @@ class  TransactionService {
             benbillref,
             relationshipid,
             reasonid,
-            bencity:'XXXX',
+            bencity:bencity? bencity:'City unknown',
             benbic,
             beniban,
             bendob,
@@ -152,8 +151,6 @@ class  TransactionService {
              delete submitResultData[key];
             }
           }
-       
-        console.log('final data',submitResultData);    
             submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
        
         return submitResult.data.RetailApiResponse
