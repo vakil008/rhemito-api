@@ -90,7 +90,7 @@ class  TransactionService {
         benidcountry,
         benidnumber,
         benidissuedate,
-        benidexpirydate
+        benidexpirydate,
     benaddress,
     benbillref,
     relationshipid,
