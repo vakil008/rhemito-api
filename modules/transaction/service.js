@@ -144,7 +144,13 @@ class  TransactionService {
             benidexpirydate
 
         }
+        
         if(provideritem) submitResultData['provideritemid'] = provideritem
+  
+         const finalData= Object.keys(submitResultData).filter((key)=>{
+             return submitResultData[key] !== false 
+        })
+        console.log('final data',finalData);    
             submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
        
         return submitResult.data.RetailApiResponse
