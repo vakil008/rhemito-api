@@ -236,19 +236,22 @@ const calculate = {
         benaddress: {
           type:'string'
         },
-          benidtype: {
+        benidtype: {
           type:'string'
         },
-          benidnumber: {
+        benidnumber: {
           type:'string'
         },
-          benidcountry: {
+        benidcountry: {
           type:'string'
         },
-          benidissueddate: {
+        benrouting: {
           type:'string'
         },
-          benidexpirydate: {
+        benidissueddate: {
+          type:'string'
+        },
+        benidexpirydate: {
           type:'string'
         },
         relationshipid: {

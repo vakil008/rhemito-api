@@ -91,10 +91,10 @@ class  TransactionService {
         benidnumber,
         benidissuedate,
         benidexpirydate,
-    benaddress,
-    benbillref,
-    relationshipid,
-    reasonid,bencity}) {
+        benaddress,
+        benbillref,
+        relationshipid,
+        reasonid,bencity}) {
     
             let submitResult;
         const randomguid = uuid()
