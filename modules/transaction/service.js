@@ -147,7 +147,7 @@ class  TransactionService {
         
         if(provideritem) submitResultData['provideritemid'] = provideritem
   
-        for(var key in myObj){
+        for(var key in submitResultData){
             if(submitResultData.hasOwnProperty(key) && submitResultData[key] == false){
              delete submitResultData[key];
             }
