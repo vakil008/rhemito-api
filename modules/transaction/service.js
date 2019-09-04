@@ -132,7 +132,7 @@ class  TransactionService {
             benbillref,
             relationshipid,
             reasonid,
-            bencity,
+            bencity:'XXXX',
             benbic,
             beniban,
             bendob,
