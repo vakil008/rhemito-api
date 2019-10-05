@@ -5,7 +5,7 @@ const {
     listbeneficiary: listbeneficiarySchema,
     document: documentSchema
   } = require('./schemas')
-    module.exports= async  function(fastify,opts) { 
+    module.exports= async  function(fastify,opts) {
       fastify.post('/user', {schema: userSchema}, userHandler )
       fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
       fastify.post('/beneficiaries' , {schema: listbeneficiarySchema}, listbeneficiaryHandler )
@@ -14,7 +14,7 @@ const {
       // fastify.post('/updateuserpassword' , {schema: corridorsSchema}, corridorHandlers )
       // fastify.post('/dashboard' , {schema: corridorsSchema}, corridorHandlers )
     }
-  
+
 module.exports[Symbol.for('plugin-meta')] = {
         decorators: {
           fastify: [
@@ -44,7 +44,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           amount: b.Amount
         })),
         gender: user.User.Gender
-    }   
+    }
   }
 
   async function createbeneficiaryHandler(req,reply) {
@@ -54,18 +54,19 @@ module.exports[Symbol.for('plugin-meta')] = {
       }
       return {
           message: user.ResponseMessage,
-      }   
+      }
     }
 
 
   async function listbeneficiaryHandler(req,reply) {
     const [error,user] = await to(this.accountService.listBeneficiary(req.body))
-  
+
     if(error) {
       throw reply.badRequest(error)
     }
+    console.log('beneficiary user', user);
     return {
-      message: 'Success', 
+      message: 'Success',
       count: user.length,
       contacts: user.map(c=>({
           id:c.ContactId,
@@ -94,16 +95,16 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function documentHandler(req,reply) {
     const [error,document] = await to(this.accountService.addDocument(req.body))
-  
+
     // if(error) {
     //   throw reply.badRequest(error)
     // }
-   
+
     if(document.ResponseCode!='10000') {
       throw reply.badRequest(document.ResponseMessage)
     }
     return {
         message: document.ResponseMessage,
         docid :document.docid
-    }   
+    }
   }
