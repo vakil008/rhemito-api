@@ -64,7 +64,6 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(error) {
       throw reply.badRequest(error)
     }
-    console.log('beneficiary user', user);
     return {
       message: 'Success',
       count: user.length,
@@ -83,6 +82,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           iban:c.Iban,
           routing:c.Routing,
           provider:c.ProviderId,
+          subprovider: c.ProviderItemId,
           swift:c.Swift,
           relationship:c.RelationshipId,
           reason:c.ReasonId,

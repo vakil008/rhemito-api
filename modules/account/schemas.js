@@ -277,6 +277,7 @@ const listbeneficiary = {
               iban: { type: 'string' },
               routing: { type: 'string' },
               provider: { type: 'string' },
+              subprovider: { type: 'string' },
               swift: { type: 'string' },
               relationship: { type: 'string' },
               reason: { type: 'string' }
