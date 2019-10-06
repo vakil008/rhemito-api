@@ -60,7 +60,6 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function listbeneficiaryHandler(req,reply) {
     const [error,user] = await to(this.accountService.listBeneficiary(req.body))
-    console.log('benef', user)
     if(error) {
       throw reply.badRequest(error)
     }
