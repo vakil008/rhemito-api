@@ -63,6 +63,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(error) {
       throw reply.badRequest(error)
     }
+
     return {
       message: 'Success',
       count: user.length,
