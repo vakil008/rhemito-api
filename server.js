@@ -1,5 +1,5 @@
 // Require the framework and instantiate it
-//modules 
+//modules
 require('dotenv').config()
 
 const fp = require('fastify-plugin')
@@ -9,18 +9,18 @@ const AccessService = require('./modules/access/service')
 const TransactionService = require('./modules/transaction/service')
 const AccountService = require('./modules/account/service')
 
-// const staticModule = require('./modules/static'); 
+// const staticModule = require('./modules/static');
 const fastify = require('fastify')({ logger: true })
 fastify.register(require('fastify-sensible'))
 const fastifyEnv = require('fastify-env')
 //configure env files
-const env_schema =  { 
-    type:'object', 
+const env_schema =  {
+    type:'object',
     required: ['RHEMITO_URL', 'API_KEY', 'PRIVATE_KEY'],
     properties:{
         RHEMITO_URL:{
             type:'string',
-            default: 'https://apifurp.phasestreamtest.com/BusinessApi.svc/json'
+            default: 'https://furpapitest.funtechcom.com/BusinessApi.svc/json/'
         },
         API_KEY:{
           type:'string',
@@ -43,7 +43,7 @@ fastify.register(fastifyEnv, envOptions)
 })
 
 /**
- * 
+ *
  * add swagger
  */
 
