@@ -7,7 +7,7 @@ const {
     reasons: reasonsSchema,
     doctypes:doctypesSchema
   } = require('./schemas')
-    module.exports= async  function(fastify,opts) { 
+    module.exports= async  function(fastify,opts) {
       fastify.post('/countries' , {schema: countriesSchema}, countriesHandlers )
       fastify.post('/providers' , {schema: providerSchema}, providerHandlers )
       fastify.post('/subproviders' , {schema: subProviderSchema}, subProviderHandlers )
@@ -16,7 +16,7 @@ const {
       fastify.post('/reasons' , {schema: reasonsSchema}, reasonHandlers )
       fastify.post('/doctypes' , {schema: doctypesSchema}, doctypeHandlers )
     }
-  
+
 module.exports[Symbol.for('plugin-meta')] = {
         decorators: {
           fastify: [
@@ -33,7 +33,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         message: countries.ResponseMessage,
         count: countries.Count,
         countries: countries.Countries
-    }   
+    }
   }
   async function providerHandlers(req,reply) {
     const providers =  await this.staticService.providers()
@@ -41,7 +41,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         message: providers.ResponseMessage,
         count: providers.Count,
         providers: providers.Providers
-    }   
+    }
   }
   async function subProviderHandlers(req,reply) {
    const {provider} = req.body
@@ -54,7 +54,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           name:p.Name,
           amount:p.Amount
         }))
-    }   
+    }
   }
   async function corridorHandlers(req,reply) {
     const corridors =  await this.staticService.corridors()
@@ -62,7 +62,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         message: corridors.ResponseMessage,
         count: corridors.Count,
         corridors: corridors.Corridors
-    }   
+    }
   }
   async function relationshipHandlers(req,reply) {
     const relationships =  await this.staticService.relationships()
@@ -73,7 +73,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           name:rl.Name,
           id:rl.Id
         }))
-    }   
+    }
   }
 
   async function reasonHandlers(req,reply) {
@@ -85,7 +85,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           name:re.Name,
           id:re.Id
         }))
-    }   
+    }
   }
 
 
@@ -104,7 +104,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           isapplyoccupation:dt.IsApplyOccupation,
           isapplyfund:dt.IsApplyFund,
 
-          
+
         }))
-    }   
+    }
   }

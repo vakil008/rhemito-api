@@ -9,7 +9,7 @@ const {
     // search: searchSchema,
     // getProfile: getProfileSchema
   } = require('./schemas')
-    module.exports= async  function(fastify,opts) { 
+    module.exports= async  function(fastify,opts) {
         fastify.post('/register' , {schema: registerSchema}, registerHandlers )
         fastify.post('/login' , {schema: loginSchema}, loginHandlers )
         fastify.post('/activate' , {schema: activateSchema}, activateHandlers )
@@ -17,7 +17,7 @@ const {
         fastify.post('/validate' , {schema: validateSchema}, passwordValidateHandler )
         fastify.post('/confirm' , {schema: confirmSchema}, passwordConfirmHandler )
       }
-  
+
 module.exports[Symbol.for('plugin-meta')] = {
         decorators: {
           fastify: [
@@ -36,13 +36,14 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     return {
         message: newUser.ResponseMessage,
-       
-    }   
+
+    }
   }
 
   async function loginHandlers(req,reply) {
     const  {email, pass} = req.body
     const loginUser =  await this.accessService.login(email, pass)
+    console.log('login user', loginUser);
     if(loginUser.ResponseCode!='10000') {
       throw reply.badRequest(loginUser.ResponseMessage)
     }
@@ -51,8 +52,8 @@ module.exports[Symbol.for('plugin-meta')] = {
       uid: loginUser.User.Uid,
       sessiontoken: loginUser.User.SessionToken,
       sessionexpiry: loginUser.User.SessionExpiry
-  }    
-   
+  }
+
   }
 
   async function activateHandlers(req,reply) {
@@ -63,7 +64,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     return {
         message: activateUser.ResponseMessage,
-    }   
+    }
   }
 
   async function passwordResetHandler(req,reply) {
@@ -74,7 +75,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     return {
         message: resetPassword.ResponseMessage,
-    }   
+    }
   }
 
   async function passwordValidateHandler(req,reply) {
@@ -85,7 +86,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     return {
         message: validatePassword.ResponseMessage,
-    }   
+    }
   }
   async function passwordConfirmHandler(req,reply) {
     const  {accesstoken,pass,email} = req.body
@@ -95,5 +96,5 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     return {
         message: confirmPassword.ResponseMessage,
-    }   
+    }
   }
