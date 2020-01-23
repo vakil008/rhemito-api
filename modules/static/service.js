@@ -21,7 +21,6 @@ class  StaticService {
     async providers () {
         let providerResult;
         const randomguid = uuid()
-        console.log('process env', process.env);
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
 
             providerResult = await R.post('/RetailStaticDataProviders', {
