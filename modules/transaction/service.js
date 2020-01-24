@@ -164,7 +164,7 @@ class  TransactionService {
         const randomguid = uuid()
         let transactionListQuery = [];
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
-            let options = {Uid:uid,
+            let options = {uid,
                 sessiontoken,
             datefrom:startdate,
                dateto: enddate}
@@ -190,7 +190,7 @@ class  TransactionService {
                 hash:Thash,
                 tnxref: txn.TnxRef,
                 sessiontoken,
-                Uid:uid,
+                uid,
             })
             transactionListQuery.push(Treq)
         })
