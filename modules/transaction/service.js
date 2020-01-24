@@ -170,6 +170,7 @@ class  TransactionService {
                dateto: enddate}
             if(servicecode) options['servicecode']= servicecode
             if(reference) options['tnxref']= reference
+            console.log('options', options);
             const [error,transactionsResult] = await to(R.post('/RetailAccountTransactionList', {
                 randomguid,
                 apiKey: process.env.API_KEY,
