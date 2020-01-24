@@ -183,7 +183,7 @@ class  TransactionService {
         }
         transactionsResult.data.RetailApiResponse.Transactions.map(txn=>{
            let tuuid = uuid();
-            let Thash = hasher(tuuid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid, txn.TnxRef)
+            let Thash = hasher(tuuid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
             let Treq = R.post('/RetailAccountTransactionGet', {
                 randomguid:tuuid,
                 apiKey: process.env.API_KEY,
