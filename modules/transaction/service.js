@@ -1,8 +1,8 @@
 const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4')
 const to  = require('await-to-js').default
-class  TransactionService { 
-  
+class  TransactionService {
+
     async calculate (uid,
         sessiontoken,
         fromcountry,
@@ -14,7 +14,7 @@ class  TransactionService {
         service,
         discountcode,
         isvalidate) {
-    
+
             let calculateResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,
@@ -22,7 +22,7 @@ class  TransactionService {
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase())
             calculateResult = await R.post('/RetailTransactionCalculateRate', {
                 randomguid,
-                apiKey: process.env.API_KEY, 
+                apiKey: process.env.API_KEY,
                 sessiontoken,
                 hash,
                 Uid:uid,
@@ -38,7 +38,7 @@ class  TransactionService {
 
             })
            return calculateResult.data.RetailApiResponse
-    
+
     }
 
     async namecheck (uid,
@@ -48,17 +48,17 @@ class  TransactionService {
             let nameCheckResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,providerid, accountno)
-      
+
             nameCheckResult = await R.post('/RetailTransactionAccountNameCheck', {
                 randomguid,
-                apiKey: process.env.API_KEY, 
+                apiKey: process.env.API_KEY,
                 sessiontoken,
                 hash,
                 Uid:uid,
                 Providerid:providerid,
                 BenAccountNo:accountno  })
         return nameCheckResult.data.RetailApiResponse
-    
+
     }
 
     async submit ({uid,
@@ -96,7 +96,7 @@ class  TransactionService {
         relationshipid,
         reasonid,
         bencity}) {
-    
+
             let submitResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
@@ -104,7 +104,7 @@ class  TransactionService {
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase(),service.toLowerCase())
            let submitResultData = {
             randomguid,
-            apiKey: process.env.API_KEY, 
+            apiKey: process.env.API_KEY,
             sessiontoken,
             hash,
             Uid:uid,
@@ -143,18 +143,18 @@ class  TransactionService {
             benidexpirydate
 
         }
-        
+
         if(provideritem) submitResultData['provideritemid'] = provideritem
-  
+
         for(var key in submitResultData){
             if(submitResultData.hasOwnProperty(key) && submitResultData[key] == false){
              delete submitResultData[key];
             }
           }
             submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
-       
+
         return submitResult.data.RetailApiResponse
-    
+
     }
     async transactions ({uid,
         sessiontoken,
@@ -172,20 +172,22 @@ class  TransactionService {
             if(reference) options['tnxref']= reference
             const [error,transactionsResult] = await to(R.post('/RetailAccountTransactionList', {
                 randomguid,
-                apiKey: process.env.API_KEY, 
+                apiKey: process.env.API_KEY,
                 hash,
                 ...options
                }))
+        console.log('trnasaction error', error);
+        console.log('transaction list', transactionsResult);
         if(error) return error
         if(!transactionsResult.data.RetailApiResponse.Transactions.length) {
             return [];
         }
         transactionsResult.data.RetailApiResponse.Transactions.map(txn=>{
-           let tuuid = uuid();  
+           let tuuid = uuid();
             let Thash = hasher(tuuid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid, txn.TnxRef)
             let Treq = R.post('/RetailAccountTransactionGet', {
                 randomguid:tuuid,
-                apiKey: process.env.API_KEY, 
+                apiKey: process.env.API_KEY,
                 hash:Thash,
                 tnxref: txn.TnxRef,
                 sessiontoken,
@@ -200,7 +202,7 @@ class  TransactionService {
         })
         return transactionGetResultArray
         // return transactionsResult.data.RetailApiResponse
-    
+
     }
 
 }
