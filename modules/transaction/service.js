@@ -17,6 +17,7 @@ class  TransactionService {
 
             let calculateResult;
         const randomguid = uuid()
+
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase())
@@ -97,7 +98,7 @@ class  TransactionService {
         relationshipid,
         reasonid,
         bencity}) {
-
+            console.log('service', service);
             let submitResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
