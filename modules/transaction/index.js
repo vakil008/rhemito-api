@@ -5,13 +5,13 @@ const {
     submit: submitSchema,
     transactions:transactionSchema
      } = require('./schemas')
-    module.exports= async  function(fastify,opts) { 
+    module.exports= async  function(fastify,opts) {
       fastify.post('/calculate' , {schema: calculateSchema}, calculateHandlers )
       fastify.post('/checkaccount' , {schema: nameCheckSchema}, namecheckHandlers )
       fastify.post('/create' , {schema: submitSchema}, submitHandlers )
       fastify.post('/transactions' , {schema: transactionSchema}, transactionsHandler )
     }
-  
+
 module.exports[Symbol.for('plugin-meta')] = {
         decorators: {
           fastify: [
@@ -44,7 +44,7 @@ module.exports[Symbol.for('plugin-meta')] = {
       service,
       discountcode,
       isvalidate)
-    
+
       if(calculate.ResponseCode!='10000') {
         throw reply.badRequest(calculate.ResponseMessage)
       }
@@ -55,8 +55,7 @@ module.exports[Symbol.for('plugin-meta')] = {
          code:pm.PaymentMethodCode
        }))
 
-    }  
-    let datarequirements = [];
+    }
     let docrequirements = [];
     if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId=='M' ){
       docrequirements.push({
@@ -78,14 +77,14 @@ module.exports[Symbol.for('plugin-meta')] = {
       })
     }
 
-
     if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation=='M' ){
       docrequirements.push({
         key: 'dococcupation',
         value:calculate.TransactionCalculate.DocOccupation
       })
     }
-    
+
+    let datarequirements = [];
 
     if(calculate.TransactionCalculate.DataBankBic && calculate.TransactionCalculate.DataBankBic=='M' ){
       datarequirements.push({
@@ -127,6 +126,36 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataBenDob
       })
     }
+    if(calculate.TransactionCalculate.DataBenIdCountry && calculate.TransactionCalculate.DataBenIdCountry=='M' ){
+      datarequirements.push({
+        key: 'databenidcountry',
+        value:calculate.TransactionCalculate.DataBenIdCountry
+      })
+    }
+    if(calculate.TransactionCalculate.DataBenIdExpiryDate && calculate.TransactionCalculate.DataBenIdExpiryDate=='M' ){
+      datarequirements.push({
+        key: 'databenidexpirydate',
+        value:calculate.TransactionCalculate.DataBenIdExpiryDate
+      })
+    }
+    if(calculate.TransactionCalculate.DataBenIdIssueDate && calculate.TransactionCalculate.DataBenIdIssueDate=='M' ){
+      datarequirements.push({
+        key: 'databenidissuedate',
+        value:calculate.TransactionCalculate.DataBenIdIssueDate
+      })
+    }
+    if(calculate.TransactionCalculate.DataBenIdNumber && calculate.TransactionCalculate.DataBenIdNumber=='M' ){
+      datarequirements.push({
+        key: 'databenidnumber',
+        value:calculate.TransactionCalculate.DataBenIdNumber
+      })
+    }
+    if(calculate.TransactionCalculate.DataBenIdType && calculate.TransactionCalculate.DataBenIdType=='M' ){
+      datarequirements.push({
+        key: 'databenidtype',
+        value:calculate.TransactionCalculate.DataBenIdType
+      })
+    }
     return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
@@ -142,7 +171,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         servicecode: calculate.TransactionCalculate.ServiceCode,
         docrequirements,
         datarequirements
-    }   
+    }
   }
 
   async function namecheckHandlers(req,reply) {
@@ -160,14 +189,14 @@ module.exports[Symbol.for('plugin-meta')] = {
       }
     return {
         message: namecheck.ResponseMessage,
-       
-    }   
+
+    }
   }
 
 
 
   async function submitHandlers(req,reply) {
-  
+
     const create =  await this.transactionService.submit(req.body)
     if(create.ResponseCode!='10000') {
       throw reply.badRequest(create.ResponseMessage)
@@ -187,17 +216,17 @@ module.exports[Symbol.for('plugin-meta')] = {
         tocurrency: transaction.ToCurrencyISO3,
         value: transaction.Value,
         paymenturl: transaction.PaymentUrl
-      }   
+      }
   }
 
 
   async function transactionsHandler(req,reply) {
-   
+
     const [transactionError,transaction] =  await to(this.transactionService.transactions(req.body))
     if(transactionError) {
       throw reply.badRequest(transactionError)
     }
-    return {  
+    return {
         message: 'Success',
         count: transaction.length,
         transactions:transaction.map(t=>({
@@ -236,10 +265,10 @@ module.exports[Symbol.for('plugin-meta')] = {
           //    docformat:{ type: 'string' },
           //    dateuploaded:{ type: 'string' },
           //    active:{ type: 'boolean' },
-             
- 
+
+
           //  }
           // }
         }))
-      }   
+      }
   }
