@@ -157,6 +157,7 @@ class AccountService {
             sessiontoken,
             ...documentRequest
         })
+        console.log('document result', documentResult.data.RetailApiResponse)
         return documentResult.data.RetailApiResponse
 
     }
