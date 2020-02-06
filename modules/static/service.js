@@ -190,26 +190,18 @@ class  StaticService {
         return signoutResult
 
     }
-    async ticketCategory() {
-        let signoutResult
+    async ticketTypes() {
         const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,sessiontoken)
-        try {
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
 
-         signoutResult = R.post('/RetailAccessSignOut',{
+            const [error,ticketTypesResult] = await to(R.post('/RetailStaticDataTicketCategoryTypes',{
                 randomguid,
-                apiKey,
-                hash,
-                sessiontoken
+                apiKey:process.env.API_KEY,
+                hash
 
-            })
-
-
-        }catch(error) {
-            throw error
-        }
-
-        return signoutResult
+            }))
+      if(error) throw error
+       return ticketTypesResult.data.RetailApiResponse
 
     }
 }

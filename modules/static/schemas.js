@@ -8,7 +8,7 @@ const requestProperties ={
       hash: {
         type: 'string'
       },
-  
+
   }
 const countries = {
     // This jsonschema will be used for data validation
@@ -44,7 +44,7 @@ const countries = {
       }
     }
   }
-  
+
   const corridors = {
     // This jsonschema will be used for data validation
     // body: {
@@ -71,7 +71,7 @@ const countries = {
        FromCurrencyISO3:{ type: 'string' },
        ToCountryISO3 :{ type: 'string' },
        TOCountryName :{ type: 'string' },
-       ToCurrencyISO3 :{ type: 'string' }, 
+       ToCurrencyISO3 :{ type: 'string' },
        IsCanReceiveAirtime:{ type: 'boolean' },
        IsCanReceiveBillPay:{ type: 'boolean' },
        IsCanReceiveMoneyBank:{ type: 'boolean' },
@@ -81,7 +81,7 @@ const countries = {
        MaxSendValue: {type:'number'},
        MinReceiveValue: {type:'number'},
        MaxReceiveValue: {type:'number'},
-       
+
             }
         } }
         },
@@ -90,7 +90,7 @@ const countries = {
     }
   }
   const providers = {
-   
+
     response: {
       // The 200 body response is described
       // by the following schema
@@ -209,6 +209,35 @@ const countries = {
       }
     }
   }
+  const ticketypes = {
+    // This jsonschema will be used for data validation
+    // body: {
+    //   type: 'object',
+    //   properties: requestProperties ,
+    //   additionalProperties: false
+    // },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          count: {type:'number'},
+          ticketypes: {type:'array',
+        items: {
+            type:'object',
+            properties : {
+      id:{ type: 'string' },
+       name:{ type: 'string' },
+         }
+        } }
+        },
+        additionalProperties: false
+      }
+    }
+  }
 
   const doctypes = {
     // This jsonschema will be used for data validation
@@ -245,12 +274,13 @@ const countries = {
       }
     }
   }
-  module.exports =  { 
+  module.exports =  {
       countries,
       providers,
       subproviders,
       corridors,
       relationships,
       reasons,
-      doctypes
+      doctypes,
+      ticketypes
   }

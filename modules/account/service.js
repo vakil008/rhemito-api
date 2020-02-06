@@ -139,7 +139,7 @@ class AccountService {
         let documentResult;
         let documentRequest = {
             title,
-            format: 'jpg',
+            format: 'JPG',
             typeid,
             dateexpire,
             docbase64string: docstring
@@ -157,7 +157,6 @@ class AccountService {
             sessiontoken,
             ...documentRequest
         })
-        console.log('document result', documentResult.data.RetailApiResponse)
         return documentResult.data.RetailApiResponse
 
     }
