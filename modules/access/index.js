@@ -43,7 +43,6 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function loginHandlers(req,reply) {
     const  {email, pass} = req.body
     const loginUser =  await this.accessService.login(email, pass)
-    console.log('login user', loginUser);
     if(loginUser.ResponseCode!='10000') {
       throw reply.badRequest(loginUser.ResponseMessage)
     }
