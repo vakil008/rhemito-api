@@ -197,7 +197,7 @@ class  TransactionService {
             transactionListQuery.push(Treq)
         })
         const transactionGetResult =  await Promise.all(transactionListQuery);
-
+console.log('transaciton get result', transactionGetResult);
         const transactionGetResultArray =  transactionGetResult.filter(t=>t.data.RetailApiResponse.ResponseCode === '10000').map(txnGet=>{
                         return txnGet.data.RetailApiResponse.Transactions[0]
         })
