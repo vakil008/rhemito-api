@@ -154,7 +154,7 @@ class  TransactionService {
             }
           }
             submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
-
+        console.log('submit response', submitResult.data.RetailApiResponse)
         return submitResult.data.RetailApiResponse
 
     }
