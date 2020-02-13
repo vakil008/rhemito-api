@@ -3,13 +3,15 @@ const {
     user: userSchema,
     createbeneficiary: createbeneficiarySchema,
     listbeneficiary: listbeneficiarySchema,
-    document: documentSchema
+    document: documentSchema,
+    ticket: ticketSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/user', {schema: userSchema}, userHandler )
       fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
       fastify.post('/beneficiaries' , {schema: listbeneficiarySchema}, listbeneficiaryHandler )
       fastify.post('/document', {schema:documentSchema},documentHandler)
+      fastify.post('/ticket', {schema:ticketSchema},ticket)
       // fastify.post('/updateuser' , {schema: providerSchema}, providerHandlers )
       // fastify.post('/updateuserpassword' , {schema: corridorsSchema}, corridorHandlers )
       // fastify.post('/dashboard' , {schema: corridorsSchema}, corridorHandlers )
@@ -95,16 +97,22 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function documentHandler(req,reply) {
     const [error,document] = await to(this.accountService.addDocument(req.body))
-
-    // if(error) {
-    //   throw reply.badRequest(error)
-    // }
-
     if(document.ResponseCode!='10000') {
       throw reply.badRequest(document.ResponseMessage)
     }
     return {
         message: document.ResponseMessage,
         docid :document.docid
+    }
+  }
+
+  async function ticketHandler(req,reply) {
+    const [error,ticket] = await to(this.accountService.addTicket(req.body))
+    if(ticket.ResponseCode!='10000') {
+      throw reply.badRequest(ticket.ResponseMessage)
+    }
+    return {
+        message: ticket.ResponseMessage,
+        ticketid :ticket.ticketid
     }
   }

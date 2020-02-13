@@ -161,5 +161,37 @@ class AccountService {
         return documentResult.data.RetailApiResponse
 
     }
+
+    async addTicket({ sessiontoken, uid,
+        subject,
+        category,
+        note,
+        ticket
+    }) {
+        let ticketRequest = {
+            subject,
+            category,
+            note
+        }
+        if (ticket) {
+            ticketRequest['ticket'] = ticket;
+        }
+        const randomguid = uuid();
+        const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid)
+        ticketResult = await R.post('/RetailAccountTicketSave', {
+            randomguid,
+            apiKey: process.env.API_KEY,
+            hash,
+            uid,
+            sessiontoken,
+            categoryid: category,
+            noteinfo: note,
+            subject,
+            isopen: 1
+
+        })
+        return ticketResult.data.RetailApiResponse
+
+    }
 }
 module.exports = AccountService

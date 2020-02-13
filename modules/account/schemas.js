@@ -324,10 +324,44 @@ const document = {
     }
   }
 }
+
+const ticket = {
+  // This jsonschema will be used for data validation
+  body: {
+    type: 'object',
+    required: [
+      'uid', 'sessiontoken', 'category', 'subject', 'note'
+    ],
+    properties: {
+      uid: { type: 'string' },
+      sessiontoken: { type: 'string' },
+      category: { type: 'string' },
+      subject: { type: 'string' },
+      note: { type: 'string' },
+      ticket: { type: ['string', 'null'] },
+    },
+
+    additionalProperties: false
+  },
+  response: {
+    // The 200 body response is described
+    // by the following schema
+    200: {
+      type: 'object',
+      required: ['message'],
+      properties: {
+        message: { type: 'string' },
+        ticketid: { type: 'string' }
+      },
+      additionalProperties: false
+    }
+  }
+}
 module.exports = {
   user,
   createbeneficiary,
   listbeneficiary,
-  document
+  document,
+  ticket
 }
 
