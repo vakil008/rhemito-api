@@ -38,7 +38,6 @@ class  TransactionService {
                 isvalidate
 
             })
-            console.log('calculate result',calculateResult.data.RetailApiResponse);
            return calculateResult.data.RetailApiResponse
 
     }
@@ -98,7 +97,6 @@ class  TransactionService {
         relationshipid,
         reasonid,
         bencity}) {
-            console.log('service', service);
             let submitResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
@@ -154,7 +152,6 @@ class  TransactionService {
             }
           }
             submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
-        console.log('submit response', submitResult.data.RetailApiResponse)
         return submitResult.data.RetailApiResponse
 
     }
@@ -172,7 +169,6 @@ class  TransactionService {
                dateto: enddate}
             if(servicecode) options['servicecode']= servicecode
             if(reference) options['tnxref']= reference
-            console.log('options', options);
             const [error,transactionsResult] = await to(R.post('/RetailAccountTransactionList', {
                 randomguid,
                 apiKey: process.env.API_KEY,
@@ -199,7 +195,6 @@ class  TransactionService {
         const transactionGetResult =  await Promise.all(transactionListQuery);
 
         const transactionGetResultArray =  transactionGetResult.filter(t=>t.data.RetailApiResponse.ResponseCode === '10000').map(txnGet=>{
-            console.log('transaciton get result', txnGet.data.RetailApiResponse);
                         return txnGet.data.RetailApiResponse.Transactions[0]
         })
         return transactionGetResultArray

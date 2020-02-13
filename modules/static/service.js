@@ -201,6 +201,7 @@ class  StaticService {
 
             }))
       if(error) throw error
+      console.log('ticket type result', ticketTypesResult.data.RetailApiResponse)
        return ticketTypesResult.data.RetailApiResponse
 
     }

@@ -97,7 +97,6 @@ class  AccessService {
         let loginResult
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase())
-        console.log('hash', hash)
         loginResult = await  R.post('/RetailAccessLogin',{
                 randomguid,
                 apiKey:process.env.API_KEY,
@@ -106,7 +105,6 @@ class  AccessService {
                 pass: hasher(email.toLowerCase(),pass)
 
             })
-        console.log('login result', loginResult.data)
          return loginResult.data.RetailApiResponse
     }
 
