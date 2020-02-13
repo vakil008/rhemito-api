@@ -117,7 +117,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     return {
         message: ticketTypes.ResponseMessage,
         count: ticketTypes.Count,
-        reasons: ticketTypes.TicketCategoryTypes.map(re=>({
+        tickettypes: ticketTypes.TicketCategoryTypes.map(re=>({
           name:re.Name,
           id:re.Id
         }))
