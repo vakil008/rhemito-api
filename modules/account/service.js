@@ -137,14 +137,15 @@ class AccountService {
         docstring
     }) {
         let documentResult;
+        let docstringSplit = docstring.split(',');
         let documentRequest = {
             title,
             format: 'JPG',
             typeid,
             dateexpire,
-            docbase64string: docstring
+            docbase64string: docstringSplit[1]
         }
-        console.log('docstring', docstring)
+        console.log('docstring', docstringSplit);
         if (title) {
             documentRequest['title'] = title;
         }
