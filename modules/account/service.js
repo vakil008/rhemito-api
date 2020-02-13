@@ -144,6 +144,7 @@ class AccountService {
             dateexpire,
             docbase64string: docstring
         }
+        console.log('docstring', docstring)
         if (title) {
             documentRequest['title'] = title;
         }
