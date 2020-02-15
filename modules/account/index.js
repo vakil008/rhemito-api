@@ -11,7 +11,7 @@ const {
       fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
       fastify.post('/beneficiaries' , {schema: listbeneficiarySchema}, listbeneficiaryHandler )
       fastify.post('/document', {schema:documentSchema},documentHandler)
-      fastify.post('/ticket', {schema:ticketSchema},ticket)
+      fastify.post('/ticket', {schema:ticketSchema},ticketHandler);
       // fastify.post('/updateuser' , {schema: providerSchema}, providerHandlers )
       // fastify.post('/updateuserpassword' , {schema: corridorsSchema}, corridorHandlers )
       // fastify.post('/dashboard' , {schema: corridorsSchema}, corridorHandlers )
