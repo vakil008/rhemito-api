@@ -45,6 +45,8 @@ class AccountService {
         // if (provideritem) userRequest['provideritemid'] = provideritem
         const randomguid = uuid()
         const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid, contact)
+        console.log('user reequest', userRequest);
+       try {
         userResult = await R.post('/RetailAccountBeneficiarySave', {
             randomguid,
             apiKey: process.env.API_KEY,
@@ -55,6 +57,10 @@ class AccountService {
         })
         console.log('save beneficiary', userResult.data.RetailApiResponse);
         return userResult.data.RetailApiResponse
+       }catch(e) {
+           console.log('beneficiary error', e)
+           return e;
+       }
 
     }
 
