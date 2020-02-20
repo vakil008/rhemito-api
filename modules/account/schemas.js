@@ -191,7 +191,7 @@ const createbeneficiary = {
     type: 'object',
     required: [
       'uid', 'sessiontoken', 'firstname', 'lastname', 'nickname',
-      'servicecode'
+      'servicecode','country'
     ],
     properties: {
       uid: { type: 'string' },
@@ -201,6 +201,7 @@ const createbeneficiary = {
       lastname: { type: 'string' },
       nickname: { type: 'string' },
       servicecode: { type: 'string' },
+      country: { type: 'string' },
      },
 
     additionalProperties: false
