@@ -25,7 +25,8 @@ class AccountService {
         firstname,
         lastname,
         nickname,
-        servicecode
+        servicecode,
+        country
     }) {
         let userResult;
         let contact = uuid();
