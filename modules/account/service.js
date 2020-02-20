@@ -53,6 +53,7 @@ class AccountService {
             sessiontoken,
             ...userRequest
         })
+        console.log('save beneficiary', userResult.data.RetailApiResponse);
         return userResult.data.RetailApiResponse
 
     }
