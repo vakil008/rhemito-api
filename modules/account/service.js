@@ -29,6 +29,7 @@ class AccountService {
         country
     }) {
         let userResult;
+        console.log('country', country);
         let contact = uuid();
         let userRequest = {
             fname: firstname,
