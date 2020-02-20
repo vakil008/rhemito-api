@@ -37,6 +37,7 @@ class AccountService {
             nickname,
             servicecode,
             countryiso3: country,
+            currencyiso: 'NGN',
             contactid: contact,
             isactive: 1,
         isdelete: 0   }
