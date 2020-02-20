@@ -22,48 +22,29 @@ class AccountService {
     }
 
     async createBeneficiary({ sessiontoken, uid,
-        contact,
         firstname,
         lastname,
-        active,
-        deleted,
-        service,
-        country,
-        currency,
-        reason,
-        relationship,
-        provider,
-        provideritem,
-        providername,
-        account,
-        iban,
-        swift,
-        routing
+        nickname,
     }) {
         let userResult;
+        let contact = uuid();
         let userRequest = {
             fname: firstname,
             lname: lastname,
-            isactive: active,
-            isdelete: deleted,
-            countryiso3: country,
-            currencyiso: currency,
-            servicecode: service,
-            providerid: provider,
-            providername,
-            accountref: account,
-        }
-        if (contact) userRequest['contactid'] = contact
-        if (relationship) userRequest['relationshipid'] = relationship
-        if (reason) userRequest['reasonid'] = reason
+            nickname,
+            contactid: contact,
+            isactive: 1,
+        isdelete: 0   }
+        // if (contact) userRequest['contactid'] = contact
+        // if (relationship) userRequest['relationshipid'] = relationship
+        // if (reason) userRequest['reasonid'] = reason
 
-        if (iban) userRequest['iban'] = iban
-        if (swift) userRequest['swift'] = swift
-        if (routing) userRequest['routing'] = routing
-        if (provideritem) userRequest['provideritemid'] = provideritem
+        // if (iban) userRequest['iban'] = iban
+        // if (swift) userRequest['swift'] = swift
+        // if (routing) userRequest['routing'] = routing
+        // if (provideritem) userRequest['provideritemid'] = provideritem
         const randomguid = uuid()
-        const hash = contact ? hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid, contact) :
-            hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid)
+        const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid, contact)
         userResult = await R.post('/RetailAccountBeneficiarySave', {
             randomguid,
             apiKey: process.env.API_KEY,
@@ -178,6 +159,7 @@ class AccountService {
         }
         const randomguid = uuid();
         const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid)
+
         ticketResult = await R.post('/RetailAccountTicketSave', {
             randomguid,
             apiKey: process.env.API_KEY,

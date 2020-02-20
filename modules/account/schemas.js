@@ -190,9 +190,7 @@ const createbeneficiary = {
   body: {
     type: 'object',
     required: [
-      'uid', 'sessiontoken', 'firstname', 'lastname', 'active', 'deleted',
-      'service', 'country', 'currency', 'provider',
-      'account'
+      'uid', 'sessiontoken', 'firstname', 'lastname', 'nickname'
     ],
     properties: {
       uid: { type: 'string' },
@@ -200,22 +198,8 @@ const createbeneficiary = {
       contact: { type: 'string' },
       firstname: { type: 'string' },
       lastname: { type: 'string' },
-      account: { type: 'string' },
-      active: { type: 'integer' },
-      deleted: { type: 'integer' },
-      service: { type: 'string' },
-      country: { type: 'string' },
-      currency: { type: 'string' },
-      reason: { type: 'string' },
-      relationship: { type: 'string' },
-      provider: { type: 'string' },
-      provideritem: { type: 'string' },
-      reference: { type: 'string' },
-      iban: { type: 'string' },
-      swift: { type: 'string' },
-      routing: { type: 'string' },
-      providername: { type: 'string' }
-    },
+      nickname: { type: 'string' },
+     },
 
     additionalProperties: false
   },
