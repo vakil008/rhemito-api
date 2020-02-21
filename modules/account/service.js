@@ -27,6 +27,15 @@ class AccountService {
         nickname,
         servicecode,
         country
+        reason,
+        relationship,
+        provider,
+        provideritem,
+        reference,
+        iban,
+        swift,
+        routing,
+        providername,
     }) {
         let userResult;
         console.log('country', country);
@@ -40,15 +49,15 @@ class AccountService {
             currencyiso: 'NGN',
             contactid: contact,
             isactive: 1,
-        isdelete: 0   }
-        // if (contact) userRequest['contactid'] = contact
-        // if (relationship) userRequest['relationshipid'] = relationship
-        // if (reason) userRequest['reasonid'] = reason
-
-        // if (iban) userRequest['iban'] = iban
-        // if (swift) userRequest['swift'] = swift
-        // if (routing) userRequest['routing'] = routing
-        // if (provideritem) userRequest['provideritemid'] = provideritem
+        isdelete: 0,
+        accountref:reference   }
+        if (relationship) userRequest['relationshipid'] = relationship
+        if (reason) userRequest['reasonid'] = reason
+        if (provider) userRequest['serviceproviderid'] = reason
+        if (iban) userRequest['iban'] = iban
+        if (swift) userRequest['swift'] = swift
+        if (routing) userRequest['routing'] = routing
+        if (provideritem) userRequest['serviceprovideritemid'] = provideritem
         const randomguid = uuid()
         const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid, contact)
         console.log('user reequest', userRequest);

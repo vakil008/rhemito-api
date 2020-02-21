@@ -202,6 +202,15 @@ const createbeneficiary = {
       nickname: { type: 'string' },
       servicecode: { type: 'string' },
       country: { type: 'string' },
+      reason: { type: ["string", "null"]},
+      relationship: { type: ["string", "null"]},
+      provider: { type: ["string", "null"]},
+      provideritem: { type: ["string", "null"]},
+      reference:   { type: "string"},
+      iban: { type: ["string", "null"]},
+      swift: { type: ["string", "null"]},
+      routing: { type: ["string", "null"]},
+      providername: { type: ["string", "null"]},
      },
 
     additionalProperties: false
