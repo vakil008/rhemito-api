@@ -26,7 +26,7 @@ class AccountService {
         lastname,
         nickname,
         servicecode,
-        country
+        country,
         reason,
         relationship,
         provider,
