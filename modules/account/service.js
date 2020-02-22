@@ -54,11 +54,11 @@ class AccountService {
         providername  }
         if (relationship) userRequest['relationshipid'] = relationship
         if (reason) userRequest['reasonid'] = reason
-        if (provider) userRequest['serviceproviderid'] = reason
+        if (provider) userRequest['providerid'] = provider
         if (iban) userRequest['iban'] = iban
         if (swift) userRequest['swift'] = swift
         if (routing) userRequest['routing'] = routing
-        if (provideritem) userRequest['serviceprovideritemid'] = provideritem
+        if (provideritem) userRequest['provideritemid'] = provideritem
         const randomguid = uuid()
         const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid, contact)
         console.log('user reequest', userRequest);
