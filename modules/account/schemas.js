@@ -199,7 +199,6 @@ const createbeneficiary = {
       contact: { type: 'string' },
       firstname: { type: 'string' },
       lastname: { type: 'string' },
-      nickname: { type: 'string' },
       servicecode: { type: 'string' },
       country: { type: 'string' },
       reason: { type: ["string", "null"]},
