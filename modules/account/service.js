@@ -50,7 +50,8 @@ class AccountService {
             contactid: contact,
             isactive: 1,
         isdelete: 0,
-        accountref:reference   }
+        accountref:reference,
+        providername  }
         if (relationship) userRequest['relationshipid'] = relationship
         if (reason) userRequest['reasonid'] = reason
         if (provider) userRequest['serviceproviderid'] = reason
