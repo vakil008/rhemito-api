@@ -196,7 +196,6 @@ const createbeneficiary = {
     properties: {
       uid: { type: 'string' },
       sessiontoken: { type: 'string' },
-      contact: { type: 'string' },
       firstname: { type: 'string' },
       lastname: { type: 'string' },
       servicecode: { type: 'string' },
