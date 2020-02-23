@@ -58,7 +58,7 @@ class AccountService {
         if (providername) userRequest['providername'] = providername
         if (provideritem) userRequest['provideritemid'] = provideritem
         const randomguid = uuid()
-        const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid, contact)
+        const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid)
         console.log('user reequest', userRequest);
        try {
         userResult = await R.post('/RetailAccountBeneficiarySave', {
