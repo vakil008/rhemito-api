@@ -39,15 +39,12 @@ class AccountService {
     }) {
         let userResult;
         console.log('country', country);
-        let contact = uuid();
         let userRequest = {
             fname: firstname,
             lname: lastname,
-            nickname,
             servicecode,
             countryiso3: country,
             currencyiso: 'NGN',
-            contactid: contact,
             isactive: 1,
         isdelete: 0,
         accountref:reference,
@@ -58,6 +55,7 @@ class AccountService {
         if (iban) userRequest['iban'] = iban
         if (swift) userRequest['swift'] = swift
         if (routing) userRequest['routing'] = routing
+        if (providername) userRequest['providername'] = providername
         if (provideritem) userRequest['provideritemid'] = provideritem
         const randomguid = uuid()
         const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid, contact)
