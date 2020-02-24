@@ -37,6 +37,7 @@ const user = {
         lastloggedin: { type: 'string' },
         firstname: { type: 'string' },
         lastname: { type: 'string' },
+        nationality: { type: 'string' },
         email: { type: 'string' },
         country: { type: 'string' },
         postcode: { type: 'string' },
