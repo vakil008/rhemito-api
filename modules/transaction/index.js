@@ -249,7 +249,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           reason:t.ReasonId,
           relationship:t.RelationshipId,
           bank:t.BenBankName,
-          benaccountno: t.benaccountno,
+          benaccountno: t.BenAccountNo,
           tocurrency : t.ToCurrencyISO3,
           fromcurrency:t.FromCurrencyISO3,
           fromcountry: t.FromCountryISO3,
