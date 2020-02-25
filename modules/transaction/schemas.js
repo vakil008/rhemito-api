@@ -8,7 +8,7 @@ const requestProperties ={
       hash: {
         type: 'string'
       },
-  
+
   }
 const calculate = {
     // This jsonschema will be used for data validation
@@ -72,7 +72,7 @@ const calculate = {
           fromcountry: {type:'string'},
           tocountry: {type:'string'},
           fromcurrency: {type:'string'},
-          tocurrency: {type:'string'}, 
+          tocurrency: {type:'string'},
           discountamount: { type: 'number' },
           docregtype: {type:'string'},
           isdiscountavailable: { type: 'boolean' },
@@ -109,7 +109,7 @@ const calculate = {
       }
     }
   }
-  
+
   const nameCheck = {
     // This jsonschema will be used for data validation
     body: {
@@ -146,7 +146,7 @@ const calculate = {
       }
     }
   }
-  
+
 
 
 
@@ -265,7 +265,7 @@ const calculate = {
           default:"XXX"
         },
 
-       
+
 
       } ,
       additionalProperties: false
@@ -284,13 +284,13 @@ const calculate = {
           fromcountry: {type:'string'},
           tocountry: {type:'string'},
           fromcurrency: {type:'string'},
-          tocurrency: {type:'string'}, 
+          tocurrency: {type:'string'},
           reference:  {type:'string'},
           fee: {type:'number'},
           total: {type:'number'},
           value: {type:'number'},
           paymenturl: {type:'string'}
-          
+
         },
         additionalProperties: false
       }
@@ -315,7 +315,7 @@ const calculate = {
         enddate: {
           type:'string'
         },
-      
+
         servicecode:{
           type:'string'
         },
@@ -363,6 +363,7 @@ const calculate = {
          fromcountry:{ type: 'string' },
          tocountry:{ type: 'string' },
          benbillref:{ type: 'string' },
+         benaccountno:{ type: 'string' },
          beniban: { type: 'string' },
          bencity:{ type: 'string' },
          dob:{ type: 'string' },
@@ -377,18 +378,18 @@ const calculate = {
             active:{ type: 'boolean' }
           }
          }
-         
-         
+
+
              }
           }
           }
-      
+
         },
         additionalProperties: false
       }
     }
   }
-  module.exports =  { 
+  module.exports =  {
       calculate,
       nameCheck,
       submit,
