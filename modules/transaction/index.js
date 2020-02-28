@@ -53,7 +53,8 @@ module.exports[Symbol.for('plugin-meta')] = {
        paymentmethods = calculate.TransactionCalculate.PaymentMethods.map(pm=>({
          fee:pm.Fees,
          code:pm.PaymentMethodCode
-       }))
+       })).filter((method) => method.code !=='CARD')
+       .filter((method) => method.code !=='SOFORT')
 
     }
     let docrequirements = [];
