@@ -38,7 +38,6 @@ class AccountService {
         providername,
     }) {
         let userResult;
-        console.log('country', country);
         let userRequest = {
             fname: firstname,
             lname: lastname,
@@ -59,7 +58,6 @@ class AccountService {
         if (provideritem) userRequest['provideritemid'] = provideritem
         const randomguid = uuid()
         const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid)
-        console.log('user reequest', userRequest);
        try {
         userResult = await R.post('/RetailAccountBeneficiarySave', {
             randomguid,
@@ -69,10 +67,8 @@ class AccountService {
             sessiontoken,
             ...userRequest
         })
-        console.log('save beneficiary', userResult.data.RetailApiResponse);
         return userResult.data.RetailApiResponse
        }catch(e) {
-           console.log('beneficiary error', e)
            return e;
        }
 

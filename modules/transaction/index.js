@@ -55,6 +55,7 @@ module.exports[Symbol.for('plugin-meta')] = {
          code:pm.PaymentMethodCode
        })).filter((method) => method.code !=='CARD')
        .filter((method) => method.code !=='SOFORT')
+       .filter((method) => method.code !=='PAYSTACK')
 
     }
     let docrequirements = [];
