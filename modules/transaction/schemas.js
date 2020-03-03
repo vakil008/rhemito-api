@@ -286,6 +286,7 @@ const calculate = {
           fromcurrency: {type:'string'},
           tocurrency: {type:'string'},
           reference:  {type:'string'},
+          accountreference:  {type:'string'},
           fee: {type:'number'},
           total: {type:'number'},
           value: {type:'number'},
