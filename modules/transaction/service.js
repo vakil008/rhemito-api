@@ -151,8 +151,10 @@ class  TransactionService {
              delete submitResultData[key];
             }
           }
-            submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
-        return submitResult.data.RetailApiResponse
+
+          submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
+          console.log('submitted transaction', submitResult.data.RetailApiResponse)
+          return submitResult.data.RetailApiResponse
 
     }
     async transactions ({uid,
