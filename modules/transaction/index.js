@@ -207,7 +207,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     return {
         message: create.ResponseMessage,
         rate: transaction.Rate,
-        reference: transaction.TxnRef,
+        reference: transaction.TnxRef,
         accountreference: transaction.Uno,
         sendamount: transaction.SendAmount,
         receiveamount: transaction.ReceiveAmount,
