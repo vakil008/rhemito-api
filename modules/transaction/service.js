@@ -105,6 +105,7 @@ class  TransactionService {
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase(),service.toLowerCase())
            let submitResultData = {
+            channel: 'app',
             randomguid,
             apiKey: process.env.API_KEY,
             sessiontoken,
