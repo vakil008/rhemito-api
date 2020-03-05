@@ -19,7 +19,7 @@ const calculate = {
       'fromcurrency',
       'tocountry',
       'tocurrency',
-    'amount','direction','service'],
+      'amount','direction','service'],
       properties: {
         uid: {
           type:'string'
@@ -97,6 +97,14 @@ const calculate = {
             }
         }},
         docrequirements: {type:"array",
+        items:{
+            type:"object",
+            properties:{
+              key: {type:"string"},
+              value: {type:'string', maxLength:1}
+            }
+        }},
+        bankrequirements: {type:"array",
         items:{
             type:"object",
             properties:{

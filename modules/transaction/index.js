@@ -83,28 +83,49 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DocOccupation
       })
     }
-
-    let datarequirements = [];
+    let bankrequirements = [];
 
     if(calculate.TransactionCalculate.DataBankBic && calculate.TransactionCalculate.DataBankBic!='N' ){
-      datarequirements.push({
+      bankrequirements.push({
         key: 'databankbic',
         value:calculate.TransactionCalculate.DataBankBic
       })
     }
     if(calculate.TransactionCalculate.DataBankIban && calculate.TransactionCalculate.DataBankIban!='N' ){
-      datarequirements.push({
+      bankrequirements.push({
         key: 'databankiban',
         value:calculate.TransactionCalculate.DataBankIban
       })
     }
 
     if(calculate.TransactionCalculate.DataBankRouting && calculate.TransactionCalculate.DataBankRouting!='N' ){
-      datarequirements.push({
+      bankrequirements.push({
         key: 'databankrouting',
         value:calculate.TransactionCalculate.DataBankRouting
       })
     }
+    if(calculate.TransactionCalculate.DataBankAccNo && calculate.TransactionCalculate.DataBankAccNo!='N' ){
+      bankrequirements.push({
+        key: 'databankaccno',
+        value:calculate.TransactionCalculate.DataBankAccNo
+      })
+    }
+
+    if(calculate.TransactionCalculate.DataBankName && calculate.TransactionCalculate.DataBankName!='N' ){
+      bankrequirements.push({
+        key: 'databankname',
+        value:calculate.TransactionCalculate.DataBankName
+      })
+    }
+
+    if(calculate.TransactionCalculate.DataBankAddress && calculate.TransactionCalculate.DataBankAddress!='N' ){
+      bankrequirements.push({
+        key: 'databankaddress',
+        value:calculate.TransactionCalculate.DataBankAddress
+      })
+    }
+    let datarequirements = [];
+
 
     if(calculate.TransactionCalculate.DataBenAddress && calculate.TransactionCalculate.DataBenAddress!='N' ){
       datarequirements.push({
@@ -170,7 +191,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         fees: calculate.TransactionCalculate.CommissionAmount,
         servicecode: calculate.TransactionCalculate.ServiceCode,
         docrequirements,
-        datarequirements
+        datarequirements,
+        bankrequirements
     }
   }
 
