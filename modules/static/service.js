@@ -14,6 +14,7 @@ class  StaticService {
                 apiKey: process.env.API_KEY,
                 hash,
             })
+            console.log('countries', countryResult.data.RetailApiResponse);
         return countryResult.data.RetailApiResponse
 
     }
