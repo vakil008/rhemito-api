@@ -58,6 +58,7 @@ class  StaticService {
                 apiKey: process.env.API_KEY,
                 hash,
             })
+            console.log('corridors',providerResult.data.RetailApiResponse);
         return providerResult.data.RetailApiResponse
 
     }
