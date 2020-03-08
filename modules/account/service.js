@@ -189,7 +189,6 @@ class AccountService {
             isopen: 1
 
         })
-        console.log('ticket', ticketResult.data.RetailApiResponse);
         return ticketResult.data.RetailApiResponse
 
     }

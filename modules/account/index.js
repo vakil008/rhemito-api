@@ -111,7 +111,6 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function ticketHandler(req,reply) {
     const [error,ticket] = await to(this.accountService.addTicket(req.body))
-    console.log('error',error);
     if(error) {
       throw reply.badRequest(error)
     }
