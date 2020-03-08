@@ -177,7 +177,7 @@ class AccountService {
         const randomguid = uuid();
         const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid)
 
-        ticketResult = await R.post('/RetailAccountTicketSave', {
+        const ticketResult = await R.post('/RetailAccountTicketSave', {
             randomguid,
             apiKey: process.env.API_KEY,
             hash,
