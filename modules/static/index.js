@@ -96,7 +96,9 @@ module.exports[Symbol.for('plugin-meta')] = {
     return {
         message: doctypes.ResponseMessage,
         count: doctypes.Count,
-        documenttypes: doctypes.DocumentTypes.map(dt=>({
+        documenttypes: doctypes.DocumentTypes.map(dt=>{
+          console.log('dt', dt)
+          return {
           name:dt.Name,
           id:dt.Id,
           isapplyindividual:dt.IsApplyIndividual,
@@ -107,7 +109,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           isapplyfund:dt.IsApplyFund,
 
 
-        }))
+        }})
     }
 
   }
