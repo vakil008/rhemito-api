@@ -261,12 +261,12 @@ const countries = {
             properties : {
        id:{ type: 'string' },
        name:{ type: 'string' },
-       isapplyindividual:{ type: 'string' },
-       isapplycompany:{ type: 'string' },
-       isapplyid:{ type: 'string' },
-       isapplyaddress:{ type: 'string' },
-       isapplyoccupation:{ type: 'string' },
-       isapplyfund:{ type: 'string' },
+       isapplyindividual:{ type: 'boolean' },
+       isapplycompany:{ type: 'boolean' },
+       isapplyid:{ type: 'boolean' },
+       isapplyaddress:{ type: 'boolean' },
+       isapplyoccupation:{ type: 'boolean' },
+       isapplyfund:{ type: 'boolean' },
          }
         } }
         },

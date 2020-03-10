@@ -97,13 +97,12 @@ module.exports[Symbol.for('plugin-meta')] = {
         message: doctypes.ResponseMessage,
         count: doctypes.Count,
         documenttypes: doctypes.DocumentTypes.map(dt=>{
-          console.log('dt', dt)
           return {
           name:dt.Name,
           id:dt.Id,
           isapplyindividual:dt.IsApplyIndividual,
           isapplycompany:dt.IsApplyCompany,
-          isapplyid:dt.isapplyid,
+          isapplyid:dt.IsApplyId,
           isapplyaddress:dt.IsApplyAddress,
           isapplyoccupation:dt.IsApplyOccupation,
           isapplyfund:dt.IsApplyFund,
