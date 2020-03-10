@@ -57,27 +57,27 @@ module.exports[Symbol.for('plugin-meta')] = {
 
     }
     let docrequirements = [];
-    if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId!='N' ){
+    if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId ==='N' ){
       docrequirements.push({
         key: 'docid',
         value:calculate.TransactionCalculate.DocId
       })
     }
-    if(calculate.TransactionCalculate.DocAddress && calculate.TransactionCalculate.DocAddress!='N' ){
+    if(calculate.TransactionCalculate.DocAddress && calculate.TransactionCalculate.DocAddress ==='N' ){
       docrequirements.push({
         key: 'docaddress',
         value:calculate.TransactionCalculate.DocAddress
       })
     }
 
-    if(calculate.TransactionCalculate.DocFund && calculate.TransactionCalculate.DocFund!='N' ){
+    if(calculate.TransactionCalculate.DocFund && calculate.TransactionCalculate.DocFund ==='N' ){
       docrequirements.push({
         key: 'docfund',
         value:calculate.TransactionCalculate.DocFund
       })
     }
 
-    if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation!='N' ){
+    if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation ==='N' ){
       docrequirements.push({
         key: 'dococcupation',
         value:calculate.TransactionCalculate.DocOccupation
