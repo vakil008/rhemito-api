@@ -192,7 +192,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         servicecode: calculate.TransactionCalculate.ServiceCode,
         docrequirements,
         datarequirements,
-        bankrequirements
+        bankrequirements,
+        docregtype: calculate.TransactionCalculate.DocRegType
     }
   }
 
