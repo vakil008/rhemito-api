@@ -38,8 +38,6 @@ class  TransactionService {
                 isvalidate
 
             })
-            console.log('calculate', calculateResult.data.RetailApiResponse
-            )
               return calculateResult.data.RetailApiResponse
 
     }
@@ -156,7 +154,6 @@ class  TransactionService {
           }
 
           submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
-          console.log('submitted transaction', submitResult.data.RetailApiResponse)
           return submitResult.data.RetailApiResponse
 
     }
@@ -180,7 +177,6 @@ class  TransactionService {
                 hash,
                 ...options
                }))
-        console.log('transaction list result', transactionsResult);
         if(error) return error
         if(!transactionsResult.data.RetailApiResponse.Transactions.length) {
             return [];
@@ -206,7 +202,6 @@ class  TransactionService {
             })
             return transactionGetResultArray
         }catch(e) {
-            console.log('transaction error', e);
             throw e
         }
         // return transactionsResult.data.RetailApiResponse
