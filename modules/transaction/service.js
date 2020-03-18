@@ -180,6 +180,7 @@ class  TransactionService {
                 hash,
                 ...options
                }))
+        console.log('transaction list result', transactionsResult);
         if(error) return error
         if(!transactionsResult.data.RetailApiResponse.Transactions.length) {
             return [];
