@@ -197,12 +197,17 @@ class  TransactionService {
             })
             transactionListQuery.push(Treq)
         })
-        const transactionGetResult =  await Promise.all(transactionListQuery);
+        try {
+            const transactionGetResult =  await Promise.all(transactionListQuery);
 
-        const transactionGetResultArray =  transactionGetResult.filter(t=>t.data.RetailApiResponse.ResponseCode === '10000').map(txnGet=>{
-                                return txnGet.data.RetailApiResponse.Transactions[0]
-        })
-        return transactionGetResultArray
+            const transactionGetResultArray =  transactionGetResult.filter(t=>t.data.RetailApiResponse.ResponseCode === '10000').map(txnGet=>{
+                                    return txnGet.data.RetailApiResponse.Transactions[0]
+            })
+            return transactionGetResultArray
+        }catch(e) {
+            console.log('transaction error', e);
+            throw e
+        }
         // return transactionsResult.data.RetailApiResponse
 
     }
