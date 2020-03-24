@@ -4,6 +4,7 @@ const uuid = require('uuid/v4')
 class  AccessService {
 
     async register (firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe) {
+      try {
         let registerResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),country)
@@ -25,6 +26,10 @@ class  AccessService {
         console.log('register response ', registerResult.data.RetailApiResponse);
 
          return registerResult.data.RetailApiResponse
+      }catch(registerError) {
+          console.log('register error', registerError);
+          throw registerError
+      }
 
     }
 
