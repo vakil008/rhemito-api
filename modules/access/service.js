@@ -22,7 +22,7 @@ class  AccessService {
                 pass: hasher(email.toLowerCase(),pass),
                 issubscribe
             })
-            console.log('country', country);
+            fastify.log('country', country);
         console.log('register response ', registerResult.data.RetailApiResponse);
 
          return registerResult.data.RetailApiResponse
@@ -102,6 +102,7 @@ class  AccessService {
     async login(email,pass) {
         let loginResult
         const randomguid = uuid()
+        console.log('login called',email);
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase())
         loginResult = await  R.post('/RetailAccessLogin',{
                 randomguid,

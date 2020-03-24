@@ -20,6 +20,8 @@
     "fastify-sensible": "^2.1.1",
     "fastify-swagger": "^2.4.0",
     "js-sha512": "^0.8.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "winston": "^3.2.1",
+    "winston-syslog": "^2.4.4"
   }
 }
