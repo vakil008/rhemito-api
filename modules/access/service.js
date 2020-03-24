@@ -22,12 +22,9 @@ class  AccessService {
                 pass: hasher(email.toLowerCase(),pass),
                 issubscribe
             })
-            fastify.log('country', country);
-        console.log('register response ', registerResult.data.RetailApiResponse);
 
          return registerResult.data.RetailApiResponse
       }catch(registerError) {
-          console.log('register error', registerError);
           throw registerError
       }
 
