@@ -96,7 +96,22 @@ class  TransactionService {
         benbillref,
         relationshipid,
         reasonid,
-        bencity}) {
+        bencity,
+        senderaddress1,
+        senderaddress2,
+        sendercity,
+        senderpostcode,
+        sendergender,
+        senderdob,
+        sendernationality,
+        senderoccupation,
+        senderbirthcountry,
+        senderidcountry,
+        senderidissuedate,
+        senderidexpirydate,
+        senderidnumber,
+        senderidtype
+        }) {
             let submitResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,validateid,
@@ -141,8 +156,21 @@ class  TransactionService {
             benidcountry,
             benidnumber,
             benidissuedate,
-            benidexpirydate
-
+            benidexpirydate,
+            senderaddress1,
+            senderaddress2,
+            sendercity,
+            senderpostcode,
+            sendergender,
+            senderdob,
+            sendernationality,
+            senderoccupation,
+            senderbirthcountry,
+            senderidcountry,
+            senderidissuedate,
+            senderidexpirydate,
+            senderidnumber,
+            senderidtype
         }
 
         if(provideritem) submitResultData['provideritemid'] = provideritem

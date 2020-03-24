@@ -181,6 +181,93 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataBenIdType
       })
     }
+
+    let senderrequirements = [];
+    if(calculate.TransactionCalculate.DataSenderAddress1 && calculate.TransactionCalculate.DataSenderAddress1!='N' ){
+      senderrequirements.push({
+        key: 'datasenderaddress1',
+        value:calculate.TransactionCalculate.DataSenderAddress1
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderAddress2 && calculate.TransactionCalculate.DataSenderAddress2!='N' ){
+      senderrequirements.push({
+        key: 'datasenderaddress2',
+        value:calculate.TransactionCalculate.DataSenderAddress2
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderCity && calculate.TransactionCalculate.DataSenderCity!='N' ){
+      senderrequirements.push({
+        key: 'datasendercity',
+        value:calculate.TransactionCalculate.DataSenderCity
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderPostcode && calculate.TransactionCalculate.DataSenderPostcode!='N' ){
+      senderrequirements.push({
+        key: 'datasenderpostcode',
+        value:calculate.TransactionCalculate.DataSenderPostcode
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderGender && calculate.TransactionCalculate.DataSenderGender!='N' ){
+      senderrequirements.push({
+        key: 'datasendergender',
+        value:calculate.TransactionCalculate.DataSenderGender
+      })
+    }
+    if(calculate.TransactionCalculate.Dob && calculate.TransactionCalculate.Dob!='N' ){
+      senderrequirements.push({
+        key: 'datasenderdob',
+        value:calculate.TransactionCalculate.Dob
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderNationality && calculate.TransactionCalculate.DataSenderNationality!='N' ){
+      senderrequirements.push({
+        key: 'datasendernationality',
+        value:calculate.TransactionCalculate.DataSenderNationality
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderOccupation && calculate.TransactionCalculate.DataSenderOccupation!='N' ){
+      senderrequirements.push({
+        key: 'datasenderoccupation',
+        value:calculate.TransactionCalculate.DataSenderOccupation
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderbirthcountry && calculate.TransactionCalculate.DataSenderbirthcountry!='N' ){
+      senderrequirements.push({
+        key: 'datasenderbirthcountry',
+        value:calculate.TransactionCalculate.DataSenderbirthcountry
+      })
+    }
+    let kycrequirements =[];
+    if(calculate.TransactionCalculate.DataSenderIdType && calculate.TransactionCalculate.DataSenderIdType!='N' ){
+      kycrequirements.push({
+        key: 'datasenderidtype',
+        value:calculate.TransactionCalculate.DataSenderIdType
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderIdNumber && calculate.TransactionCalculate.DataSenderIdNumber!='N' ){
+      kycrequirements.push({
+        key: 'datasenderidnumber',
+        value:calculate.TransactionCalculate.DataSenderIdNumber
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderIdIssueDate && calculate.TransactionCalculate.DataSenderIdIssueDate!='N' ){
+      kycrequirements.push({
+        key: 'datasenderidissuedate',
+        value:calculate.TransactionCalculate.DataSenderIdIssueDate
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderIdExpiryDate && calculate.TransactionCalculate.DataSenderIdExpiryDate!='N' ){
+      kycrequirements.push({
+        key: 'datasenderidexpirydate',
+        value:calculate.TransactionCalculate.DataSenderIdExpiryDate
+      })
+    }
+    if(calculate.TransactionCalculate.DataSenderIdCountry && calculate.TransactionCalculate.DataSenderIdCountry!='N' ){
+      kycrequirements.push({
+        key: 'datasenderidcountry',
+        value:calculate.TransactionCalculate.DataSenderIdCountry
+      })
+    }
     return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
@@ -197,6 +284,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         docrequirements,
         datarequirements,
         bankrequirements,
+        senderrequirements,
+        kycrequirements,
         docregtype: calculate.TransactionCalculate.DocRegType
     }
   }

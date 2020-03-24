@@ -104,6 +104,22 @@ const calculate = {
               value: {type:'string', maxLength:1}
             }
         }},
+        senderrequirements: {type:"array",
+        items:{
+            type:"object",
+            properties:{
+              key: {type:"string"},
+              value: {type:'string', maxLength:1}
+            }
+        }},
+        kycrequirements: {type:"array",
+        items:{
+            type:"object",
+            properties:{
+              key: {type:"string"},
+              value: {type:'string', maxLength:1}
+            }
+        }},
         bankrequirements: {type:"array",
         items:{
             type:"object",
@@ -273,8 +289,48 @@ const calculate = {
           default:"XXX"
         },
 
-
-
+        senderaddress1: {
+          type:'string'
+        },
+        senderaddress2: {
+          type:'string'
+        },
+        sendercity: {
+          type:'string'
+        },
+        senderpostcode: {
+          type:'string'
+        },
+        sendergender: {
+          type:'string'
+        },
+        senderdob: {
+          type:'string'
+        },
+        sendernationality: {
+          type:'string'
+        },
+        senderoccupation: {
+          type:'string'
+        },
+        senderbirthcountry: {
+          type:'string'
+        },
+        senderidcountry: {
+          type:'string'
+        },
+        senderidissuedate: {
+          type:'string'
+        },
+        senderidexpirydate: {
+          type:'string'
+        },
+        senderidnumber: {
+          type:'string'
+        },
+        senderidtype: {
+          type:'string'
+        },
       } ,
       additionalProperties: false
     },
