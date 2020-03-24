@@ -31,6 +31,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function registerHandlers(req,reply) {
     const  {firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe} = req.body
     const newUser =  await this.accessService.register(firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe)
+    console.log('new user',newUser);
     if(newUser.ResponseCode!='10000') {
       throw reply.badRequest(newUser.ResponseMessage)
     }
