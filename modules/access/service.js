@@ -12,7 +12,6 @@ class  AccessService {
                 apiKey: process.env.API_KEY,
                 hash,
                 fname:firstname,
-                mname:middlename,
                 lname:lastname,
                 CountryIso3: country,
                 mobileno,
@@ -22,6 +21,8 @@ class  AccessService {
                 pass: hasher(email.toLowerCase(),pass),
                 issubscribe
             })
+            console.log('country', country);
+        console.log('register response ', registerResult.data.RetailApiResponse);
 
          return registerResult.data.RetailApiResponse
 
