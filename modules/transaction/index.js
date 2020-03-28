@@ -201,7 +201,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataSenderCity
       })
     }
-    if(calculate.TransactionCalculate.DataSenderPostcode && calculate.TransactionCalculate.DataSenderPostcode!='N' ){
+    if(calculate.TransactionCalculate.DataSenderPostcode && calculate.TransactionCalculate.DataSenderPostCode!='N' ){
       senderrequirements.push({
         key: 'datasenderpostcode',
         value:calculate.TransactionCalculate.DataSenderPostCode
