@@ -183,8 +183,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
 
     let senderrequirements = [];
-    console.log('sender requirements', calculate.TransactionCalculate)
-    if(calculate.TransactionCalculate.DataSenderAddress1 && calculate.TransactionCalculate.DataSenderAddress1!='N' ){
+   if(calculate.TransactionCalculate.DataSenderAddress1 && calculate.TransactionCalculate.DataSenderAddress1!='N' ){
       senderrequirements.push({
         key: 'datasenderaddress1',
         value:calculate.TransactionCalculate.DataSenderAddress1
@@ -205,7 +204,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(calculate.TransactionCalculate.DataSenderPostcode && calculate.TransactionCalculate.DataSenderPostcode!='N' ){
       senderrequirements.push({
         key: 'datasenderpostcode',
-        value:calculate.TransactionCalculate.DataSenderPostcode
+        value:calculate.TransactionCalculate.DataSenderPostCode
       })
     }
     if(calculate.TransactionCalculate.DataSenderGender && calculate.TransactionCalculate.DataSenderGender!='N' ){
@@ -214,10 +213,10 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataSenderGender
       })
     }
-    if(calculate.TransactionCalculate.Dob && calculate.TransactionCalculate.Dob!='N' ){
+    if(calculate.TransactionCalculate.DataSenderDob && calculate.TransactionCalculate.DataSenderDob!='N' ){
       senderrequirements.push({
         key: 'datasenderdob',
-        value:calculate.TransactionCalculate.Dob
+        value:calculate.TransactionCalculate.DataSenderDob
       })
     }
     if(calculate.TransactionCalculate.DataSenderNationality && calculate.TransactionCalculate.DataSenderNationality!='N' ){
