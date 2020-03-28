@@ -231,10 +231,10 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataSenderOccupation
       })
     }
-    if(calculate.TransactionCalculate.DataSenderbirthcountry && calculate.TransactionCalculate.DataSenderbirthcountry!='N' ){
+    if(calculate.TransactionCalculate.DataSenderBirthCountry && calculate.TransactionCalculate.DataSenderBirthCountry!='N' ){
       senderrequirements.push({
         key: 'datasenderbirthcountry',
-        value:calculate.TransactionCalculate.DataSenderbirthcountry
+        value:calculate.TransactionCalculate.DataSenderBirthCountry
       })
     }
     let kycrequirements =[];
