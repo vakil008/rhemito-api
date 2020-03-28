@@ -183,13 +183,14 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
 
     let senderrequirements = [];
+    console.log('sender requirements', calculate.TransactionCalculate)
     if(calculate.TransactionCalculate.DataSenderAddress1 && calculate.TransactionCalculate.DataSenderAddress1!='N' ){
       senderrequirements.push({
         key: 'datasenderaddress1',
         value:calculate.TransactionCalculate.DataSenderAddress1
       })
     }
-    if(calculate.TransactionCalculate.DataSenderAddress2 && calculate.TransactionCalculate.DataSenderAddress2!='N' ){
+    if(calculate.TransactionCalculate.DataSenderAddress2 && calculate.TransactionCalculate.DataSenderAddress2==='M' ){
       senderrequirements.push({
         key: 'datasenderaddress2',
         value:calculate.TransactionCalculate.DataSenderAddress2
