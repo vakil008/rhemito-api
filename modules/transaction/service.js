@@ -110,7 +110,8 @@ class  TransactionService {
         senderidissuedate,
         senderidexpirydate,
         senderidnumber,
-        senderidtype
+        senderidtype,
+        documents
         }) {
             let submitResult;
         const randomguid = uuid()
@@ -174,6 +175,9 @@ class  TransactionService {
         }
 
         if(provideritem) submitResultData['provideritemid'] = provideritem
+        if(documents.length) {
+            submitResultData['docs'] = documents
+        }
 
         for(var key in submitResultData){
             if(submitResultData.hasOwnProperty(key) && submitResultData[key] == false){

@@ -331,6 +331,24 @@ const calculate = {
         senderidtype: {
           type:'string'
         },
+        documents: {
+          type: 'array',
+          properties: {
+            doctypeid: {
+              type: 'string'
+            },
+            doctitle: {
+              type: 'string'
+            },
+            docformat: {
+              type: 'string'
+            },
+            docbase64string: {
+              type: 'string'
+            }
+          }
+        }
+
       } ,
       additionalProperties: false
     },
