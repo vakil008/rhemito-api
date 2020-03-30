@@ -178,7 +178,6 @@ class  TransactionService {
         if(documents.length) {
             submitResultData['docs'] = documents
         }
-        console.log('submit data', JSON.stringify(submitResultData));
         for(var key in submitResultData){
             if(submitResultData.hasOwnProperty(key) && submitResultData[key] == false){
              delete submitResultData[key];
