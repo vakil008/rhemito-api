@@ -209,6 +209,35 @@ const countries = {
       }
     }
   }
+  const reasons = {
+    // This jsonschema will be used for data validation
+    // body: {
+    //   type: 'object',
+    //   properties: requestProperties ,
+    //   additionalProperties: false
+    // },
+    occupations: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          count: {type:'number'},
+          occupations: {type:'array',
+        items: {
+            type:'object',
+            properties : {
+      id:{ type: 'string' },
+       name:{ type: 'string' },
+         }
+        } }
+        },
+        additionalProperties: false
+      }
+    }
+  }
   const ticketypes = {
     // This jsonschema will be used for data validation
     // body: {
@@ -282,5 +311,6 @@ const countries = {
       relationships,
       reasons,
       doctypes,
-      ticketypes
+      ticketypes,
+      occupations
   }

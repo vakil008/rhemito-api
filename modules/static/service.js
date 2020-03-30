@@ -90,6 +90,20 @@ class  StaticService {
        return reasonResult.data.RetailApiResponse
     }
 
+    async occupations() {
+        const randomguid = uuid()
+        const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)
+
+            const [error,occupationResult] = await to(R.post('/RetailStaticDataOccupations',{
+                randomguid,
+                apiKey:process.env.API_KEY,
+                hash
+
+            }))
+      if(error) throw error
+       return occupationResult.data.RetailApiResponse
+    }
+
     async doctypes() {
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY)

@@ -6,7 +6,8 @@ const {
     relationships: relationshipsSchema,
     reasons: reasonsSchema,
     doctypes:doctypesSchema,
-    tickettypes: tickettypesSchema
+    tickettypes: tickettypesSchema,
+    occupations: occupationsSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/countries' , {schema: countriesSchema}, countriesHandlers )
@@ -16,6 +17,7 @@ const {
       fastify.post('/relationships' , {schema: relationshipsSchema}, relationshipHandlers )
       fastify.post('/reasons' , {schema: reasonsSchema}, reasonHandlers )
       fastify.post('/doctypes' , {schema: doctypesSchema}, doctypeHandlers )
+      fastify.post('/occupations' , {schema: occupationsSchema}, occupationHandlers )
       fastify.post('/tickettypes' , {schema: tickettypesSchema}, ticketTypeHandlers )
     }
 
@@ -90,6 +92,17 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
   }
 
+  async function occupationHandlers(req,reply) {
+    const occupations =  await this.staticService.occupations()
+    return {
+        message: occupations.ResponseMessage,
+        count: occupations.Count,
+        occupations: occupations.Occupations.map(oc=>({
+          name:oc.Name,
+          id:oc.Id
+        }))
+    }
+  }
 
   async function doctypeHandlers(req,reply) {
     const doctypes =  await this.staticService.doctypes()
