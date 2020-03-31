@@ -209,7 +209,7 @@ const countries = {
       }
     }
   }
-  const reasons = {
+  const occupations = {
     // This jsonschema will be used for data validation
     // body: {
     //   type: 'object',
