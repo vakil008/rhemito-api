@@ -141,47 +141,6 @@ class  StaticService {
 
     }
 
-    async validatePassword(accesstoken) {
-        let validatePasswordResult
-        const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,accesstoken)
-        try {
-
-         validatePasswordResult = R.post('/RetailAccessPasswordResetValidate',{
-                randomguid,
-                apiKey,
-                hash,
-                accesstoken
-
-            })
-
-
-        }catch(error) {
-            throw error
-        }
-
-        return validatePasswordResult
-
-    }
-    async occupations() {
-        let confirmPasswordResult
-        const randomguid = uuid()
-        const hash = hasher(randomguid,this.privateKey, apiKey,accesstoken)
-        try {
-
-         confirmPasswordResult = R.post('/RetailAccessPasswordResetConfirm',{
-                randomguid,
-                apiKey,
-                hash,
-                accesstoken
-            })
-        }catch(error) {
-            throw error
-        }
-
-        return confirmPasswordResult
-
-    }
 
     async postcode() {
         let signoutResult
