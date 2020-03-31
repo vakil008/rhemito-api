@@ -101,7 +101,6 @@ class  StaticService {
 
             }))
       if(error) throw error
-      console.log('occupation',occupationResult.data.RetailApiResponse)
        return occupationResult.data.RetailApiResponse
     }
 
