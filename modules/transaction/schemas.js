@@ -472,9 +472,90 @@ const calculate = {
       }
     }
   }
+  const transaction = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      required: ['uid','sessiontoken',
+      "transactionreference"],
+      properties: {
+        uid: {
+          type:'string'
+        },
+        sessiontoken: {
+          type:'string'
+        },
+        reference: {
+          type:'string'
+        },
+        } ,
+      additionalProperties: false
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        required: [ 'message' ],
+        properties: {
+          message: { type: 'string' },
+          transaction: {
+            type:"object",
+            properties : {
+              reference: { type: 'string' },
+              date:{ type: 'string' },
+              service:{ type: 'string' },
+              servicecode:{ type: 'string' },
+              value:{ type: 'number' },
+              currency:{ type: 'string' },
+              summary:{ type: 'string' },
+              status:{ type: 'string' },
+              fee:{ type: 'string' },
+              firstname:{ type: 'string' },
+              lastname:{ type: 'string' },
+              mobile:{ type: 'string' },
+              paymentmethod:{ type: 'string' },
+              provider:{ type: 'string' },
+              provideritem:{ type: 'string' },
+              rate:{ type: 'string' },
+              reason:{ type: 'string' },
+              relationship:{ type: 'string' },
+              bank:{ type: 'string' },
+              tocurrency :{ type: 'string' },
+              fromcurrency:{ type: 'string' },
+              fromcountry:{ type: 'string' },
+              tocountry:{ type: 'string' },
+              benbillref:{ type: 'string' },
+              benaccountno:{ type: 'string' },
+              beniban: { type: 'string' },
+              bencity:{ type: 'string' },
+              dob:{ type: 'string' },
+              documents:{
+                type:"array",
+                items: {
+                  type:"object",
+                  doctitle:{ type: 'string' },
+                  doctype:{ type: 'string' },
+                  docformat:{ type: 'string' },
+                  dateuploaded:{ type: 'string' },
+                  active:{ type: 'boolean' }
+                }
+              }
+
+
+             }
+
+          }
+
+        },
+        additionalProperties: false
+      }
+    }
+  }
   module.exports =  {
       calculate,
       nameCheck,
       submit,
+      transaction,
       transactions
   }

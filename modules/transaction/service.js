@@ -238,6 +238,25 @@ class  TransactionService {
         // return transactionsResult.data.RetailApiResponse
 
     }
+    async transaction({uid, sessiontoken, reference }) {
+
+     try {
+        let tuuid = uuid();
+        let Thash = hasher(tuuid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid, reference)
+        let Treq = R.post('/RetailAccountTransactionGet', {
+            randomguid:tuuid,
+            apiKey: process.env.API_KEY,
+            hash:Thash,
+            tnxref: reference,
+            sessiontoken,
+            uid,
+        })
+        return Treq.data.RetailApiResponse
+     }catch(e) {
+         throw e
+     }
+
+    }
 
 }
 

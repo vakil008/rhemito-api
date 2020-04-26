@@ -3,13 +3,14 @@ const {
     calculate: calculateSchema,
     nameCheck: nameCheckSchema,
     submit: submitSchema,
-    transactions:transactionSchema
+    transactions:transactionsSchema
      } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/calculate' , {schema: calculateSchema}, calculateHandlers )
       fastify.post('/checkaccount' , {schema: nameCheckSchema}, namecheckHandlers )
       fastify.post('/create' , {schema: submitSchema}, submitHandlers )
-      fastify.post('/transactions' , {schema: transactionSchema}, transactionsHandler )
+      fastify.post('/transactions' , {schema: transactionsSchema}, transactionsHandler )
+      fastify.post('/transaction' , {schema: transactionSchema}, transactionHandler )
     }
 
 module.exports[Symbol.for('plugin-meta')] = {
@@ -390,3 +391,57 @@ module.exports[Symbol.for('plugin-meta')] = {
         }))
       }
   }
+
+  async function transactionHandler(req,reply) {
+
+    const [transactionError,transaction] =  await to(this.transactionService.transaction(req.body))
+    if(transactionError) {
+      throw reply.badRequest(transactionError)
+    }
+    console.log('transaction', transaction);
+    return {
+        message: 'Success',
+        transaction:{
+          service:transaction.Service,
+          servicecode:transaction.ServiceCode,
+          status:transaction.Status,
+          value:transaction.Value,
+          reference:transaction.TnxRef,
+          date:transaction.TnxDate,
+          currency:transaction.Currency,
+          summary:transaction.Summary,
+          fee:transaction.Fees,
+          firstname:transaction.BenFirstName,
+          lastname:transaction.BenLastName,
+          mobile:transaction.BenMobileNo,
+          paymentmethod:transaction.PaymentMethod,
+          provider:transaction.ProviderId,
+          provideritem:transaction.ProviderItemId,
+          rate:transaction.Rate,
+          reason:transaction.ReasonId,
+          relationship:transaction.RelationshipId,
+          bank:transaction.BenBankName,
+          benaccountno: transaction.BenAccountNo,
+          tocurrency : transaction.ToCurrencyISO3,
+          fromcurrency:transaction.FromCurrencyISO3,
+          fromcountry: transaction.FromCountryISO3,
+          tocountry:transaction.ToCountryISO3,
+          benbillref: transaction.BenBillRef,
+          beniban: transaction.BenIban,
+          bencity:transaction.BenCity,
+          dob:transaction.BenDob,
+          // documents:{
+          //  type:"array",
+          //  items: {
+          //    doctitle:{ type: 'string' },
+          //    doctype:{ type: 'string' },
+          //    docformat:{ type: 'string' },
+          //    dateuploaded:{ type: 'string' },
+          //    active:{ type: 'boolean' },
+
+
+          //  }
+          // }
+        }
+      }
+      }
