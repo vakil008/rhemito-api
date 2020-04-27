@@ -3,7 +3,8 @@ const {
     calculate: calculateSchema,
     nameCheck: nameCheckSchema,
     submit: submitSchema,
-    transactions:transactionsSchema
+    transactions:transactionsSchema,
+    transaction:transactionSchema
      } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/calculate' , {schema: calculateSchema}, calculateHandlers )
