@@ -55,6 +55,7 @@ const user = {
         gender: { type: 'string' },
         mobileno: { type: 'string' },
         dob: { type: 'string' },
+        othercorridors: { type: 'string'}
       },
       additionalProperties: false
     }

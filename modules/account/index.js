@@ -48,6 +48,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           currencycode:b.CurrencyCode,
           amount: b.Amount
         })),
+        othercorridors: user.User.othercorridors,
         gender: user.User.Gender
     }
   }
