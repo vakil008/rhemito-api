@@ -147,7 +147,7 @@ module.exports[Symbol.for('plugin-meta')] = {
             reference: trx.TnxRef,
             service: trx.Service,
             value: trx.Value,
-            date: trx.TxnDate,
+            date: trx.TnxDate,
             currency: trx.Currency,
             summary: trx.Summary,
             status: trx.Status
