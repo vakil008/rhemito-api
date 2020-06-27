@@ -195,11 +195,15 @@ class  TransactionService {
          ,servicecode, reference}) {
         const randomguid = uuid()
         let transactionListQuery = [];
+        console.log('datefrom', startdate);
+        console.log('dateto', enddat)
+
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
             let options = {uid,
                 sessiontoken,
             datefrom:startdate,
-               dateto: enddate}
+               dateto: enddate,
+            txnref: '22013885'}
             if(servicecode) options['servicecode']= servicecode
             if(reference) options['tnxref']= reference
             const [error,transactionsResult] = await to(R.post('/RetailAccountTransactionList', {
@@ -208,7 +212,6 @@ class  TransactionService {
                 hash,
                 ...options
                }))
-        console.log('transactionsResult', transactionsResult)
         if(error) return error
         console.log('transactionsResult', transactionsResult.data.RetailApiResponse.Transactions)
 
