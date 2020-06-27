@@ -136,12 +136,12 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     return {
         message: overview.ResponseMessage,
-        recentrecipient: overview.AccountOverview.RecentRecipients.map(rec =>({
+        recentrecipients: overview.AccountOverview.RecentRecipients.map(rec =>({
             contactid:rec.ContactId,
             firstname: rec.FName,
             lastname: rec.LName
           })),
-          recenttransaction: overview.AccountOverview.RecentTransactions.map(trx=> ({
+          recenttransactions: overview.AccountOverview.RecentTransactions.map(trx=> ({
             firstname: trx.BenFirstName,
             lastname: trx.BenLastName,
             reference: trx.TnxRef,
