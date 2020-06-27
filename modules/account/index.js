@@ -144,7 +144,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           })),
           recenttransaction: overview.AccountOverview.RecentTransactions.map(trx=> ({
             firstname: trx.BenFirstName,
-            lastname: BenLastName,
+            lastname: trx.BenLastName,
             reference: trx.TnxRef,
             service: trx.Service,
             value: trx.Value,
