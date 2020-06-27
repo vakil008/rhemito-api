@@ -138,14 +138,12 @@ module.exports[Symbol.for('plugin-meta')] = {
         message: overview.ResponseMessage,
         overview: {
           recentrecipient: overview.AccountOverview.RecentRecipient.map(rec =>{
-            console.log('rec', rec)
             return {
             contactid:rec.ContactId,
             firstname: rec.Fname,
             lastname: rec.LName
           }}),
           recenttransaction: overview.AccountOverview.RecentTransaction.map(trx=> {
-            console.log('trx',trx)
             return{
             firstname: trx.benFirstName
           }})
