@@ -4,10 +4,12 @@ const {
     createbeneficiary: createbeneficiarySchema,
     listbeneficiary: listbeneficiarySchema,
     document: documentSchema,
-    ticket: ticketSchema
+    ticket: ticketSchema,
+    overview: overviewSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/user', {schema: userSchema}, userHandler )
+      fastify.post('/overview', {schema: overviewSchema}, overviewHandler )
       fastify.post('/createbeneficiary' , {schema: createbeneficiarySchema}, createbeneficiaryHandler )
       fastify.post('/beneficiaries' , {schema: listbeneficiarySchema}, listbeneficiaryHandler )
       fastify.post('/document', {schema:documentSchema},documentHandler)
@@ -121,5 +123,23 @@ module.exports[Symbol.for('plugin-meta')] = {
     return {
         message: ticket.ResponseMessage,
         ticketid :ticket.ticketid
+    }
+  }
+
+  async function overviewHandler(req,reply) {
+    const [error,overview] = await to(this.accountService.overview(req.body))
+    if(error) {
+      throw reply.badRequest(error)
+    }
+    if(overview.ResponseCode!='10000') {
+      throw reply.badRequest(overview.ResponseMessage)
+    }
+    console.log('overview', overview);
+    return {
+        message: overview.ResponseMessage,
+        overview: {
+          recentrecipient: overview.recentrecipient,
+          recenttransaction: overview.recenttransaction
+        }
     }
   }

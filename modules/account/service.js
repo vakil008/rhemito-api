@@ -21,6 +21,24 @@ class AccountService {
 
     }
 
+    async overview({sessiontoken, uid}) {
+        let overviewResult;
+        const randomguid = uuid()
+
+        const hash = hasher(randomguid, process.env.PRIVATE_KEY, process.env.API_KEY, sessiontoken, uid)
+
+         overviewResult = await R.post('/RetailAccountOverview', {
+            randomguid,
+            apiKey: process.env.API_KEY,
+            hash,
+            uid,
+            sessiontoken
+        })
+
+        return overviewResult.data.RetailApiResponse
+
+    }
+
     async createBeneficiary({ sessiontoken, uid,
         firstname,
         lastname,

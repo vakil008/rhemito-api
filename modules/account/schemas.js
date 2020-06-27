@@ -287,7 +287,73 @@ const listbeneficiary = {
     }
   }
 }
+const overview = {
+  body: {
+    type: 'object',
+    required: [
+      'uid', 'sessiontoken'
+    ],
+    properties: {
+      uid: { type: 'string' },
+      sessiontoken: { type: 'string' },
+    },
 
+    additionalProperties: false
+  },
+  response: {
+    // The 200 body response is described
+    // by the following schema
+    200: {
+      type: 'object',
+      required: ['message'],
+      properties: {
+        message: { type: 'string' },
+        recentrecipients: {
+          type: 'array',
+          items: {
+            type: "object",
+            properties: {
+              contactid: {type: 'string'},
+              firstname: { type: 'string'},
+              lastname: { type: 'string'},
+            }
+          }
+        },
+        recenttransactions: {
+          type: 'array',
+          items: {
+            type: "object",
+            properties: {
+              firstname: {type: 'string'},
+              lastname: { type: 'string'},
+              reference: {type: 'number'},
+              date: { type: 'string'},
+              service: {type: 'string'},
+              currency: { type: 'string'},
+              value: {type: 'number'},
+              summary: { type: 'string'},
+              status: { type: 'string'}
+
+            }
+          }
+        },
+        summary: {
+          type: 'array',
+          items: {
+            type: "object",
+            properties: {
+              currencycode: {type: 'string'},
+              amountsenttoday: { type: 'number'},
+              txnsenttoday: {type: 'number'}
+            }
+          }
+        }
+
+      },
+      additionalProperties: false
+    }
+  }
+};
 const document = {
   // This jsonschema will be used for data validation
   body: {
@@ -358,6 +424,7 @@ module.exports = {
   createbeneficiary,
   listbeneficiary,
   document,
-  ticket
+  ticket,
+  overview
 }
 
