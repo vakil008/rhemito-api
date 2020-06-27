@@ -136,8 +136,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     return {
         message: overview.ResponseMessage,
-        overview: {
-          recentrecipient: overview.AccountOverview.RecentRecipients.map(rec =>({
+        recentrecipient: overview.AccountOverview.RecentRecipients.map(rec =>({
             contactid:rec.ContactId,
             firstname: rec.FName,
             lastname: rec.LName
@@ -158,6 +157,5 @@ module.exports[Symbol.for('plugin-meta')] = {
             amountsenttoday: sm.AmountSentToday,
             txnsenttoday: sm.TxnSentToday
           }))
-        }
     }
   }
