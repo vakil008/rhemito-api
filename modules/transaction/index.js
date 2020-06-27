@@ -345,8 +345,6 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(transactionError) {
       throw reply.badRequest(transactionError)
     }
-    console.log('transaction', transaction);
-
     return {
         message: 'Success',
         count: transaction.length,
@@ -401,7 +399,6 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(transactionError) {
       throw reply.badRequest(transactionError)
     }
-    console.log('transaction', transaction);
     return {
         message: 'Success',
         transaction:{

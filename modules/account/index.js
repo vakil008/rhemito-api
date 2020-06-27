@@ -134,7 +134,6 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(overview.ResponseCode!='10000') {
       throw reply.badRequest(overview.ResponseMessage)
     }
-    console.log('overview', overview);
     return {
         message: overview.ResponseMessage,
         overview: {

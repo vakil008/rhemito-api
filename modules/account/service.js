@@ -34,7 +34,7 @@ class AccountService {
             uid,
             sessiontoken
         })
-
+        console.log('overview result', overviewResult.data.RetailApiResponse)
         return overviewResult.data.RetailApiResponse
 
     }

@@ -195,9 +195,6 @@ class  TransactionService {
          ,servicecode, reference}) {
         const randomguid = uuid()
         let transactionListQuery = [];
-        console.log('datefrom', startdate);
-        console.log('dateto', enddate)
-
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid)
             let options = {uid,
                 sessiontoken,
@@ -213,7 +210,6 @@ class  TransactionService {
                 ...options
                }))
         if(error) return error
-        console.log('transactionsResult', transactionsResult.data.RetailApiResponse.Transactions)
 
         if(!transactionsResult.data.RetailApiResponse.Transactions.length) {
             return [];
