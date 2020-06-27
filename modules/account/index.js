@@ -137,16 +137,27 @@ module.exports[Symbol.for('plugin-meta')] = {
     return {
         message: overview.ResponseMessage,
         overview: {
-          recentrecipient: overview.AccountOverview.RecentRecipient.map(rec =>{
-            return {
+          recentrecipient: overview.AccountOverview.RecentRecipients.map(rec =>({
             contactid:rec.ContactId,
-            firstname: rec.Fname,
+            firstname: rec.FName,
             lastname: rec.LName
-          }}),
-          recenttransaction: overview.AccountOverview.RecentTransaction.map(trx=> {
-            return{
-            firstname: trx.benFirstName
-          }})
+          })),
+          recenttransaction: overview.AccountOverview.RecentTransactions.map(trx=> ({
+            firstname: trx.BenFirstName,
+            lastname: BenLastName,
+            reference: trx.TnxRef,
+            service: trx.Service,
+            value: trx.Value,
+            date: trx.TxnDate,
+            currency: trx.Currency,
+            summary: trx.Summary,
+            status: trx.Status
+          })),
+          summary: overview.AccountOverview.Summary.map(sm => ({
+            currencycode: sm.CurrencyCode,
+            amountsenttoday: sm.AmountSentToday,
+            txnsenttoday: sm.TxnSentToday
+          }))
         }
     }
   }

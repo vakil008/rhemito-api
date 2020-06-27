@@ -333,7 +333,6 @@ const overview = {
               value: {type: 'number'},
               summary: { type: 'string'},
               status: { type: 'string'}
-
             }
           }
         },

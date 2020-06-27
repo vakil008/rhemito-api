@@ -34,8 +34,6 @@ class AccountService {
             uid,
             sessiontoken
         })
-        console.log('overview result',JSON.stringify( overviewResult.data.RetailApiResponse.AccountOverview.RecentRecipients))
-        console.log('overview result tx',JSON.stringify( overviewResult.data.RetailApiResponse.AccountOverview.RecentTransactions))
         return overviewResult.data.RetailApiResponse
 
     }
