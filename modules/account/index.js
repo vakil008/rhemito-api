@@ -32,6 +32,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function userHandler(req,reply) {
   const  {uid,sessiontoken} = req.body
     const user =  await this.accountService.useraccount(sessiontoken,uid)
+    console.log('corridors', user.User.OtherCorridors);
     return {
         message: user.ResponseMessage,
         uid: user.Uid,
@@ -50,7 +51,7 @@ module.exports[Symbol.for('plugin-meta')] = {
           currencycode:b.CurrencyCode,
           amount: b.Amount
         })),
-        othercorridors: user.User.othercorridors,
+        othercorridors: user.User.OtherCorridors,
         gender: user.User.Gender
     }
   }
