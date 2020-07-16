@@ -36,6 +36,7 @@ const countries = {
        Idd:{ type: 'string' },
        IsCanNameCheck:{ type: 'boolean' },
        IsCanRegister:{ type: 'boolean' },
+       Currencies: {type: 'string'},
        Name:{ type: 'string' }
             }
         } }
