@@ -278,8 +278,7 @@ module.exports[Symbol.for('plugin-meta')] = {
        { key: 'databenaddress', value: 'M' }]
       datarequirements = _.unionBy(datarequirements, otherRequirements, 'key');
     }
-    console.log('data requirements', datarequirements);
-    return {
+   return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
         sendamount: calculate.TransactionCalculate.SendAmount,
