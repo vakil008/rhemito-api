@@ -1,4 +1,5 @@
 const to  = require('await-to-js').default
+const _ = require('lodash')
 const {
     calculate: calculateSchema,
     nameCheck: nameCheckSchema,
@@ -270,12 +271,12 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataSenderIdCountry
       })
     }
-    console.log('data requirement', datarequirements);
-    console.log('service code', calculate.TransactionCalculate.ServiceCode)
-    if(['USD', 'GBP', 'EUR'].includes(calculate.TransactionCalculate.ToCurrencyISO3)) {
-      datarequirements = [{ key: 'databenaddress', value: 'M' },
-      { key: 'databencity', value: 'M' },
-     ]
+     if(['USD', 'GBP', 'EUR'].includes(calculate.TransactionCalculate.ToCurrencyISO3) &&
+    calculate.TransactionCalculate.ServiceCode === 'MONEYBANKACCOUNT' ) {
+       //find and ensure that
+       const otherRequirements = [{ key: 'databencity', value: 'M' },
+       { key: 'databenaddress', value: 'M' }]
+      datarequirements = _.unionBy(datarequirements, otherRequirements, 'key');
     }
     return {
         message: calculate.ResponseMessage,
