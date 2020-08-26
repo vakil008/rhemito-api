@@ -275,6 +275,12 @@ module.exports[Symbol.for('plugin-meta')] = {
     console.log('kyc requirement', kycrequirements);
     console.log('bank requirement', bankrequirements);
     console.log('sender requirement', senderrequirements);
+    if(['USD', 'GBP', 'EUR'].includes(calculate.TransactionCalculate.ToCurrencyISO3)) {
+      datarequirements = [{ key: 'databenaddress', value: 'M' },
+      { key: 'databencity', value: 'M' },
+      { key: 'databenpostcode', value: 'M' },
+     ]
+    }
     return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
