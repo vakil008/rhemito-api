@@ -270,15 +270,11 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataSenderIdCountry
       })
     }
-    console.log('doc requirement', docrequirements);
     console.log('data requirement', datarequirements);
-    console.log('kyc requirement', kycrequirements);
-    console.log('bank requirement', bankrequirements);
-    console.log('sender requirement', senderrequirements);
+    console.log('service code', servicecode)
     if(['USD', 'GBP', 'EUR'].includes(calculate.TransactionCalculate.ToCurrencyISO3)) {
       datarequirements = [{ key: 'databenaddress', value: 'M' },
       { key: 'databencity', value: 'M' },
-      { key: 'databenpostcode', value: 'M' },
      ]
     }
     return {
