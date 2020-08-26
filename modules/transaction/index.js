@@ -271,7 +271,7 @@ module.exports[Symbol.for('plugin-meta')] = {
       })
     }
     console.log('data requirement', datarequirements);
-    console.log('service code', servicecode)
+    console.log('service code', calculate.TransactionCalculate.ServiceCode)
     if(['USD', 'GBP', 'EUR'].includes(calculate.TransactionCalculate.ToCurrencyISO3)) {
       datarequirements = [{ key: 'databenaddress', value: 'M' },
       { key: 'databencity', value: 'M' },
