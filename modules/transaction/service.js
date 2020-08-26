@@ -14,12 +14,6 @@ class  TransactionService {
         service,
         discountcode,
         isvalidate) {
-            console.log('fromcountry', fromcountry)
-            console.log('fromcurrency', fromcurrency)
-            console.log('tocountry', tocountry)
-            console.log('tocurrency', tocurrency)
-            console.log('amount', amount)
-            console.log('service', service)
 
             let calculateResult;
         const randomguid = uuid()

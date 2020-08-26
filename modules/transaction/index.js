@@ -270,6 +270,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataSenderIdCountry
       })
     }
+    console.log('bank requirement', bankrequirements);
     return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
