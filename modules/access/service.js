@@ -116,7 +116,7 @@ class  AccessService {
         }
         return  {
             loginUser: loginResult.data.RetailApiResponse,
-            bankToken: loginBank.data.token
+            banktoken: loginBank.data.token
         }
 
     }
