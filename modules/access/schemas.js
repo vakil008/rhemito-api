@@ -8,12 +8,12 @@ const requestProperties ={
       hash: {
         type: 'string'
       },
-  
+
   }
 const register = {
     // This jsonschema will be used for data validation
-   
-   
+
+
     body: {
       type: 'object',
       required: ['firstname','lastname','middlename','country','mobileno','email','pass'],
@@ -119,6 +119,7 @@ const register = {
         properties: {
           message: { type: 'string' },
           uid: { type: 'string' },
+          banktoken: { type: 'string'},
           sessiontoken: { type: 'string' },
           sessionexpiry: { type: 'string' },
         },
@@ -137,7 +138,7 @@ const register = {
         email: {
           type:'string'
         },
-       
+
       } ,
       additionalProperties: false
     },
@@ -149,13 +150,13 @@ const register = {
         required: [ 'message' ],
         properties: {
           message: { type: 'string' },
-  
+
         },
         additionalProperties: false
       }
     }
   }
-  
+
   const validate  = {
     // This jsonschema will be used for data validation
     body: {
@@ -165,7 +166,7 @@ const register = {
         accesstoken: {
           type:'string'
         },
-       
+
       } ,
       additionalProperties: false
     },
@@ -177,13 +178,13 @@ const register = {
         required: [ 'message' ],
         properties: {
           message: { type: 'string' },
-  
+
         },
         additionalProperties: false
       }
     }
   }
-  
+
   const confirm  = {
     // This jsonschema will be used for data validation
     body: {
@@ -199,7 +200,7 @@ const register = {
         accesstoken: {
           type:'string'
         },
-       
+
       } ,
       additionalProperties: false
     },
@@ -211,14 +212,14 @@ const register = {
         required: [ 'message' ],
         properties: {
           message: { type: 'string' },
-  
+
         },
         additionalProperties: false
       }
     }
   }
-  
-  module.exports =  { 
+
+  module.exports =  {
       register,
       activate,
       login,

@@ -1,5 +1,7 @@
 const  {R , hasher}  =  require('../../lib/api')
-const uuid = require('uuid/v4')
+const uuid = require('uuid/v4');
+const { authenticateUser } = require('../../lib/bank');
+const to  = require('await-to-js').default
 
 class  AccessService {
 
@@ -108,7 +110,15 @@ class  AccessService {
                 pass: hasher(email.toLowerCase(),pass)
 
             })
-         return loginResult.data.RetailApiResponse
+        const [loginBankError, loginBank]  =  await to(authenticateUser(email,pass))
+        if(loginBankError) {
+            throw loginBankError
+        }
+        return  {
+            loginUser: loginResult.data.RetailApiResponse,
+            bankToken: loginBank.data.token
+        }
+
     }
 
 
