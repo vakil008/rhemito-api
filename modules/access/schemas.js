@@ -115,7 +115,7 @@ const register = {
       // by the following schema
       200: {
         type: 'object',
-        required: [ 'message','uid','sessiontoken','sessionexpiry' ],
+        required: [ 'message','uid','sessiontoken','sessionexpiry'],
         properties: {
           message: { type: 'string' },
           uid: { type: 'string' },
