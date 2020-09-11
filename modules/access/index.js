@@ -46,6 +46,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     if(loginUser.ResponseCode!='10000') {
       throw reply.badRequest(loginUser.ResponseMessage)
     }
+    console.log('banktoken', banktoken)
     return {
       message: loginUser.ResponseMessage,
       uid: loginUser.User.Uid,
