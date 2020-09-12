@@ -297,7 +297,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         bankrequirements,
         senderrequirements,
         kycrequirements,
-        docregtype: calculate.TransactionCalculate.DocRegType
+        docregtype: calculate.TransactionCalculate.DocRegType,
+        bank
     }
   }
 
