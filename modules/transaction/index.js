@@ -58,9 +58,6 @@ module.exports[Symbol.for('plugin-meta')] = {
          fee:pm.Fees,
          code:pm.PaymentMethodCode
        }))
-      //  .filter((method) => method.code !=='CARD')
-      //  .filter((method) => method.code !=='PAYSTACK')
-      // .filter((method) => method.code !=='SOFORT')
 
 
     }
@@ -279,6 +276,7 @@ module.exports[Symbol.for('plugin-meta')] = {
        { key: 'databenaddress', value: 'M' }]
       datarequirements = _.unionBy(datarequirements, otherRequirements, 'key');
     }
+    console.log('bank', bank);
    return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
