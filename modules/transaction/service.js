@@ -40,7 +40,9 @@ class  TransactionService {
 
             })
             if(banktoken) {
+                console.log('banktoken', banktoken)
                 const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
+                console.log('bankdetail', bankDetailError)
                 console.log('bankdetail', bankdetail)
                 if(bankDetailError) {
                     return  {
