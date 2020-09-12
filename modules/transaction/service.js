@@ -1,9 +1,10 @@
 const  {R , hasher}  =  require('../../lib/api')
-const uuid = require('uuid/v4')
+const uuid = require('uuid/v4');
+const { getFundingAccount } = require('../../lib/bank');
 const to  = require('await-to-js').default
 class  TransactionService {
 
-    async calculate (uid,
+    async calculate ({uid,
         sessiontoken,
         fromcountry,
         fromcurrency,
@@ -13,7 +14,7 @@ class  TransactionService {
         direction,
         service,
         discountcode,
-        isvalidate) {
+        isvalidate, banktoken}) {
 
             let calculateResult;
         const randomguid = uuid()
@@ -39,7 +40,25 @@ class  TransactionService {
                 isvalidate
 
             })
-              return calculateResult.data.RetailApiResponse
+            if(banktoken) {
+                const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
+
+                if(bankDetailError) {
+                    return  {
+                        calculate : calculateResult.data.RetailApiResponse,
+                        bank: {}
+                    }
+                }
+
+                  return{
+                      calculate:  calculateResult.data.RetailApiResponse,
+                    bank: bankdetail}
+            }
+
+              return{
+                  calculate:  calculateResult.data.RetailApiResponse,
+                bank: {}
+            }
 
     }
 

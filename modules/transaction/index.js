@@ -36,8 +36,8 @@ module.exports[Symbol.for('plugin-meta')] = {
       direction,
       service,
       discountcode,
-      isvalidate} = req.body
-    const calculate =  await this.transactionService.calculate(uid,sessiontoken,
+      isvalidate, banktoken} = req.body
+    const {calculate, bank} =  await this.transactionService.calculate({uid,sessiontoken,
       fromcountry,
       fromcurrency,
       tocountry,
@@ -46,7 +46,8 @@ module.exports[Symbol.for('plugin-meta')] = {
       direction,
       service,
       discountcode,
-      isvalidate)
+      isvalidate,
+      banktoken})
 
       if(calculate.ResponseCode!='10000') {
         throw reply.badRequest(calculate.ResponseMessage)
