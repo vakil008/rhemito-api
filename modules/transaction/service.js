@@ -21,6 +21,7 @@ class  TransactionService {
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase())
+            console.log('uid', uid);
             calculateResult = await R.post('/RetailTransactionCalculateRate', {
                 randomguid,
                 apiKey: process.env.API_KEY,

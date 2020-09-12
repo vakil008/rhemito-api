@@ -27,6 +27,9 @@ const calculate = {
         sessiontoken: {
           type:'string'
         },
+        banktoken: {
+          type:['string', 'null']
+        },
         fromcountry: {
           type:'string'
         },
@@ -80,6 +83,24 @@ const calculate = {
           validateid: {type:['string', 'null']},
           servicecode:{type:['string', 'null']},
           fees:{type:'number'},
+          bank: { type: 'object',
+            properties: {
+              id: {type:'string'},
+              accountId: {type:'string'},
+              accountNumber: {type:'string'},
+              accountNumberType:{type:'string'},
+              accountHolderName:{type:'string'},
+              bankName: {type:'string'},
+              bankAddress:{type:'string'},
+              bankCountry: {type:'string'},
+              currency: {type:'string'},
+              paymentType: {type:'string'},
+              routingCode: {type:'string'},
+              routingCodeType: {type:'string'},
+              createdAt: {type:'string'},
+              updatedAt:{type:'string'},
+              amount:{type:'number'},
+            }},
           paymentmethods: {type:['array', 'null'],
         items: {
             type:'object',
