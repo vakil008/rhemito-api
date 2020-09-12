@@ -22,7 +22,6 @@ class  TransactionService {
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,
             fromcountry.toLowerCase(),fromcurrency.toLowerCase(),
             tocountry.toLowerCase(),tocurrency.toLowerCase(),service.toLowerCase())
-            console.log('uid', uid);
             calculateResult = await R.post('/RetailTransactionCalculateRate', {
                 randomguid,
                 apiKey: process.env.API_KEY,
@@ -42,7 +41,7 @@ class  TransactionService {
             })
             if(banktoken) {
                 const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
-
+                console.log('bankdetail', bankdetail)
                 if(bankDetailError) {
                     return  {
                         calculate : calculateResult.data.RetailApiResponse,
