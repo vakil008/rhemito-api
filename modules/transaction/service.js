@@ -40,10 +40,7 @@ class  TransactionService {
 
             })
             if(banktoken) {
-                console.log('banktoken', banktoken)
-                const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
-                console.log('bankdetail', bankDetailError)
-                console.log('bankdetail', bankdetail)
+               const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
                 if(bankDetailError) {
                     return  {
                         calculate : calculateResult.data.RetailApiResponse,
@@ -53,7 +50,7 @@ class  TransactionService {
 
                   return{
                       calculate:  calculateResult.data.RetailApiResponse,
-                    bank: bankdetail}
+                    bank: bankdetail.data}
             }
 
               return{
