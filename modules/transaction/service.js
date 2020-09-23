@@ -39,10 +39,8 @@ class  TransactionService {
                 isvalidate
 
             })
-            console.log('bank token ' ,banktoken);
             if(banktoken) {
                const [bankDetailError, bankdetail] = await to(checkCCAccount(uid, fromcurrency, amount, banktoken))
-               console.log('bankDetailError', bankDetailError)
                 if(bankDetailError) {
                     return  {
                         calculate : calculateResult.data.RetailApiResponse,
