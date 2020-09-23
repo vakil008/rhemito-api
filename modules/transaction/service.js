@@ -39,6 +39,7 @@ class  TransactionService {
                 isvalidate
 
             })
+            console.log('bank token ' ,banktoken);
             if(banktoken) {
                const [bankDetailError, bankdetail] = await to(checkCCAccount(uid, banktoken))
                console.log('bankDetailError', bankDetailError)
