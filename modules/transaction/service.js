@@ -1,6 +1,6 @@
 const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4');
-const { getFundingAccount } = require('../../lib/bank');
+const { getFundingAccount, checkCCAccount } = require('../../lib/bank');
 const to  = require('await-to-js').default
 class  TransactionService {
 
@@ -40,7 +40,7 @@ class  TransactionService {
 
             })
             if(banktoken) {
-               const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
+               const [bankDetailError, bankdetail] = await to(checkCCAccount(uid, banktoken))
                console.log('bankDetailError', bankDetailError)
                 if(bankDetailError) {
                     return  {
@@ -48,7 +48,7 @@ class  TransactionService {
                         bank: {}
                     }
                 }
-
+                console.log('bank detail', bankdetail)
                   return{
                       calculate:  calculateResult.data.RetailApiResponse,
                     bank: bankdetail.data}
