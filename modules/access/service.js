@@ -114,6 +114,7 @@ class  AccessService {
         if(loginBankError) {
             throw loginBankError
         }
+        console.log('bankk', loginBank.data.data.token)
         return  {
             loginUser: loginResult.data.RetailApiResponse,
             banktoken: loginBank.data.data.token
