@@ -219,10 +219,9 @@ class  TransactionService {
          }
 
            return{
-               calculate:  calculateResult.data.RetailApiResponse,
+               create:  submitResult.data.RetailApiResponse,
              bank: {}
          }
-          return submitResult.data.RetailApiResponse
 
     }
     async transactions ({uid,
