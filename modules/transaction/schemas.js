@@ -212,6 +212,9 @@ const calculate = {
         sessiontoken: {
           type:'string'
         },
+        banktoken: {
+          type:'string'
+        },
         fromcountry: {
           type:'string'
         },
