@@ -87,14 +87,12 @@ const calculate = {
             properties: {
               id: {type:'string'},
               accountId: {type:'string'},
-              accountName: {type:'string'},
               accountNumber: {type:'string'},
               accountNumberType:{type:'string'},
-              shortReference:{type:'string'},
-              yourReference:{type:'string'},
+              accountHolderName:{type:'string'},
               bankName: {type:'string'},
               bankAddress:{type:'string'},
-              country: {type:'string'},
+              bankCountry: {type:'string'},
               currency: {type:'string'},
               paymentType: {type:'string'},
               routingCode: {type:'string'},
@@ -152,7 +150,7 @@ const calculate = {
             }
         }}
         },
-        additionalProperties: true
+        additionalProperties: false
       }
     }
   }
@@ -395,7 +393,25 @@ const calculate = {
           fee: {type:'number'},
           total: {type:'number'},
           value: {type:'number'},
-          paymenturl: {type:'string'}
+          paymenturl: {type:'string'},
+          bank: { type: 'object',
+          properties: {
+            id: {type:'string'},
+            accountId: {type:'string'},
+            accountNumber: {type:'string'},
+            accountNumberType:{type:'string'},
+            accountHolderName:{type:'string'},
+            bankName: {type:'string'},
+            bankAddress:{type:'string'},
+            bankCountry: {type:'string'},
+            currency: {type:'string'},
+            paymentType: {type:'string'},
+            routingCode: {type:'string'},
+            routingCodeType: {type:'string'},
+            createdAt: {type:'string'},
+            updatedAt:{type:'string'},
+            amount:{type:'number'},
+          }},
 
         },
         additionalProperties: false

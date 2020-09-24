@@ -129,7 +129,8 @@ class  TransactionService {
         senderidexpirydate,
         senderidnumber,
         senderidtype,
-        documents
+        documents,
+        banktoken
         }) {
             let submitResult;
         const randomguid = uuid()
@@ -203,6 +204,24 @@ class  TransactionService {
           }
 
           submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
+          if(banktoken) {
+            const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
+             if(bankDetailError) {
+                 return  {
+                     create : submitResult.data.RetailApiResponse,
+                     bank: {}
+                 }
+             }
+             console.log('bank detail', bankdetail)
+               return{
+                   create:  submitResult.data.RetailApiResponse,
+                   bank: bankdetail.data}
+         }
+
+           return{
+               calculate:  calculateResult.data.RetailApiResponse,
+             bank: {}
+         }
           return submitResult.data.RetailApiResponse
 
     }

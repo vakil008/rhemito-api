@@ -324,7 +324,7 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function submitHandlers(req,reply) {
 
-    const create =  await this.transactionService.submit(req.body)
+      const {create, bank} =  await this.transactionService.submit(req.body)
     if(create.ResponseCode!='10000') {
       throw reply.badRequest(create.ResponseMessage)
     }
@@ -343,7 +343,8 @@ module.exports[Symbol.for('plugin-meta')] = {
         tocountry: transaction.ToCountryISO3,
         tocurrency: transaction.ToCurrencyISO3,
         value: transaction.Value,
-        paymenturl: transaction.PaymentUrl
+        paymenturl: transaction.PaymentUrl,
+        bank
       }
   }
 
