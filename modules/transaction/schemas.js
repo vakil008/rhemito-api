@@ -150,7 +150,7 @@ const calculate = {
             }
         }}
         },
-        additionalProperties: false
+        additionalProperties: true
       }
     }
   }
