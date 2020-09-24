@@ -212,7 +212,7 @@ class  TransactionService {
                      bank: {}
                  }
              }
-             console.log('bank detail', bankdetail)
+             console.log('bank detail', bankdetail.data)
                return{
                    create:  submitResult.data.RetailApiResponse,
                    bank: bankdetail.data}
