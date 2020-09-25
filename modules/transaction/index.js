@@ -344,7 +344,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         tocurrency: transaction.ToCurrencyISO3,
         value: transaction.Value,
         paymenturl: transaction.PaymentUrl,
-        bank
+        bank: bank.data
       }
   }
 
