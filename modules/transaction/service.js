@@ -47,8 +47,7 @@ class  TransactionService {
                         bank: {}
                     }
                 }
-                console.log('bank detail', bankdetail)
-                  return{
+                   return{
                       calculate:  calculateResult.data.RetailApiResponse,
                     bank: bankdetail}
             }

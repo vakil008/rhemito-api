@@ -277,7 +277,6 @@ module.exports[Symbol.for('plugin-meta')] = {
        { key: 'databenaddress', value: 'M' }]
       datarequirements = _.unionBy(datarequirements, otherRequirements, 'key');
     }
-    console.log('bank address', bank);
    return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
@@ -325,7 +324,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function submitHandlers(req,reply) {
 
       const {create, bank} =  await this.transactionService.submit(req.body)
-      console.log('bank', bank)
+      console.log('submitbank', bank)
     if(create.ResponseCode!='10000') {
       throw reply.badRequest(create.ResponseMessage)
     }
