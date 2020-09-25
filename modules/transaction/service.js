@@ -50,7 +50,7 @@ class  TransactionService {
                 console.log('bank detail', bankdetail)
                   return{
                       calculate:  calculateResult.data.RetailApiResponse,
-                    bank: bankdetail.data}
+                    bank: bankdetail}
             }
 
               return{
