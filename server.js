@@ -93,6 +93,7 @@ async function decorateFastifyInstance(fastify, opts, next){
   const accessService = new AccessService()
   const transactionService = new TransactionService()
   const accountService = new AccountService()
+  const bankService = new BankService()
   fastify.decorate('staticService', staticService);
   fastify.decorate('accessService', accessService);
   fastify.decorate('transactionService', transactionService)
