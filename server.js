@@ -8,6 +8,7 @@ const StaticService = require('./modules/static/service')
 const AccessService = require('./modules/access/service')
 const TransactionService = require('./modules/transaction/service')
 const AccountService = require('./modules/account/service')
+const BankService = require('./modules/bank/service')
 
 // const staticModule = require('./modules/static');
 const fastify = require('fastify')({ logger: true })
@@ -68,7 +69,8 @@ fastify.register(require('fastify-swagger'), {
       { name: 'access', description: 'Access related end-points' },
       { name: 'static', description: 'Static related end-points' },
       { name: 'transaction', description: 'Transaction related end-points' },
-      { name: 'account', description: 'Account related end-points' }
+      { name: 'account', description: 'Account related end-points' },
+      { name: 'bank', description: 'Bank related end-points' }
     ],
     securityDefinitions: {
       apiKey: {
@@ -91,10 +93,12 @@ async function decorateFastifyInstance(fastify, opts, next){
   const accessService = new AccessService()
   const transactionService = new TransactionService()
   const accountService = new AccountService()
+  const bankService = new BankService()
   fastify.decorate('staticService', staticService);
   fastify.decorate('accessService', accessService);
   fastify.decorate('transactionService', transactionService)
   fastify.decorate('accountService', accountService)
+  fastify.decorate('bankService', bankService)
   next()
 }
  /**
@@ -106,6 +110,7 @@ async function decorateFastifyInstance(fastify, opts, next){
  .register(require('./modules/access'), {prefix:'/access'})
  .register(require('./modules/transaction'), {prefix:'/transaction'})
  .register(require('./modules/account'), {prefix:'/account'})
+ .register(require('./modules/bank'), {prefix:'/bank'})
  // Declare a route
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
