@@ -1,7 +1,7 @@
 const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4')
 const to  = require('await-to-js').default
-class  StaticService {
+class  BankService {
 
     async auth () {
         let countryResult;
@@ -49,4 +49,4 @@ class  StaticService {
 
 }
 
-module.exports = StaticService
+module.exports = BankService

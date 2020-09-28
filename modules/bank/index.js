@@ -1,3 +1,4 @@
+const bank = require('../../lib/bank')
 const {
     checkaccount: checkAccountSchema,
     auth: authSchema,
@@ -21,31 +22,29 @@ module.exports[Symbol.for('plugin-meta')] = {
         }
       }
   async function authHandler(req,reply) {
-    const countries =  await this.staticService.countries()
-    return {
-        message: countries.ResponseMessage,
-        count: countries.Count,
-        countries: countries.Countries
-    }
+  try {
+    const {email, password } = req.body
+    const bankAuth = bank.authenticateUser(email, password);
+    return bankAuth;
+  }catch(e) {
+    throw reply.badRequest(e);
+  }
   }
   async function checkAccountHandler(req,reply) {
-    const providers =  await this.staticService.providers()
-    return {
-        message: providers.ResponseMessage,
-        count: providers.Count,
-        providers: providers.Providers
+    try {
+      const {userId, currency, amount, token } = req.body;
+      const bankAccountCheck = bank.checkCCAccount(userId, currency, amount, token);
+      return bankAccountCheck;
+    }catch(e) {
+      throw reply.badRequest(e);
     }
   }
   async function fundAccountHandler(req,reply) {
-   const {provider} = req.body
-   const providers =  await this.staticService.subproviders(provider)
-    return {
-        message: providers.ResponseMessage,
-        count: providers.Count,
-        subproviders: providers.ProviderItems.map(p=>({
-          id:p.Id,
-          name:p.Name,
-          amount:p.Amount
-        }))
+    try {
+      const {userId, token } = req.body;
+      const bankInfo = bank.getFundingAccount(userId, token );
+      return bankInfo;
+    }catch(e) {
+      throw reply.badRequest(e);
     }
   }
