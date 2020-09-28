@@ -26,7 +26,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     const {email, password } = req.body
     const bankAuth = await bank.authenticateUser(email, password);
     console.log('bankAuth', bankAuth)
-    return bankAuth;
+    return bankAuth.data.data;
   }catch(e) {
     throw reply.badRequest(e);
   }
@@ -35,7 +35,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     try {
       const {userId, currency, amount, token } = req.body;
       const bankAccountCheck = await bank.checkCCAccount(userId, currency, amount, token);
-      return bankAccountCheck;
+      return bankAccountCheck.data.data;
     }catch(e) {
       throw reply.badRequest(e);
     }
@@ -44,7 +44,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     try {
       const {userId, token } = req.body;
       const bankInfo = await bank.getFundingAccount(userId, token );
-      return bankInfo;
+      return bankInfo.data.data;
     }catch(e) {
       throw reply.badRequest(e);
     }
