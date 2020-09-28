@@ -24,7 +24,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function authHandler(req,reply) {
   try {
     const {email, password } = req.body
-    const bankAuth = bank.authenticateUser(email, password);
+    const bankAuth = await bank.authenticateUser(email, password);
     console.log('bankAuth', bankAuth)
     return bankAuth;
   }catch(e) {
@@ -34,7 +34,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function checkAccountHandler(req,reply) {
     try {
       const {userId, currency, amount, token } = req.body;
-      const bankAccountCheck = bank.checkCCAccount(userId, currency, amount, token);
+      const bankAccountCheck = await bank.checkCCAccount(userId, currency, amount, token);
       return bankAccountCheck;
     }catch(e) {
       throw reply.badRequest(e);
@@ -43,7 +43,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function fundAccountHandler(req,reply) {
     try {
       const {userId, token } = req.body;
-      const bankInfo = bank.getFundingAccount(userId, token );
+      const bankInfo = await bank.getFundingAccount(userId, token );
       return bankInfo;
     }catch(e) {
       throw reply.badRequest(e);
