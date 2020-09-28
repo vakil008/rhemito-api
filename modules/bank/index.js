@@ -25,6 +25,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   try {
     const {email, password } = req.body
     const bankAuth = bank.authenticateUser(email, password);
+    console.log('bankAuth', bankAuth)
     return bankAuth;
   }catch(e) {
     throw reply.badRequest(e);
