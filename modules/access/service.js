@@ -112,12 +112,13 @@ class  AccessService {
             })
         const [loginBankError, loginBank]  =  await to(authenticateUser(email,pass))
         if(loginBankError) {
-            throw loginBankError
+            // throw loginBankError
         }
-        console.log('bankk', loginBank.data.data.token)
+        const banktoken  = loginBankError ? null :  loginBank.data.data.token
+
         return  {
             loginUser: loginResult.data.RetailApiResponse,
-            banktoken: loginBank.data.data.token
+            banktoken
         }
 
     }
