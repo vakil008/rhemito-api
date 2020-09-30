@@ -110,15 +110,15 @@ class  AccessService {
                 pass: hasher(email.toLowerCase(),pass)
 
             })
-        // const [loginBankError, loginBank]  =  await to(authenticateUser(email,pass))
-        // if(loginBankError) {
-        //     // throw loginBankError
-        // }
-        // const banktoken  = loginBankError ? null :  loginBank.data.data.token
+        const [loginBankError, loginBank]  =  await to(authenticateUser(email,pass))
+        if(loginBankError) {
+            throw loginBankError
+        }
+        const banktoken  = loginBankError ? null :  loginBank.data.data.token
 
         return  {
             loginUser: loginResult.data.RetailApiResponse,
-            banktoken: null
+            banktoken
         }
 
     }
