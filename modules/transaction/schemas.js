@@ -57,6 +57,9 @@ const calculate = {
         isvalidate: {
           type:'number',
           default:0
+        },
+        version: {
+          type: ['number', 'null']
         }
       } ,
       additionalProperties: false

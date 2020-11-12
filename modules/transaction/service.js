@@ -14,9 +14,13 @@ class  TransactionService {
         direction,
         service,
         discountcode,
-        isvalidate, banktoken}) {
+        isvalidate, banktoken,
+        version}, reply) {
 
             let calculateResult;
+        if(!version) {
+            throw reply.badRequest('Please update your app to start transaction')
+        }
         const randomguid = uuid()
 
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,
@@ -41,7 +45,6 @@ class  TransactionService {
             })
             if(banktoken) {
                const [bankDetailError, bankdetail] = await to(checkCCAccount(uid, fromcurrency, amount, banktoken))
-               console.log('bank detail ', bankdetail)
                 if(bankDetailError) {
                     return  {
                         calculate : calculateResult.data.RetailApiResponse,

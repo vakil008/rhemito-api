@@ -36,7 +36,11 @@ module.exports[Symbol.for('plugin-meta')] = {
       direction,
       service,
       discountcode,
+      version,
       isvalidate, banktoken} = req.body
+      if(!version) {
+        throw reply.badRequest('Please update your app to the latest version');
+      }
     const {calculate, bank} =  await this.transactionService.calculate({uid,sessiontoken,
       fromcountry,
       fromcurrency,
@@ -47,7 +51,8 @@ module.exports[Symbol.for('plugin-meta')] = {
       service,
       discountcode,
       isvalidate,
-      banktoken})
+      banktoken,
+      version}, reply)
 
       if(calculate.ResponseCode!='10000') {
         throw reply.badRequest(calculate.ResponseMessage)
