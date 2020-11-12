@@ -18,9 +18,9 @@ class  TransactionService {
         version}, reply) {
 
             let calculateResult;
-        if(!version) {
-            throw reply.badRequest('Please update your app to start transaction')
-        }
+        // if(!version) {
+        //     throw reply.badRequest('Please update your app to start transaction')
+        // }
         const randomguid = uuid()
 
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,sessiontoken,uid,
