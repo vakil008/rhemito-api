@@ -41,6 +41,7 @@ module.exports[Symbol.for('plugin-meta')] = {
       // if(!version) {
       //   throw reply.badRequest('Please update your app to the latest version');
       // }
+      console.log('calculate rate called')
     const {calculate, bank} =  await this.transactionService.calculate({uid,sessiontoken,
       fromcountry,
       fromcurrency,

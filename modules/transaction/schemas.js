@@ -52,7 +52,7 @@ const calculate = {
           type:'string'
         },
         discountcode: {
-          type:'string'
+          type:['string', 'null']
         },
         isvalidate: {
           type:'number',
