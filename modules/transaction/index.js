@@ -337,9 +337,12 @@ module.exports[Symbol.for('plugin-meta')] = {
     const transaction = create.Transactions[0]
 
       const [sendMailError, sendMail] = await to (sendBankMail(transaction.TnxRef,req.body.banktoken))
+
       if(sendMailError) {
         //log to rhemito
+        console.log('send mail error', sendMailError)
       }
+      console.log('sendmail', sendMail);
 
     return {
         message: create.ResponseMessage,
