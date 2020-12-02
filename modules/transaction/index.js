@@ -1,5 +1,6 @@
 const to  = require('await-to-js').default
 const _ = require('lodash')
+const { sendBankMail } = require('../../lib/bank')
 const {
     calculate: calculateSchema,
     nameCheck: nameCheckSchema,
@@ -334,6 +335,12 @@ module.exports[Symbol.for('plugin-meta')] = {
       throw reply.badRequest(create.ResponseMessage)
     }
     const transaction = create.Transactions[0]
+
+      const [sendMailError, sendMail] = await to (sendBankMail(transaction.TnxRef,req.body.banktoken))
+      if(sendMailError) {
+        //log to rhemito
+      }
+
     return {
         message: create.ResponseMessage,
         rate: transaction.Rate,

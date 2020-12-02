@@ -1,7 +1,8 @@
 // Require the framework and instantiate it
 //modules
 require('dotenv').config()
-
+const Bugsnag = require('@bugsnag/js')
+Bugsnag.start({ apiKey: process.env.BUGSNAG_KEY })
 const fp = require('fastify-plugin')
 const RHEMITO_PORT = process.env.PORT|| 3000
 const StaticService = require('./modules/static/service')
@@ -116,7 +117,13 @@ fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
 })
 
-
+fastify.addHook('onError', (request, reply, error, done) => {
+  // Only send Bugsnag errors when not in development
+  if (process.env.NODE_ENV !== 'development') {
+    Bugsnag.notify(error)
+  }
+  done()
+})
 
 // Run the server!
 const start = async () => {
