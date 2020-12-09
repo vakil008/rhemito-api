@@ -19,10 +19,12 @@ class  AccessService {
             CountryIso3: country,
             mobileno,
             regtype,
-            businessname,
             email,
             pass: hasher(email.toLowerCase(),pass),
             issubscribe
+        }
+        if(regType === 'C')  {
+            regType.businessname = businessname
         }
         console.log('regData', regData);
            registerResult = await R.post('/RetailAccessRegister', regData)

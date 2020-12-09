@@ -54,7 +54,7 @@ module.exports[Symbol.for('plugin-meta')] = {
       isvalidate,
       banktoken,
       version}, reply)
-      console.log('calculate', calculate);
+      console.log('user id', uid)
       console.log('bank', bank);
       if(calculate.ResponseCode!='10000') {
         throw reply.badRequest(calculate.ResponseMessage)
