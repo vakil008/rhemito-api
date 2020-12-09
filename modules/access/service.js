@@ -10,20 +10,22 @@ class  AccessService {
         let registerResult;
         const randomguid = uuid()
         const hash = hasher(randomguid,process.env.PRIVATE_KEY, process.env.API_KEY,email.toLowerCase(),country)
-           registerResult = await R.post('/RetailAccessRegister', {
-                randomguid,
-                apiKey: process.env.API_KEY,
-                hash,
-                fname:firstname,
-                lname:lastname,
-                CountryIso3: country,
-                mobileno,
-                regtype,
-                businessname,
-                email,
-                pass: hasher(email.toLowerCase(),pass),
-                issubscribe
-            })
+        const regData = {
+            randomguid,
+            apiKey: process.env.API_KEY,
+            hash,
+            fname:firstname,
+            lname:lastname,
+            CountryIso3: country,
+            mobileno,
+            regtype,
+            businessname,
+            email,
+            pass: hasher(email.toLowerCase(),pass),
+            issubscribe
+        }
+        console.log('regData', regData);
+           registerResult = await R.post('/RetailAccessRegister', regData)
 
          return registerResult.data.RetailApiResponse
       }catch(registerError) {
