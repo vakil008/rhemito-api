@@ -215,8 +215,10 @@ class  TransactionService {
                 console.log('bank creation error', bankCreateError)
                 Bugsnag.notify(error);
             }
+            console.log('bankCreateDetail', bankCreateDetail)
 
             const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
+            console.log('bankfunding detail', bankdetail)
              if(bankDetailError) {
                 Bugsnag.notify(bankDetailError);
                 console.log('banking details error', bankDetailError)
