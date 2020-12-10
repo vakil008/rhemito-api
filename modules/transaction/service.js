@@ -1,6 +1,7 @@
 const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4');
 const { getFundingAccount, checkCCAccount } = require('../../lib/bank');
+const { default: Bugsnag } = require('@bugsnag/js');
 const to  = require('await-to-js').default
 class  TransactionService {
 
@@ -209,8 +210,16 @@ class  TransactionService {
 
           submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
           if(banktoken) {
+            const [bankCreateError, bankCreateDetail] = await to(checkCCAccount(uid, fromcurrency, amount, banktoken))
+            if(bankCreateError) {
+                console.log('bank creation error', bankCreateError)
+                Bugsnag.notify(error);
+            }
+
             const [bankDetailError, bankdetail] = await to(getFundingAccount(uid, banktoken))
              if(bankDetailError) {
+                Bugsnag.notify(bankDetailError);
+                console.log('banking details error', bankDetailError)
                  return  {
                      create : submitResult.data.RetailApiResponse,
                      bank: {}

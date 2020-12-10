@@ -54,9 +54,7 @@ module.exports[Symbol.for('plugin-meta')] = {
       isvalidate,
       banktoken,
       version}, reply)
-      console.log('user id', uid)
-      console.log('bank', bank);
-      if(calculate.ResponseCode!='10000') {
+     if(calculate.ResponseCode!='10000') {
         throw reply.badRequest(calculate.ResponseMessage)
       }
     let paymentmethods = []
