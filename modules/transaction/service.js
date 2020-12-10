@@ -213,7 +213,7 @@ class  TransactionService {
             const [bankCreateError, bankCreateDetail] = await to(checkCCAccount(uid, fromcurrency, amount, banktoken))
             if(bankCreateError) {
                 console.log('bank creation error', bankCreateError)
-                Bugsnag.notify(error);
+                Bugsnag.notify(bankCreateError);
             }
             console.log('bankCreateDetail', bankCreateDetail)
 
