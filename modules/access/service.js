@@ -23,8 +23,8 @@ class  AccessService {
             pass: hasher(email.toLowerCase(),pass),
             issubscribe
         }
-        if(regType === 'C')  {
-            regType.businessname = businessname
+        if(regtype === 'C')  {
+            regData.businessname = businessname
         }
            registerResult = await R.post('/RetailAccessRegister', regData)
 
