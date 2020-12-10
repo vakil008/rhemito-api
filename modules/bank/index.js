@@ -35,7 +35,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     try {
       const {userId, currency, amount, token } = req.body;
       const bankAccountCheck = await bank.checkCCAccount(userId, currency, amount, token);
-      console.log('bankAccountCheck', bankAccountCheck)
+      console.log('bankAccountCheck', bankAccountCheck.data)
       return bankAccountCheck.data;
     }catch(e) {
       throw reply.badRequest(e);
@@ -45,7 +45,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     try {
       const {userId, token } = req.body;
       const bankInfo = await bank.getFundingAccount(userId, token );
-      console.log('bankInfo', bankInfo)
+      console.log('bankInfo', bankInfo.data)
 
       return bankInfo.data;
     }catch(e) {
