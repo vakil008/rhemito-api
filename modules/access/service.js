@@ -26,6 +26,7 @@ class  AccessService {
         if(regtype === 'C')  {
             regData.businessname = businessname
         }
+        console.log('regData', regData);
            registerResult = await R.post('/RetailAccessRegister', regData)
 
          return registerResult.data.RetailApiResponse
