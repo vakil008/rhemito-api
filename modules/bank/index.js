@@ -3,12 +3,13 @@ const {
     checkaccount: checkAccountSchema,
     auth: authSchema,
     fundingaccount:fundingAccountSchema,
+    sendmail:sendMailSchema,
   } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/auth' , {schema: authSchema}, authHandler )
       fastify.post('/checkaccount' , {schema: checkAccountSchema}, checkAccountHandler )
       fastify.post('/fundingaccount' , {schema: fundingAccountSchema}, fundAccountHandler )
-      fastify.post('/sendmail' , {schema: fundingAccountSchema}, sendMailHandler )
+      fastify.post('/sendmail' , {schema: sendMailSchema}, sendMailHandler )
 
     }
 

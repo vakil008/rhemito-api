@@ -70,8 +70,32 @@ const auth = {
     }
   }
 
+  const sendmail = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      properties: {
+        transactionId: {type:'string'},
+        token: { type: 'string'}
+      } ,
+      additionalProperties: true
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        properties: {
+          id: { type: ['string', 'null'] },
+        },
+        additionalProperties: true
+      }
+    }
+  }
+
   module.exports =  {
       auth,
       checkaccount,
-      fundingaccount
+      fundingaccount,
+      sendmail
   }
