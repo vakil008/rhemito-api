@@ -121,6 +121,13 @@ axios@^0.19.0:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
 
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -730,6 +737,13 @@ pino@^5.11.1:
     pino-std-serializers "^2.3.0"
     quick-format-unescaped "^3.0.2"
     sonic-boom "^0.7.3"
+
+postmark@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/postmark/-/postmark-2.6.1.tgz#65db8dbfe240349b65e3a4cc3c2ef3a6d1e96866"
+  integrity sha512-qvLiznIT2cYl9GFxSE8SFJkmX/r6As7swQaOioxMmjSmg6Osvspq292ojpsKXpjltToruBlF46rbA5l125gd3A==
+  dependencies:
+    axios "^0.19.2"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

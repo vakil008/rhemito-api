@@ -23,6 +23,7 @@
     "fastify-swagger": "^2.4.0",
     "js-sha512": "^0.8.0",
     "lodash": "^4.17.20",
+    "postmark": "^2.6.1",
     "uuid": "^3.3.2",
     "winston": "^3.2.1",
     "winston-syslog": "^2.4.4",

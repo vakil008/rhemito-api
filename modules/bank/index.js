@@ -8,6 +8,7 @@ const {
       fastify.post('/auth' , {schema: authSchema}, authHandler )
       fastify.post('/checkaccount' , {schema: checkAccountSchema}, checkAccountHandler )
       fastify.post('/fundingaccount' , {schema: fundingAccountSchema}, fundAccountHandler )
+      fastify.post('/sendmail' , {schema: fundingAccountSchema}, sendMailHandler )
 
     }
 
@@ -48,6 +49,18 @@ module.exports[Symbol.for('plugin-meta')] = {
       console.log('bankInfo', bankInfo.data)
 
       return bankInfo.data;
+    }catch(e) {
+      throw reply.badRequest(e);
+    }
+  }
+
+  async function sendMailHandler(req,reply) {
+    try {
+      const {transactionId, token } = req.body;
+      const bankEmail = await bank.sendBankMail(transactionId, token );
+      console.log('bankEmail', bankEmail.data)
+
+      return bankEmail.data;
     }catch(e) {
       throw reply.badRequest(e);
     }
