@@ -6,7 +6,9 @@ const {
     nameCheck: nameCheckSchema,
     submit: submitSchema,
     transactions:transactionsSchema,
-    transaction:transactionSchema
+    transaction:transactionSchema,
+    resendRecipient:resendRecipientSchema,
+    resendTransaction:resendTransactionSchema
      } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/calculate' , {schema: calculateSchema}, calculateHandlers )
@@ -14,6 +16,8 @@ const {
       fastify.post('/create' , {schema: submitSchema}, submitHandlers )
       fastify.post('/transactions' , {schema: transactionsSchema}, transactionsHandler )
       fastify.post('/transaction' , {schema: transactionSchema}, transactionHandler )
+      fastify.post('/resendrecipient' , {schema: resendRecipientSchema}, resendRecipientHandler )
+      fastify.post('/resendtransaction' , {schema: resendTransactionSchema}, resendTransactionHandler )
     }
 
 module.exports[Symbol.for('plugin-meta')] = {
@@ -468,3 +472,163 @@ module.exports[Symbol.for('plugin-meta')] = {
         }
       }
       }
+  async function transactionHandler(req,reply) {
+
+    const [transactionError,transaction] =  await to(this.transactionService.transaction(req.body))
+    if(transactionError) {
+      throw reply.badRequest(transactionError)
+    }
+    return {
+        message: 'Success',
+        transaction:{
+          service:transaction.Service,
+          servicecode:transaction.ServiceCode,
+          status:transaction.Status,
+          value:transaction.Value,
+          reference:transaction.TnxRef,
+          date:transaction.TnxDate,
+          currency:transaction.Currency,
+          summary:transaction.Summary,
+          fee:transaction.Fees,
+          firstname:transaction.BenFirstName,
+          lastname:transaction.BenLastName,
+          mobile:transaction.BenMobileNo,
+          paymentmethod:transaction.PaymentMethod,
+          provider:transaction.ProviderId,
+          provideritem:transaction.ProviderItemId,
+          rate:transaction.Rate,
+          reason:transaction.ReasonId,
+          relationship:transaction.RelationshipId,
+          bank:transaction.BenBankName,
+          benaccountno: transaction.BenAccountNo,
+          tocurrency : transaction.ToCurrencyISO3,
+          fromcurrency:transaction.FromCurrencyISO3,
+          fromcountry: transaction.FromCountryISO3,
+          tocountry:transaction.ToCountryISO3,
+          benbillref: transaction.BenBillRef,
+          beniban: transaction.BenIban,
+          bencity:transaction.BenCity,
+          dob:transaction.BenDob,
+          // documents:{
+          //  type:"array",
+          //  items: {
+          //    doctitle:{ type: 'string' },
+          //    doctype:{ type: 'string' },
+          //    docformat:{ type: 'string' },
+          //    dateuploaded:{ type: 'string' },
+          //    active:{ type: 'boolean' },
+
+
+          //  }
+          // }
+        }
+      }
+      }
+
+
+async function resendRecipientHandler(req,reply) {
+
+        const [transactionError,transaction] =  await to(this.transactionService.transaction(req.body))
+        if(transactionError) {
+          throw reply.badRequest(transactionError)
+        }
+        return {
+            message: 'Success',
+            transaction:{
+              service:transaction.Service,
+              servicecode:transaction.ServiceCode,
+              status:transaction.Status,
+              value:transaction.Value,
+              reference:transaction.TnxRef,
+              date:transaction.TnxDate,
+              currency:transaction.Currency,
+              summary:transaction.Summary,
+              fee:transaction.Fees,
+              firstname:transaction.BenFirstName,
+              lastname:transaction.BenLastName,
+              mobile:transaction.BenMobileNo,
+              paymentmethod:transaction.PaymentMethod,
+              provider:transaction.ProviderId,
+              provideritem:transaction.ProviderItemId,
+              rate:transaction.Rate,
+              reason:transaction.ReasonId,
+              relationship:transaction.RelationshipId,
+              bank:transaction.BenBankName,
+              benaccountno: transaction.BenAccountNo,
+              tocurrency : transaction.ToCurrencyISO3,
+              fromcurrency:transaction.FromCurrencyISO3,
+              fromcountry: transaction.FromCountryISO3,
+              tocountry:transaction.ToCountryISO3,
+              benbillref: transaction.BenBillRef,
+              beniban: transaction.BenIban,
+              bencity:transaction.BenCity,
+              dob:transaction.BenDob,
+              // documents:{
+              //  type:"array",
+              //  items: {
+              //    doctitle:{ type: 'string' },
+              //    doctype:{ type: 'string' },
+              //    docformat:{ type: 'string' },
+              //    dateuploaded:{ type: 'string' },
+              //    active:{ type: 'boolean' },
+
+
+              //  }
+              // }
+            }
+          }
+          }
+
+
+async function resendTransactionHandler(req,reply) {
+
+            const [transactionError,transaction] =  await to(this.transactionService.transaction(req.body))
+            if(transactionError) {
+              throw reply.badRequest(transactionError)
+            }
+            return {
+                message: 'Success',
+                transaction:{
+                  service:transaction.Service,
+                  servicecode:transaction.ServiceCode,
+                  status:transaction.Status,
+                  value:transaction.Value,
+                  reference:transaction.TnxRef,
+                  date:transaction.TnxDate,
+                  currency:transaction.Currency,
+                  summary:transaction.Summary,
+                  fee:transaction.Fees,
+                  firstname:transaction.BenFirstName,
+                  lastname:transaction.BenLastName,
+                  mobile:transaction.BenMobileNo,
+                  paymentmethod:transaction.PaymentMethod,
+                  provider:transaction.ProviderId,
+                  provideritem:transaction.ProviderItemId,
+                  rate:transaction.Rate,
+                  reason:transaction.ReasonId,
+                  relationship:transaction.RelationshipId,
+                  bank:transaction.BenBankName,
+                  benaccountno: transaction.BenAccountNo,
+                  tocurrency : transaction.ToCurrencyISO3,
+                  fromcurrency:transaction.FromCurrencyISO3,
+                  fromcountry: transaction.FromCountryISO3,
+                  tocountry:transaction.ToCountryISO3,
+                  benbillref: transaction.BenBillRef,
+                  beniban: transaction.BenIban,
+                  bencity:transaction.BenCity,
+                  dob:transaction.BenDob,
+                  // documents:{
+                  //  type:"array",
+                  //  items: {
+                  //    doctitle:{ type: 'string' },
+                  //    doctype:{ type: 'string' },
+                  //    docformat:{ type: 'string' },
+                  //    dateuploaded:{ type: 'string' },
+                  //    active:{ type: 'boolean' },
+
+
+                  //  }
+                  // }
+                }
+              }
+              }

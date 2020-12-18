@@ -14,6 +14,10 @@ const BankService = require('./modules/bank/service')
 // const staticModule = require('./modules/static');
 const fastify = require('fastify')({ logger: true })
 fastify.register(require('fastify-sensible'))
+fastify.register(require('fastify-cors'), {
+  // put your options here
+  origin: '*'
+})
 const fastifyEnv = require('fastify-env')
 //configure env files
 const env_schema =  {
