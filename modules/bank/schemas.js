@@ -93,9 +93,41 @@ const auth = {
     }
   }
 
+
+  const refund = {
+    // This jsonschema will be used for data validation
+    body: {
+      type: 'object',
+      properties: {
+        refunds: { type:['array', 'null'],
+        items: {
+            type:'object',
+            properties : {
+              transactionId: {type:'string'},
+              amount: { type: 'number' },
+              currency: { type: 'string' }
+         }
+        } },
+      } ,
+      additionalProperties: true
+    },
+    response: {
+      // The 200 body response is described
+      // by the following schema
+      200: {
+        type: 'object',
+        properties: {
+          message: { type: ['string', 'null'] },
+        },
+        additionalProperties: true
+      }
+    }
+  }
+
   module.exports =  {
       auth,
       checkaccount,
       fundingaccount,
-      sendmail
+      sendmail,
+      refund
   }

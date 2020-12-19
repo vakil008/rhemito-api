@@ -4,12 +4,14 @@ const {
     auth: authSchema,
     fundingaccount:fundingAccountSchema,
     sendmail:sendMailSchema,
+    refund: refundSchema
   } = require('./schemas')
     module.exports= async  function(fastify,opts) {
       fastify.post('/auth' , {schema: authSchema}, authHandler )
       fastify.post('/checkaccount' , {schema: checkAccountSchema}, checkAccountHandler )
       fastify.post('/fundingaccount' , {schema: fundingAccountSchema}, fundAccountHandler )
       fastify.post('/sendmail' , {schema: sendMailSchema}, sendMailHandler )
+      fastify.post('/refund' , {schema: refundSchema}, refundHandler )
 
     }
 
@@ -62,6 +64,19 @@ module.exports[Symbol.for('plugin-meta')] = {
       console.log('bankEmail', bankEmail.data)
 
       return bankEmail.data;
+    }catch(e) {
+      throw reply.badRequest(e);
+    }
+  }
+
+  async function refundHandler(req,reply) {
+    try {
+      const refunds = await this.bankService.paystackRefund(req.body, reply)
+      console.log('refunds', refunds);
+      return {
+        message : 'refund successful',
+        refunds
+      }
     }catch(e) {
       throw reply.badRequest(e);
     }

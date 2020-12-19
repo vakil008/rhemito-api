@@ -2,6 +2,7 @@ const  {R , hasher}  =  require('../../lib/api')
 const uuid = require('uuid/v4');
 const { authenticateUser } = require('../../lib/bank');
 const to  = require('await-to-js').default
+const {decode} = require('jsonwebtoken')
 
 class  AccessService {
 
@@ -118,7 +119,9 @@ class  AccessService {
         if(loginBankError) {
             throw loginBankError
         }
-        const banktoken  = loginBankError ? null :  loginBank.data.data.token
+        const banktoken  =  loginBank.data.data.token
+        const decodedbanktoken = decode(banktoken);
+        console.log('decodedbanktoken', decodedbanktoken);
 
         return  {
             loginUser: loginResult.data.RetailApiResponse,

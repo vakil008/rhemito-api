@@ -1,5 +1,6 @@
 const  {R , hasher}  =  require('../../lib/api')
-const uuid = require('uuid/v4')
+const uuid = require('uuid/v4');
+const { refundPaystack } = require('../../lib/bank');
 const to  = require('await-to-js').default
 class  BankService {
 
@@ -44,6 +45,23 @@ class  BankService {
                 Providerid: provider
             })
               return providerResult.data.RetailApiResponse
+
+    }
+
+    async paystackRefund ({refunds}, reply) {
+
+        if(refunds.length > 20) {
+            throw reply.badRequest('maximum of 20 refunds at a time')
+        }
+
+        try {
+            const refundPromise = refunds.map(refund => refundPaystack(refund))
+        const refunds = await Promise.all(refundPromise);
+        return  refunds
+        }catch(e) {
+            throw reply.badRequest(e)
+        }
+
 
     }
 
