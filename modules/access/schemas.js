@@ -122,6 +122,7 @@ const register = {
           banktoken: { type: 'string'},
           sessiontoken: { type: 'string' },
           sessionexpiry: { type: 'string' },
+          banktokenexpiry: { type: 'string' }
         },
         additionalProperties: false
       }

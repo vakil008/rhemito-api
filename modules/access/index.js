@@ -42,7 +42,7 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function loginHandlers(req,reply) {
     const  {email, pass} = req.body
-    const {loginUser, banktoken } =  await this.accessService.login(email, pass)
+    const {loginUser, banktoken, banktokenexpiry } =  await this.accessService.login(email, pass)
     if(loginUser.ResponseCode!='10000') {
       throw reply.badRequest(loginUser.ResponseMessage)
     }
@@ -50,8 +50,10 @@ module.exports[Symbol.for('plugin-meta')] = {
       message: loginUser.ResponseMessage,
       uid: loginUser.User.Uid,
       banktoken,
+      banktokenexpiry,
       sessiontoken: loginUser.User.SessionToken,
       sessionexpiry: loginUser.User.SessionExpiry
+
   }
 
   }
