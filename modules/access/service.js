@@ -126,7 +126,7 @@ class  AccessService {
         return  {
             loginUser: loginResult.data.RetailApiResponse,
             banktoken,
-            banktokenexpiry: decodedbanktoken?.exp
+            banktokenexpiry: decodedbanktoken.exp
         }
 
     }
