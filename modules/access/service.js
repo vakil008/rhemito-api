@@ -121,11 +121,12 @@ class  AccessService {
         }
         const banktoken  =  loginBank.data.data.token
         const decodedbanktoken = decode(banktoken);
-
+        console.log('banktoken', banktoken);
+        console.log('decodedbanktoken',decodedbanktoken);
         return  {
             loginUser: loginResult.data.RetailApiResponse,
             banktoken,
-            banktokenexpiry: decodedbanktoken.exp
+            banktokenexpiry: decodedbanktoken?.exp
         }
 
     }
