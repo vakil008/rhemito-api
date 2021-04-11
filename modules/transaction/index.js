@@ -140,7 +140,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     let datarequirements = [];
 
-
+console.log('requirement', calculate.TransactionCalculate);
     if(calculate.TransactionCalculate.DataBenAddress && calculate.TransactionCalculate.DataBenAddress==='M' ){
       datarequirements.push({
         key: 'databenaddress',
