@@ -71,27 +71,27 @@ module.exports[Symbol.for('plugin-meta')] = {
 
     }
     let docrequirements = [];
-    if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId !='N' ){
+    if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId ==='M' ){
       docrequirements.push({
         key: 'docid',
         value:calculate.TransactionCalculate.DocId
       })
     }
-    if(calculate.TransactionCalculate.DocAddress && calculate.TransactionCalculate.DocAddress !='N' ){
+    if(calculate.TransactionCalculate.DocAddress && calculate.TransactionCalculate.DocAddress ==='M' ){
       docrequirements.push({
         key: 'docaddress',
         value:calculate.TransactionCalculate.DocAddress
       })
     }
 
-    if(calculate.TransactionCalculate.DocFund && calculate.TransactionCalculate.DocFund !='N' ){
+    if(calculate.TransactionCalculate.DocFund && calculate.TransactionCalculate.DocFund ==='M' ){
       docrequirements.push({
         key: 'docfund',
         value:calculate.TransactionCalculate.DocFund
       })
     }
 
-    if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation !='N' ){
+    if(calculate.TransactionCalculate.DocOccupation && calculate.TransactionCalculate.DocOccupation ==='M' ){
       docrequirements.push({
         key: 'dococcupation',
         value:calculate.TransactionCalculate.DocOccupation
@@ -99,40 +99,40 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     let bankrequirements = [];
 
-    if(calculate.TransactionCalculate.DataBankBic && calculate.TransactionCalculate.DataBankBic!='N' ){
+    if(calculate.TransactionCalculate.DataBankBic && calculate.TransactionCalculate.DataBankBic==='M' ){
       bankrequirements.push({
         key: 'databankbic',
         value:calculate.TransactionCalculate.DataBankBic
       })
     }
-    if(calculate.TransactionCalculate.DataBankIban && calculate.TransactionCalculate.DataBankIban!='N' ){
+    if(calculate.TransactionCalculate.DataBankIban && calculate.TransactionCalculate.DataBankIban==='M' ){
       bankrequirements.push({
         key: 'databankiban',
         value:calculate.TransactionCalculate.DataBankIban
       })
     }
 
-    if(calculate.TransactionCalculate.DataBankRouting && calculate.TransactionCalculate.DataBankRouting!='N' ){
+    if(calculate.TransactionCalculate.DataBankRouting && calculate.TransactionCalculate.DataBankRouting==='M' ){
       bankrequirements.push({
         key: 'databankrouting',
         value:calculate.TransactionCalculate.DataBankRouting
       })
     }
-    if(calculate.TransactionCalculate.DataBankAccNo && calculate.TransactionCalculate.DataBankAccNo!='N' ){
+    if(calculate.TransactionCalculate.DataBankAccNo && calculate.TransactionCalculate.DataBankAccNo==='M' ){
       bankrequirements.push({
         key: 'databankaccno',
         value:calculate.TransactionCalculate.DataBankAccNo
       })
     }
 
-    if(calculate.TransactionCalculate.DataBankName && calculate.TransactionCalculate.DataBankName!='N' ){
+    if(calculate.TransactionCalculate.DataBankName && calculate.TransactionCalculate.DataBankName==='M' ){
       bankrequirements.push({
         key: 'databankname',
         value:calculate.TransactionCalculate.DataBankName
       })
     }
 
-    if(calculate.TransactionCalculate.DataBankAddress && calculate.TransactionCalculate.DataBankAddress!='N' ){
+    if(calculate.TransactionCalculate.DataBankAddress && calculate.TransactionCalculate.DataBankAddress==='M' ){
       bankrequirements.push({
         key: 'databankaddress',
         value:calculate.TransactionCalculate.DataBankAddress
@@ -141,51 +141,51 @@ module.exports[Symbol.for('plugin-meta')] = {
     let datarequirements = [];
 
 
-    if(calculate.TransactionCalculate.DataBenAddress && calculate.TransactionCalculate.DataBenAddress!='N' ){
+    if(calculate.TransactionCalculate.DataBenAddress && calculate.TransactionCalculate.DataBenAddress==='M' ){
       datarequirements.push({
         key: 'databenaddress',
         value:calculate.TransactionCalculate.DataBenAddress
       })
     }
 
-    if(calculate.TransactionCalculate.DataBenCity && calculate.TransactionCalculate.DataBenCity!='N' ){
+    if(calculate.TransactionCalculate.DataBenCity && calculate.TransactionCalculate.DataBenCity==='M' ){
       datarequirements.push({
         key: 'databencity',
         value:calculate.TransactionCalculate.DataBenCity
       })
     }
 
-    if(calculate.TransactionCalculate.DataBenDob && calculate.TransactionCalculate.DataBenDob!='N' ){
+    if(calculate.TransactionCalculate.DataBenDob && calculate.TransactionCalculate.DataBenDob==='M' ){
       datarequirements.push({
         key: 'databendob',
         value:calculate.TransactionCalculate.DataBenDob
       })
     }
-    if(calculate.TransactionCalculate.DataBenIdCountry && calculate.TransactionCalculate.DataBenIdCountry!='N' ){
+    if(calculate.TransactionCalculate.DataBenIdCountry && calculate.TransactionCalculate.DataBenIdCountry==='M' ){
       datarequirements.push({
         key: 'databenidcountry',
         value:calculate.TransactionCalculate.DataBenIdCountry
       })
     }
-    if(calculate.TransactionCalculate.DataBenIdExpiryDate && calculate.TransactionCalculate.DataBenIdExpiryDate!='N' ){
+    if(calculate.TransactionCalculate.DataBenIdExpiryDate && calculate.TransactionCalculate.DataBenIdExpiryDate==='M' ){
       datarequirements.push({
         key: 'databenidexpirydate',
         value:calculate.TransactionCalculate.DataBenIdExpiryDate
       })
     }
-    if(calculate.TransactionCalculate.DataBenIdIssueDate && calculate.TransactionCalculate.DataBenIdIssueDate!='N' ){
+    if(calculate.TransactionCalculate.DataBenIdIssueDate && calculate.TransactionCalculate.DataBenIdIssueDate==='M' ){
       datarequirements.push({
         key: 'databenidissuedate',
         value:calculate.TransactionCalculate.DataBenIdIssueDate
       })
     }
-    if(calculate.TransactionCalculate.DataBenIdNumber && calculate.TransactionCalculate.DataBenIdNumber!='N' ){
+    if(calculate.TransactionCalculate.DataBenIdNumber && calculate.TransactionCalculate.DataBenIdNumber==='M' ){
       datarequirements.push({
         key: 'databenidnumber',
         value:calculate.TransactionCalculate.DataBenIdNumber
       })
     }
-    if(calculate.TransactionCalculate.DataBenIdType && calculate.TransactionCalculate.DataBenIdType!='N' ){
+    if(calculate.TransactionCalculate.DataBenIdType && calculate.TransactionCalculate.DataBenIdType==='M' ){
       datarequirements.push({
         key: 'databenidtype',
         value:calculate.TransactionCalculate.DataBenIdType
@@ -193,7 +193,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
 
     let senderrequirements = [];
-   if(calculate.TransactionCalculate.DataSenderAddress1 && calculate.TransactionCalculate.DataSenderAddress1!='N' ){
+   if(calculate.TransactionCalculate.DataSenderAddress1 && calculate.TransactionCalculate.DataSenderAddress1==='M' ){
       senderrequirements.push({
         key: 'datasenderaddress1',
         value:calculate.TransactionCalculate.DataSenderAddress1
@@ -205,74 +205,74 @@ module.exports[Symbol.for('plugin-meta')] = {
         value:calculate.TransactionCalculate.DataSenderAddress2
       })
     }
-    if(calculate.TransactionCalculate.DataSenderCity && calculate.TransactionCalculate.DataSenderCity!='N' ){
+    if(calculate.TransactionCalculate.DataSenderCity && calculate.TransactionCalculate.DataSenderCity==='M' ){
       senderrequirements.push({
         key: 'datasendercity',
         value:calculate.TransactionCalculate.DataSenderCity
       })
     }
-    if(calculate.TransactionCalculate.DataSenderPostCode && calculate.TransactionCalculate.DataSenderPostCode!='N' ){
+    if(calculate.TransactionCalculate.DataSenderPostCode && calculate.TransactionCalculate.DataSenderPostCode==='M' ){
       senderrequirements.push({
         key: 'datasenderpostcode',
         value:calculate.TransactionCalculate.DataSenderPostCode
       })
     }
-    if(calculate.TransactionCalculate.DataSenderGender && calculate.TransactionCalculate.DataSenderGender!='N' ){
+    if(calculate.TransactionCalculate.DataSenderGender && calculate.TransactionCalculate.DataSenderGender==='M' ){
       senderrequirements.push({
         key: 'datasendergender',
         value:calculate.TransactionCalculate.DataSenderGender
       })
     }
-    if(calculate.TransactionCalculate.DataSenderDob && calculate.TransactionCalculate.DataSenderDob!='N' ){
+    if(calculate.TransactionCalculate.DataSenderDob && calculate.TransactionCalculate.DataSenderDob==='M' ){
       senderrequirements.push({
         key: 'datasenderdob',
         value:calculate.TransactionCalculate.DataSenderDob
       })
     }
-    if(calculate.TransactionCalculate.DataSenderNationality && calculate.TransactionCalculate.DataSenderNationality!='N' ){
+    if(calculate.TransactionCalculate.DataSenderNationality && calculate.TransactionCalculate.DataSenderNationality==='M' ){
       senderrequirements.push({
         key: 'datasendernationality',
         value:calculate.TransactionCalculate.DataSenderNationality
       })
     }
-    if(calculate.TransactionCalculate.DataSenderOccupation && calculate.TransactionCalculate.DataSenderOccupation!='N' ){
+    if(calculate.TransactionCalculate.DataSenderOccupation && calculate.TransactionCalculate.DataSenderOccupation==='M' ){
       senderrequirements.push({
         key: 'datasenderoccupation',
         value:calculate.TransactionCalculate.DataSenderOccupation
       })
     }
-    if(calculate.TransactionCalculate.DataSenderBirthCountry && calculate.TransactionCalculate.DataSenderBirthCountry!='N' ){
+    if(calculate.TransactionCalculate.DataSenderBirthCountry && calculate.TransactionCalculate.DataSenderBirthCountry==='M' ){
       senderrequirements.push({
         key: 'datasenderbirthcountry',
         value:calculate.TransactionCalculate.DataSenderBirthCountry
       })
     }
     let kycrequirements =[];
-    if(calculate.TransactionCalculate.DataSenderIdType && calculate.TransactionCalculate.DataSenderIdType!='N' ){
+    if(calculate.TransactionCalculate.DataSenderIdType && calculate.TransactionCalculate.DataSenderIdType==='M' ){
       kycrequirements.push({
         key: 'datasenderidtype',
         value:calculate.TransactionCalculate.DataSenderIdType
       })
     }
-    if(calculate.TransactionCalculate.DataSenderIdNumber && calculate.TransactionCalculate.DataSenderIdNumber!='N' ){
+    if(calculate.TransactionCalculate.DataSenderIdNumber && calculate.TransactionCalculate.DataSenderIdNumber==='M' ){
       kycrequirements.push({
         key: 'datasenderidnumber',
         value:calculate.TransactionCalculate.DataSenderIdNumber
       })
     }
-    if(calculate.TransactionCalculate.DataSenderIdIssueDate && calculate.TransactionCalculate.DataSenderIdIssueDate!='N' ){
+    if(calculate.TransactionCalculate.DataSenderIdIssueDate && calculate.TransactionCalculate.DataSenderIdIssueDate==='M' ){
       kycrequirements.push({
         key: 'datasenderidissuedate',
         value:calculate.TransactionCalculate.DataSenderIdIssueDate
       })
     }
-    if(calculate.TransactionCalculate.DataSenderIdExpiryDate && calculate.TransactionCalculate.DataSenderIdExpiryDate!='N' ){
+    if(calculate.TransactionCalculate.DataSenderIdExpiryDate && calculate.TransactionCalculate.DataSenderIdExpiryDate==='M' ){
       kycrequirements.push({
         key: 'datasenderidexpirydate',
         value:calculate.TransactionCalculate.DataSenderIdExpiryDate
       })
     }
-    if(calculate.TransactionCalculate.DataSenderIdCountry && calculate.TransactionCalculate.DataSenderIdCountry!='N' ){
+    if(calculate.TransactionCalculate.DataSenderIdCountry && calculate.TransactionCalculate.DataSenderIdCountry==='M' ){
       kycrequirements.push({
         key: 'datasenderidcountry',
         value:calculate.TransactionCalculate.DataSenderIdCountry

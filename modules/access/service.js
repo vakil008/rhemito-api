@@ -119,11 +119,8 @@ class  AccessService {
         if(loginBankError) {
             throw loginBankError
         }
-        console.log('loginBank', loginBank);
         const banktoken  =  loginBank.data.data.token
         const decodedbanktoken = decode(banktoken);
-        console.log('banktoken', banktoken);
-        console.log('decodedbanktoken',decodedbanktoken);
         return  {
             loginUser: loginResult.data.RetailApiResponse,
             banktoken,
