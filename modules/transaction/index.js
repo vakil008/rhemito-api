@@ -140,7 +140,6 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     let datarequirements = [];
 
-console.log('requirement', calculate.TransactionCalculate);
     if(calculate.TransactionCalculate.DataBenAddress && calculate.TransactionCalculate.DataBenAddress==='M' ){
       datarequirements.push({
         key: 'databenaddress',
@@ -278,13 +277,13 @@ console.log('requirement', calculate.TransactionCalculate);
         value:calculate.TransactionCalculate.DataSenderIdCountry
       })
     }
-     if(['USD', 'GBP', 'EUR'].includes(calculate.TransactionCalculate.ToCurrencyISO3) &&
-    calculate.TransactionCalculate.ServiceCode === 'MONEYBANKACCOUNT' ) {
-       //find and ensure that
-       const otherRequirements = [{ key: 'databencity', value: 'M' },
-       { key: 'databenaddress', value: 'M' }]
-      datarequirements = _.unionBy(datarequirements, otherRequirements, 'key');
-    }
+    //  if(['USD', 'GBP', 'EUR'].includes(calculate.TransactionCalculate.ToCurrencyISO3) &&
+    // calculate.TransactionCalculate.ServiceCode === 'MONEYBANKACCOUNT' ) {
+    //    //find and ensure that
+    //    const otherRequirements = [{ key: 'databencity', value: 'M' },
+    //    { key: 'databenaddress', value: 'M' }]
+    //   datarequirements = _.unionBy(datarequirements, otherRequirements, 'key');
+    // }
    return {
         message: calculate.ResponseMessage,
         rate: calculate.TransactionCalculate.Rate,
