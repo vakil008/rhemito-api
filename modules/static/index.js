@@ -70,6 +70,8 @@ module.exports[Symbol.for('plugin-meta')] = {
     } = req
    try {
     const corridors =  await this.staticService.corridors()
+    console.log('uno', uno);
+
     if(!uno) {
       return {
         message: corridors.ResponseMessage,
