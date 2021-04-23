@@ -61,12 +61,33 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
   }
   async function corridorHandlers(req,reply) {
-    console.log('body', req.body);
+    const cutoff = 40000;
+    const optin = ['210145']
+    const {
+      body: {
+        uno
+      }
+    } = req
     const corridors =  await this.staticService.corridors()
-    return {
+    if(!uno) {
+      return {
         message: corridors.ResponseMessage,
         count: corridors.Count,
         corridors: corridors.Corridors
+    }
+    }
+      const refinedCorridors = corridors?.Corridors?.filter(cor => {
+        console.log('cor', cor);
+        if(cor.ToCurrencyISO3 ==='NGN' && (!optin.includes(uno) || parseInt(uno) > cutoff)){
+          return false;
+        }
+        return true;
+      })
+
+    return {
+        message: corridors.ResponseMessage,
+        count: corridors.Count,
+        corridors: refinedCorridors
     }
   }
   async function relationshipHandlers(req,reply) {
