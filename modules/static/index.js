@@ -87,7 +87,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     return {
         message: corridors.ResponseMessage,
         count: corridors.Count,
-        corridors: corridors.Corridors;
+        corridors: corridors.Corridors
     }
   }
   async function relationshipHandlers(req,reply) {
