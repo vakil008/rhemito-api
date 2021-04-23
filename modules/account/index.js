@@ -32,6 +32,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   async function userHandler(req,reply) {
   const  {uid,sessiontoken} = req.body
     const user =  await this.accountService.useraccount(sessiontoken,uid)
+    console.log('user details', user)
     return {
         message: user.ResponseMessage,
         uid: user.Uid,
