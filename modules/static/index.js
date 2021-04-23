@@ -68,6 +68,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         uno
       }
     } = req
+   try {
     const corridors =  await this.staticService.corridors()
     if(!uno) {
       return {
@@ -89,7 +90,10 @@ module.exports[Symbol.for('plugin-meta')] = {
         count: corridors.Count,
         corridors: refinedCorridors
     }
-  }
+    }catch(error) {
+      console.log('erro', error);
+    }
+   }
   async function relationshipHandlers(req,reply) {
     const relationships =  await this.staticService.relationships()
     return {
