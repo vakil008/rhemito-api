@@ -61,7 +61,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
   }
   async function corridorHandlers(req,reply) {
-    const cutoff = 40000;
+    const cutoff = 400000;
     const optin = ['210145']
     const {
       body: {
@@ -70,7 +70,6 @@ module.exports[Symbol.for('plugin-meta')] = {
     } = req
    try {
     const corridors =  await this.staticService.corridors()
-    console.log('uno', uno);
 
     if(!uno) {
       return {
@@ -81,13 +80,12 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     console.log('uno', uno);
       const refinedCorridors = corridors?.Corridors?.filter(cor => {
-        // if(cor.ToCurrencyISO3 ==='NGN' && (!optin.includes(uno) || parseInt(uno) > cutoff)){
-        //   return false;
-        // }
+        if(cor.ToCurrencyISO3 ==='NGN' && (!optin.includes(uno) || parseInt(uno) > cutoff)){
+          return false;
+        }
         return true;
       })
-      // console.log('refinedCorridors', refinedCorridors);
-    return {
+     return {
         message: corridors.ResponseMessage,
         count: corridors.Count,
         corridors: refinedCorridors
