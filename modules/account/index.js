@@ -35,8 +35,8 @@ module.exports[Symbol.for('plugin-meta')] = {
     console.log('user details', user)
     return {
         message: user.ResponseMessage,
-        uid: user.Uid,
-        uno: user.Uno,
+        uid: user.User.Uid,
+        uno: user.User.Uno,
         lastloggedin : user.User.LastLoggedIn,
         firstname: user.User.FName,
         dob: user.User.dob,
