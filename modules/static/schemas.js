@@ -48,11 +48,13 @@ const countries = {
 
   const corridors = {
     // This jsonschema will be used for data validation
-    // body: {
-    //   type: 'object',
-    //   properties: requestProperties ,
-    //   additionalProperties: false
-    // },
+    body: {
+      type: 'object',
+      properties: {
+        uno: { type: ['string', 'null']}
+      } ,
+      additionalProperties: true
+    },
     response: {
       // The 200 body response is described
       // by the following schema

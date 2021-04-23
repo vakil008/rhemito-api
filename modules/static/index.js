@@ -61,6 +61,7 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
   }
   async function corridorHandlers(req,reply) {
+    console.log('body', req.body);
     const corridors =  await this.staticService.corridors()
     return {
         message: corridors.ResponseMessage,
