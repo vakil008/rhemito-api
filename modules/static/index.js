@@ -77,13 +77,12 @@ module.exports[Symbol.for('plugin-meta')] = {
     }
     }
       const refinedCorridors = corridors?.Corridors?.filter(cor => {
-        console.log('cor', cor);
         if(cor.ToCurrencyISO3 ==='NGN' && (!optin.includes(uno) || parseInt(uno) > cutoff)){
           return false;
         }
         return true;
       })
-
+      console.log('refinedCorridors', refinedCorridors);
     return {
         message: corridors.ResponseMessage,
         count: corridors.Count,
