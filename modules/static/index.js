@@ -83,11 +83,11 @@ module.exports[Symbol.for('plugin-meta')] = {
         }
         return true;
       })
-      console.log('refinedCorridors', refinedCorridors);
+      // console.log('refinedCorridors', refinedCorridors);
     return {
         message: corridors.ResponseMessage,
         count: corridors.Count,
-        corridors: corridors.Corridors
+        corridors: refinedCorridors
     }
   }
   async function relationshipHandlers(req,reply) {
