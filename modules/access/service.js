@@ -117,14 +117,17 @@ class  AccessService {
             })
         const [loginBankError, loginBank]  =  await to(authenticateUser(email,pass))
         if(loginBankError) {
+
             throw loginBankError
         }
-        const banktoken  =  loginBank.data.data.token
-        const decodedbanktoken = decode(banktoken);
+        console.log('loginBankError', loginBankError);
+        console.log('loginBank', loginBank)
+        const banktoken  =  loginBank?.data?.data?.token
+        const decodedbanktoken = banktoken && decode(banktoken);
         return  {
             loginUser: loginResult.data.RetailApiResponse,
             banktoken,
-            banktokenexpiry: decodedbanktoken.exp
+            banktokenexpiry: decodedbanktoken?.exp
         }
 
     }
