@@ -83,7 +83,7 @@ module.exports[Symbol.for('plugin-meta')] = {
       const refinedCorridors = corridors?.Corridors?.filter(cor => {
       
         if(cor.ToCurrencyISO3 ==='NGN' && !optin.includes(uno)){
-          if(parseInt(uno) > cutoff) return true;
+          if(parseInt(uno) < cutoff) return true;
           console.log('cor', cor);
           console.log('false returned')
           return false;
