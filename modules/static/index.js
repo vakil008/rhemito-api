@@ -85,6 +85,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         }
         return true;
       })
+      console.log('refinedCorridors', refinedCorridors);
      return {
         message: corridors.ResponseMessage,
         count: corridors.Count,
