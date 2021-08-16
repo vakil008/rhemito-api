@@ -62,7 +62,7 @@ module.exports[Symbol.for('plugin-meta')] = {
   }
   async function corridorHandlers(req,reply) {
     const cutoff = 232150;
-    const optin = ['210145', '230284','233870']
+    const optin = ['210145', '230284','233870', '233880']
     const {
       body: {
         uno
