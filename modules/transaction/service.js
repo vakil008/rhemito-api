@@ -207,8 +207,9 @@ class  TransactionService {
              delete submitResultData[key];
             }
           }
-
+           console.log('submitResultData', submitResultData);
           submitResult = await R.post('/RetailTransactionSubmit', submitResultData)
+        console.log('submitResult', submitResult);
           if(banktoken) {
             const [bankCreateError, bankCreateDetail] = await to(checkCCAccount(uid, fromcurrency, amount, banktoken))
             if(bankCreateError) {
@@ -223,17 +224,17 @@ class  TransactionService {
                 Bugsnag.notify(bankDetailError);
                 console.log('banking details error', bankDetailError)
                  return  {
-                     create : submitResult.data.RetailApiResponse,
+                     create : submitResult?.data?.RetailApiResponse,
                      bank: {}
                  }
              }
                return{
-                   create:  submitResult.data.RetailApiResponse,
+                   create:  submitResult?.data?.RetailApiResponse,
                    bank: bankdetail}
          }
 
            return{
-               create:  submitResult.data.RetailApiResponse,
+               create:  submitResult?.data?.RetailApiResponse,
              bank: {}
          }
 
