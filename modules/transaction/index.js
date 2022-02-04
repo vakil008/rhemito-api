@@ -70,6 +70,7 @@ module.exports[Symbol.for('plugin-meta')] = {
         // .filter((method) => method.code !=='BANKTRANSFER')
 
     }
+      console.log('calculate.TransactionCalculate', calculate.TransactionCalculate);
     let docrequirements = [];
     if(calculate.TransactionCalculate.DocId && calculate.TransactionCalculate.DocId !='N' ){
       docrequirements.push({
