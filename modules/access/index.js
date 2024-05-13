@@ -42,10 +42,12 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function loginHandlers(req,reply) {
     const  {email, pass} = req.body
+       throw reply.badRequest("Sorry for the inconvenience!!\r\nThis app is no longer supported. Please uninstall the app and install the Rhemito app from app store.");
     const {loginUser, banktoken, banktokenexpiry } =  await this.accessService.login(email, pass)
-    if(loginUser.ResponseCode!='10000') {
-      throw reply.badRequest(loginUser.ResponseMessage)
-    }
+    //if(loginUser.ResponseCode!='10000') {
+ ///     throw reply.badRequest(loginUser.ResponseMessage)
+  //  }
+       
     return {
       message: loginUser.ResponseMessage,
       uid: loginUser.User.Uid,
