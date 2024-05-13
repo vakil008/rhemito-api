@@ -30,6 +30,8 @@ module.exports[Symbol.for('plugin-meta')] = {
       }
   async function registerHandlers(req,reply) {
     const  {firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe} = req.body
+  throw reply.badRequest("Sorry for the inconvenience!!\r\nThis app is no longer supported. Please uninstall the app and install the Rhemito app from app store.");
+
     const newUser =  await this.accessService.register(firstname,middlename,lastname,country,mobileno,regtype,businessname,email, pass,issubscribe)
     if(newUser.ResponseCode!='10000') {
       throw reply.badRequest(newUser.ResponseMessage)
@@ -62,6 +64,8 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function activateHandlers(req,reply) {
     const  {accesstoken} = req.body
+  throw reply.badRequest("Sorry for the inconvenience!!\r\nThis app is no longer supported. Please uninstall the app and install the Rhemito app from app store.");
+
     const activateUser =  await this.accessService.activate(accesstoken)
     if(activateUser.ResponseCode!='10000') {
       throw reply.badRequest(activateUser.ResponseMessage)
@@ -73,6 +77,8 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function passwordResetHandler(req,reply) {
     const  {email} = req.body
+      throw reply.badRequest("Sorry for the inconvenience!!\r\nThis app is no longer supported. Please uninstall the app and install the Rhemito app from app store.");
+
     const resetPassword =  await this.accessService.reset(email)
     if(resetPassword.ResponseCode!='10000') {
       throw reply.badRequest(resetPassword.ResponseMessage)
@@ -84,6 +90,8 @@ module.exports[Symbol.for('plugin-meta')] = {
 
   async function passwordValidateHandler(req,reply) {
     const  {accesstoken} = req.body
+     throw reply.badRequest("Sorry for the inconvenience!!\r\nThis app is no longer supported. Please uninstall the app and install the Rhemito app from app store.");
+
     const validatePassword =  await this.accessService.validate(accesstoken)
     if(validatePassword.ResponseCode!='10000') {
       throw reply.badRequest(validatePassword.ResponseMessage)
@@ -94,6 +102,8 @@ module.exports[Symbol.for('plugin-meta')] = {
   }
   async function passwordConfirmHandler(req,reply) {
     const  {accesstoken,pass,email} = req.body
+       throw reply.badRequest("Sorry for the inconvenience!!\r\nThis app is no longer supported. Please uninstall the app and install the Rhemito app from app store.");
+
     const confirmPassword =  await this.accessService.confirm(accesstoken,email,pass)
     if(confirmPassword.ResponseCode!='10000') {
       throw reply.badRequest(confirmPassword.ResponseMessage)
